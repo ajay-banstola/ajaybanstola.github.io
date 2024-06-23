@@ -6,8 +6,20 @@
     <description>Recent content in Posts on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 May 2024 22:52:14 +0545</lastBuildDate>
+    <lastBuildDate>Sun, 23 Jun 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Three ways to solve the 2-sum problem</title>
+      <link>https://ajaybanstola.com.np/posts/lesson2/</link>
+      <pubDate>Sun, 23 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson2/</guid>
+      <description>Here is the link to the problem: Two Sum.
+Problem Statement: Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
+Examples: Example 1:
+Input: nums = [2,7,11,15], target = 9</description>
+    </item>
     <item>
       <title>Casual/Informal Nepali Language Lesson 1</title>
       <link>https://ajaybanstola.com.np/posts/lesson1/</link>
