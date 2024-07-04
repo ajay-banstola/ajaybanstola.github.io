@@ -6,8 +6,23 @@
     <description>Recent content in Posts on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3Sum Closest Solution: Me vs ChatGPT</title>
+      <link>https://ajaybanstola.com.np/posts/lesson4/</link>
+      <pubDate>Thu, 04 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson4/</guid>
+      <description>Here is the link to the problem: 3Sum Closest.
+Problem Statement: Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is closest to target.
+Return the sum of the three integers.
+You may assume that each input would have exactly one solution.
+Examples: Example 1:
+Input: nums = [-1,0,1,2,-1,-4]
+Target: 1
+Output: 2
+Explanation: The sum that is closest to the target is 2.</description>
+    </item>
     <item>
       <title>Solution to 3sum problem and its edge cases</title>
       <link>https://ajaybanstola.com.np/posts/lesson3/</link>
