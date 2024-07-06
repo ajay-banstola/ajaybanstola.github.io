@@ -6,8 +6,18 @@
     <description>Recent content in Home on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Valid Parentheses Solution: Me vs Neetcode</title>
+      <link>https://ajaybanstola.com.np/posts/lesson5/</link>
+      <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson5/</guid>
+      <description>Here is the link to the problem: Valid Parentheses.
+Problem Statement: Given a string s containing just the characters &amp;lsquo;(&amp;rsquo;, &amp;lsquo;)&amp;rsquo;, &amp;lsquo;{&amp;rsquo;, &amp;lsquo;}&amp;rsquo;, &amp;lsquo;[&amp;rsquo; and &amp;lsquo;]&amp;rsquo;, determine if the input string is valid.
+An input string is valid if:
+Open brackets must be closed by the same type of brackets. Open brackets must be closed in the correct order. Every close bracket has a corresponding open bracket of the same type.</description>
+    </item>
     <item>
       <title>3Sum Closest Solution: Me vs ChatGPT</title>
       <link>https://ajaybanstola.com.np/posts/lesson4/</link>
