@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Home on That&#39;s interesting</title>
-    <link>http://localhost:1313/</link>
+    <link>https://ajaybanstola.com.np/</link>
     <description>Recent content in Home on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 07 Jul 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Merge Two Sorted List: With and without Linked list</title>
-      <link>http://localhost:1313/posts/lesson6/</link>
+      <link>https://ajaybanstola.com.np/posts/lesson6/</link>
       <pubDate>Sun, 07 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/lesson6/</guid>
+      <guid>https://ajaybanstola.com.np/posts/lesson6/</guid>
       <description>Here is the link to the problem: Merge Two Sorted List.
 Problem Statement: You are given the heads of two sorted linked lists list1 and list2.
 Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.
@@ -24,9 +24,9 @@ Example 2:</description>
     </item>
     <item>
       <title>Valid Parentheses Solution: Me vs Neetcode</title>
-      <link>http://localhost:1313/posts/lesson5/</link>
+      <link>https://ajaybanstola.com.np/posts/lesson5/</link>
       <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/lesson5/</guid>
+      <guid>https://ajaybanstola.com.np/posts/lesson5/</guid>
       <description>Here is the link to the problem: Valid Parentheses.
 Problem Statement: Given a string s containing just the characters &amp;lsquo;(&amp;rsquo;, &amp;lsquo;)&amp;rsquo;, &amp;lsquo;{&amp;rsquo;, &amp;lsquo;}&amp;rsquo;, &amp;lsquo;[&amp;rsquo; and &amp;lsquo;]&amp;rsquo;, determine if the input string is valid.
 An input string is valid if:
@@ -34,9 +34,9 @@ Open brackets must be closed by the same type of brackets. Open brackets must be
     </item>
     <item>
       <title>3Sum Closest Solution: Me vs ChatGPT</title>
-      <link>http://localhost:1313/posts/lesson4/</link>
+      <link>https://ajaybanstola.com.np/posts/lesson4/</link>
       <pubDate>Thu, 04 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/lesson4/</guid>
+      <guid>https://ajaybanstola.com.np/posts/lesson4/</guid>
       <description>Here is the link to the problem: 3Sum Closest.
 Problem Statement: Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is closest to target.
 Return the sum of the three integers.
@@ -49,9 +49,9 @@ Explanation: The sum that is closest to the target is 2.</description>
     </item>
     <item>
       <title>Solution to 3sum problem and its edge cases</title>
-      <link>http://localhost:1313/posts/lesson3/</link>
+      <link>https://ajaybanstola.com.np/posts/lesson3/</link>
       <pubDate>Wed, 03 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/lesson3/</guid>
+      <guid>https://ajaybanstola.com.np/posts/lesson3/</guid>
       <description>Here is the link to the problem: Three Sum.
 Problem Statement: Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
 Notice that the solution set must not contain duplicate triplets.
@@ -63,9 +63,9 @@ nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.</description>
     </item>
     <item>
       <title>Three ways to solve the 2-sum problem</title>
-      <link>http://localhost:1313/posts/lesson2/</link>
+      <link>https://ajaybanstola.com.np/posts/lesson2/</link>
       <pubDate>Sun, 23 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/lesson2/</guid>
+      <guid>https://ajaybanstola.com.np/posts/lesson2/</guid>
       <description>Here is the link to the problem: Two Sum.
 Problem Statement: Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -75,18 +75,18 @@ Input: nums = [2,7,11,15], target = 9</description>
     </item>
     <item>
       <title>Casual/Informal Nepali Language Lesson 1</title>
-      <link>http://localhost:1313/posts/lesson1/</link>
+      <link>https://ajaybanstola.com.np/posts/lesson1/</link>
       <pubDate>Mon, 13 May 2024 22:52:14 +0545</pubDate>
-      <guid>http://localhost:1313/posts/lesson1/</guid>
+      <guid>https://ajaybanstola.com.np/posts/lesson1/</guid>
       <description>Often times when foreigners try to learn Nepali, they get a very formal Nepali language written in text books or websites. My goal here is to teach Nepali in a way that is spoken everyday. As someone who was born in Nepal and lived there for over 25 years, I can be the best source to learn the everyday language.
 Hey, how are you? -&amp;gt; K chha?
 How&amp;rsquo;s it going? -&amp;gt; Kasto chaldai chha?</description>
     </item>
     <item>
       <title>Portfolio</title>
-      <link>http://localhost:1313/portfolio/</link>
+      <link>https://ajaybanstola.com.np/portfolio/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/portfolio/</guid>
+      <guid>https://ajaybanstola.com.np/portfolio/</guid>
       <description>Education Masters in Computer Science at University of Louisiana at Lafayette Experience Software Engineer at Tekvortex Pvt. Ltd., Lalitpur, Nepal - 2 years Associate Software Engineer at Paynep Pvt. Ltd., Kathmandu, Nepal - 1 year Hobbies Coding Youtube Marathon Gym Japanese Chess,Badminton Reading Contact: ajay.banstola@gmail.com </description>
     </item>
   </channel>
