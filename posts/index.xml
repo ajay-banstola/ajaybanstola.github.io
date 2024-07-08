@@ -6,8 +6,17 @@
     <description>Recent content in Posts on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Remove duplicates from Sorted Array</title>
+      <link>https://ajaybanstola.com.np/posts/lesson7/</link>
+      <pubDate>Mon, 08 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson7/</guid>
+      <description>Here is the link to the problem: Remove Duplicates from sorted Array.
+Problem Statement: Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
+Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:</description>
+    </item>
     <item>
       <title>Merge Two Sorted List: With and without Linked list</title>
       <link>https://ajaybanstola.com.np/posts/lesson6/</link>
