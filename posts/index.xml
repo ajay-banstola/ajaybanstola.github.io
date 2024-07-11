@@ -6,8 +6,20 @@
     <description>Recent content in Posts on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Index of First Occurennce in String</title>
+      <link>https://ajaybanstola.com.np/posts/lesson8/</link>
+      <pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson8/</guid>
+      <description>Here is the link to the problem: Index of First Occurrence in String
+Problem Statement: Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+Examples: Example 1:
+Input: haystack = &amp;ldquo;sadbutsad&amp;rdquo;, needle = &amp;ldquo;sad&amp;rdquo;
+Output: 0
+Explanation: &amp;ldquo;sad&amp;rdquo; occurs at index 0 and 6. The first occurrence is at index 0, so we return 0.</description>
+    </item>
     <item>
       <title>Remove duplicates from Sorted Array</title>
       <link>https://ajaybanstola.com.np/posts/lesson7/</link>
