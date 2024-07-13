@@ -6,8 +6,23 @@
     <description>Recent content in Home on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Length of Last word</title>
+      <link>https://ajaybanstola.com.np/posts/lesson10/</link>
+      <pubDate>Sat, 13 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson10/</guid>
+      <description>Here is the link to the problem: Length of Last word.
+Problem Statement: Given a string s consisting of words and spaces, return the length of the last word in the string.
+A word is a maximal substring consisting of non-space characters only.
+Examples: Example 1:
+Input: s = &amp;ldquo;Hello World&amp;rdquo;
+Output: 5
+Explanation: The last word is &amp;ldquo;World&amp;rdquo; with length 5.
+Example 2:
+Input: s = &amp;quot; fly me to the moon &amp;quot;</description>
+    </item>
     <item>
       <title>Search Insert Position</title>
       <link>https://ajaybanstola.com.np/posts/lesson9/</link>
