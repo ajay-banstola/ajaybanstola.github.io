@@ -24,6 +24,16 @@ Example 2:
 Input: s = &amp;quot; fly me to the moon &amp;quot;</description>
     </item>
     <item>
+      <title>Plus one</title>
+      <link>https://ajaybanstola.com.np/posts/lesson11/</link>
+      <pubDate>Sat, 13 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson11/</guid>
+      <description>Here is the link to the problem: Plus one.
+Problem Statement: You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0&amp;rsquo;s.
+Increment the large integer by one and return the resulting array of digits.
+Examples: Example 1:</description>
+    </item>
+    <item>
       <title>Search Insert Position</title>
       <link>https://ajaybanstola.com.np/posts/lesson9/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
