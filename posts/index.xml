@@ -6,8 +6,21 @@
     <description>Recent content in Posts on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Add Binary</title>
+      <link>https://ajaybanstola.com.np/posts/lesson12/</link>
+      <pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson12/</guid>
+      <description>Here is the link to the problem: Add Binary.
+Problem Statement: Given two binary strings a and b, return their sum as a binary string.
+Examples: Example 1:
+Input: a = &amp;ldquo;11&amp;rdquo;, b = &amp;ldquo;1&amp;rdquo; Output: &amp;ldquo;100&amp;rdquo;
+Example 2:
+Input: a = &amp;ldquo;1010&amp;rdquo;, b = &amp;ldquo;1011&amp;rdquo; Output: &amp;ldquo;10101&amp;rdquo;
+My Solution class Solution(object): def addBinary(self, a, b): &amp;#34;&amp;#34;&amp;#34; :type a: str :type b: str :rtype: str &amp;#34;&amp;#34;&amp;#34; c = 0 res = &amp;#34;&amp;#34; a_r, b_r = a[::-1], b[::-1] for i in range(max(len(a), len(b))): a_val = a_r[i] if i &amp;lt; len(a) else 0 b_val = b_r[i] if i &amp;lt; len(b) else 0 sum = c + int(a_val) + int(b_val) r = sum % 2 c = sum // 2 res += str(r) if c: return (str(c) + res[::-1]) else: return res[::-1] So even though this is an easy problem, but there are a lot of things to be considered.</description>
+    </item>
     <item>
       <title>Length of Last word</title>
       <link>https://ajaybanstola.com.np/posts/lesson10/</link>

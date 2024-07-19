@@ -126,6 +126,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Add Binary
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Here is the link to the problem: Add Binary.
+Problem Statement: Given two binary strings a and b, return their sum as a binary string.
+Examples: Example 1:
+Input: a = “11”, b = “1” Output: “100”
+Example 2:
+Input: a = “1010”, b = “1011” Output: “10101”
+My Solution class Solution(object): def addBinary(self, a, b): &#34;&#34;&#34; :type a: str :type b: str :rtype: str &#34;&#34;&#34; c = 0 res = &#34;&#34; a_r, b_r = a[::-1], b[::-1] for i in range(max(len(a), len(b))): a_val = a_r[i] if i &lt; len(a) else 0 b_val = b_r[i] if i &lt; len(b) else 0 sum = c &#43; int(a_val) &#43; int(b_val) r = sum % 2 c = sum // 2 res &#43;= str(r) if c: return (str(c) &#43; res[::-1]) else: return res[::-1] So even though this is an easy problem, but there are a lot of things to be considered....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-18 00:00:00 +0000 UTC'>July 18, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to Add Binary" href="https://ajaybanstola.com.np/posts/lesson12/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Length of Last word
     </h2>
   </header>
@@ -279,23 +297,6 @@ nums[0] &#43; nums[1] &#43; nums[2] = (-1) &#43; 0 &#43; 1 = 0....</p>
   </div>
   <footer class="entry-footer"><span title='2024-07-03 00:00:00 +0000 UTC'>July 3, 2024</span></footer>
   <a class="entry-link" aria-label="post link to Solution to 3sum problem and its edge cases" href="https://ajaybanstola.com.np/posts/lesson3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Three ways to solve the 2-sum problem
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Two Sum.
-Problem Statement: Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
-You can return the answer in any order.
-Examples: Example 1:
-Input: nums = [2,7,11,15], target = 9...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-23 00:00:00 +0000 UTC'>June 23, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Three ways to solve the 2-sum problem" href="https://ajaybanstola.com.np/posts/lesson2/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
