@@ -9,6 +9,20 @@
     <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Majority Element</title>
+      <link>https://ajaybanstola.com.np/posts/lesson18/</link>
+      <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson18/</guid>
+      <description>Here is the link to the problem: Majority Element.
+Problem Statement: Given an array nums of size n, return the majority element.
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+Examples: Example 1:
+Input: nums = [3,2,3] Output: 3
+Example 2:
+Input: nums = [2,2,1,1,1,2,2] Output: 2
+My Solution class Solution(object): def majorityElement(self, nums): &amp;#34;&amp;#34;&amp;#34; :type nums: List[int] :rtype: int &amp;#34;&amp;#34;&amp;#34; new_dict = {} for each in nums: if each in new_dict: new_dict[each] += 1 else: new_dict[each] = 1 for each in new_dict: if new_dict[each] &amp;gt; len(nums)/ 2: return each This is nothing, very simple.</description>
+    </item>
+    <item>
       <title>Single Number</title>
       <link>https://ajaybanstola.com.np/posts/lesson17/</link>
       <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
