@@ -6,8 +6,19 @@
     <description>Recent content in Home on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Customers who never order</title>
+      <link>https://ajaybanstola.com.np/sql/first-sql/</link>
+      <pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/sql/first-sql/</guid>
+      <description>Here is the link to the problem: Customers who never order.
+Problem Statement: Table: Customers
++&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;+ | Column Name | Type | +&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;+ | id | int | | name | varchar | +&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;+ id is the primary key (column with unique values) for this table. Each row of this table indicates the ID and name of a customer.
+Table: Orders
++&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;+ | Column Name | Type | +&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;+ | id | int | | customerId | int | +&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;+ id is the primary key (column with unique values) for this table.</description>
+    </item>
     <item>
       <title>Majority Element</title>
       <link>https://ajaybanstola.com.np/posts/lesson18/</link>
@@ -234,13 +245,6 @@ Input: nums = [2,7,11,15], target = 9</description>
       <description>Often times when foreigners try to learn Nepali, they get a very formal Nepali language written in text books or websites. My goal here is to teach Nepali in a way that is spoken everyday. As someone who was born in Nepal and lived there for over 25 years, I can be the best source to learn the everyday language.
 Hey, how are you? -&amp;gt; K chha?
 How&amp;rsquo;s it going? -&amp;gt; Kasto chaldai chha?</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://ajaybanstola.com.np/sql/first-sql/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/sql/first-sql/</guid>
-      <description></description>
     </item>
     <item>
       <title></title>
