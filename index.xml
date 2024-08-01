@@ -15,9 +15,9 @@
       <guid>https://ajaybanstola.com.np/sql/first-sql/</guid>
       <description>Here is the link to the problem: Customers who never order.
 Problem Statement: Table: Customers
-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;+ | Column Name | Type | +&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;+ | id | int | | name | varchar | +&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;+ id is the primary key (column with unique values) for this table. Each row of this table indicates the ID and name of a customer.
+Column Name Type id int name varchar id is the primary key (column with unique values) for this table. Each row of this table indicates the ID and name of a customer.
 Table: Orders
-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;+ | Column Name | Type | +&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;+ | id | int | | customerId | int | +&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;+ id is the primary key (column with unique values) for this table.</description>
+Column Name Type id int customerId int id is the primary key (column with unique values) for this table. customerId is a foreign key (reference columns) of the ID from the Customers table.</description>
     </item>
     <item>
       <title>Majority Element</title>
