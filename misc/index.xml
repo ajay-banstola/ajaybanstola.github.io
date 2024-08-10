@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Miscs on That&#39;s interesting</title>
+    <link>https://ajaybanstola.com.np/misc/</link>
+    <description>Recent content in Miscs on That&#39;s interesting</description>
+    <generator>Hugo -- 0.125.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ajaybanstola.com.np/misc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sorting items in a nested dictionary</title>
+      <link>https://ajaybanstola.com.np/misc/lesson1/</link>
+      <pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/misc/lesson1/</guid>
+      <description>Problem Statement: We want to sort items in a dictionary by a value that is nested deep in the dictionary. Let&amp;rsquo;s take an example:
+Dictionary to be sorted:
+dict_v = { &amp;#34;1&amp;#34;: {&amp;#34;A&amp;#34;:1}, &amp;#34;2&amp;#34;: {&amp;#34;B&amp;#34;:2}, &amp;#34;3&amp;#34;: {&amp;#34;C&amp;#34;:6}, &amp;#34;4&amp;#34;: {&amp;#34;D&amp;#34;:4} } Here, we want to sort the dictionary by the values 1,2,6 and 4. Let&amp;rsquo;s call &amp;ldquo;1&amp;rdquo;, &amp;ldquo;2&amp;rdquo;,&amp;ldquo;3&amp;rdquo;, &amp;ldquo;4&amp;rdquo; as key, &amp;ldquo;A&amp;rdquo;, &amp;ldquo;B&amp;rdquo;,&amp;ldquo;C&amp;rdquo;, &amp;ldquo;D&amp;rdquo; as field and 1,2,6,4 as values. We want to sort the dictionary by values and that also in descending order.</description>
+    </item>
+  </channel>
+</rss>

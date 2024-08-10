@@ -5,15 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Customers who never order | That&#39;s interesting</title>
+<title>Miscs | That&#39;s interesting</title>
 <meta name="keywords" content="">
-<meta name="description" content="Here is the link to the problem: Customers who never order.
-Problem Statement: Table: Customers
-Column Name Type id int name varchar id is the primary key (column with unique values) for this table. Each row of this table indicates the ID and name of a customer.
-Table: Orders
-Column Name Type id int customerId int id is the primary key (column with unique values) for this table. customerId is a foreign key (reference columns) of the ID from the Customers table.">
+<meta name="description" content="Miscs - That&#39;s interesting">
 <meta name="author" content="">
-<link rel="canonical" href="https://ajaybanstola.com.np/sql/first-sql/">
+<link rel="canonical" href="https://ajaybanstola.com.np/misc/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.d08f4052fa8ebcfc062f84be37c7db30a22a1375793e3c9c1af198b510cdeb81.css" integrity="sha256-0I9AUvqOvPwGL4S&#43;N8fbMKIqE3V5PjycGvGYtRDN64E=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://ajaybanstola.com.np/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://ajaybanstola.com.np/favicon-16x16.png">
@@ -22,7 +18,8 @@ Column Name Type id int customerId int id is the primary key (column with unique
 <link rel="mask-icon" href="https://ajaybanstola.com.np/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://ajaybanstola.com.np/sql/first-sql/">
+<link rel="alternate" type="application/rss+xml" href="https://ajaybanstola.com.np/misc/index.xml">
+<link rel="alternate" hreflang="en" href="https://ajaybanstola.com.np/misc/">
 <noscript>
     <style>
         #theme-toggle,
@@ -62,7 +59,7 @@ Column Name Type id int customerId int id is the primary key (column with unique
 </noscript>
 </head>
 
-<body class="" id="top">
+<body class="list" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -104,7 +101,7 @@ Column Name Type id int customerId int id is the primary key (column with unique
         <ul id="menu">
             <li>
                 <a href="https://ajaybanstola.com.np/misc/" title="Miscs">
-                    <span>Miscs</span>
+                    <span class="active">Miscs</span>
                 </a>
             </li>
             <li>
@@ -125,147 +122,25 @@ Column Name Type id int customerId int id is the primary key (column with unique
         </ul>
     </nav>
 </header>
-<main class="main">
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Miscs
+  </h1>
+</header>
 
-<article class="post-single">
-  <header class="post-header">
-    
-    <h1 class="post-title entry-hint-parent">
-      Customers who never order
-    </h1>
-    <div class="post-meta"><span title='2024-08-01 00:00:00 +0000 UTC'>August 1, 2024</span>
-
-</div>
-  </header> 
-  <div class="post-content"><p>Here is the link to the problem: <a href="https://leetcode.com/problems/customers-who-never-order/description/">Customers who never order</a>.</p>
-<h2 id="problem-statement">Problem Statement:<a hidden class="anchor" aria-hidden="true" href="#problem-statement">#</a></h2>
-<p><strong>Table: Customers</strong></p>
-<table>
-<thead>
-<tr>
-<th>Column Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>int</td>
-</tr>
-<tr>
-<td>name</td>
-<td>varchar</td>
-</tr>
-</tbody>
-</table>
-<p>id is the primary key (column with unique values) for this table.
-Each row of this table indicates the ID and name of a customer.</p>
-<p><strong>Table: Orders</strong></p>
-<table>
-<thead>
-<tr>
-<th>Column Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>int</td>
-</tr>
-<tr>
-<td>customerId</td>
-<td>int</td>
-</tr>
-</tbody>
-</table>
-<p>id is the primary key (column with unique values) for this table.
-customerId is a foreign key (reference columns) of the ID from the Customers table.
-Each row of this table indicates the ID of an order and the ID of the customer who ordered it.</p>
-<p>Write a solution to find all customers who never order anything.</p>
-<p>Return the result table in any order.</p>
-<p>The result format is in the following example.</p>
-<h3 id="examples">Examples:<a hidden class="anchor" aria-hidden="true" href="#examples">#</a></h3>
-<p><strong>Example 1</strong>:</p>
-<p><strong>Input</strong>:</p>
-<p><strong>Customers table</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Joe</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Henry</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Sam</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Max</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Orders table</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>customerId</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>3</td>
-</tr>
-<tr>
-<td>2</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Output</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>Customers</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Henry</td>
-</tr>
-<tr>
-<td>Max</td>
-</tr>
-</tbody>
-</table>
-<h2 id="my-solution">My Solution<a hidden class="anchor" aria-hidden="true" href="#my-solution">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#f92672">#</span> <span style="color:#66d9ef">Write</span> your MySQL query <span style="color:#66d9ef">statement</span> below
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">c</span>.name <span style="color:#66d9ef">AS</span> Customers
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> Customers <span style="color:#66d9ef">c</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LEFT</span> <span style="color:#66d9ef">JOIN</span> Orders o <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">c</span>.id <span style="color:#f92672">=</span> o.customerId
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> o.customerId <span style="color:#66d9ef">IS</span> <span style="color:#66d9ef">NULL</span>;
-</span></span></code></pre></div><p><strong>Step by step explanation of the solution:</strong></p>
-<p>First, what if we do <code>join</code> only instead of <code>left join</code>? Not all customers have orders so the join will have Null value in the orders&rsquo; columns. But we want those names who don&rsquo;t have orders. So we did <code>left join</code>. Also, now we filter those ids which have <code>NULL</code> using the where clause. LEFT JOIN is to first join values where left tables&rsquo; all rows are reflected. Then <code>WHERE</code> clause is used to filter out records from the output table.</p>
-
-
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Sorting items in a nested dictionary
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Problem Statement: We want to sort items in a dictionary by a value that is nested deep in the dictionary. Let’s take an example:
+Dictionary to be sorted:
+dict_v = { &#34;1&#34;: {&#34;A&#34;:1}, &#34;2&#34;: {&#34;B&#34;:2}, &#34;3&#34;: {&#34;C&#34;:6}, &#34;4&#34;: {&#34;D&#34;:4} } Here, we want to sort the dictionary by the values 1,2,6 and 4. Let’s call “1”, “2”,“3”, “4” as key, “A”, “B”,“C”, “D” as field and 1,2,6,4 as values. We want to sort the dictionary by values and that also in descending order....</p>
   </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-  </footer>
+  <footer class="entry-footer"><span title='2024-08-10 00:00:00 +0000 UTC'>August 10, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to Sorting items in a nested dictionary" href="https://ajaybanstola.com.np/misc/lesson1/"></a>
 </article>
     </main>
     
