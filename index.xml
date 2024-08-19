@@ -9,6 +9,21 @@
     <lastBuildDate>Mon, 19 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Remove Duplicates from Sorted List</title>
+      <link>https://ajaybanstola.com.np/posts/lesson20/</link>
+      <pubDate>Mon, 19 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson20/</guid>
+      <description>Here is the link to the problem: Remove duplicates (Linked List).
+Problem Statement: Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+Examples: Example 1:
+Input: head = [1,1,2]
+Output: [1,2]
+Example 2:
+Input: head = [1,1,2,3,3]
+Output: [1,2,3]
+My Solution # Definition for singly-linked list. # class ListNode(object): # def __init__(self, val=0, next=None): # self.</description>
+    </item>
+    <item>
       <title>Valid Sudoku</title>
       <link>https://ajaybanstola.com.np/posts/lesson19/</link>
       <pubDate>Mon, 19 Aug 2024 00:00:00 +0000</pubDate>
