@@ -6,8 +6,19 @@
     <description>Recent content in Home on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Valid Sudoku</title>
+      <link>https://ajaybanstola.com.np/posts/lesson19/</link>
+      <pubDate>Mon, 19 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/lesson19/</guid>
+      <description>Here is the link to the problem: Valid Sudoku.
+Problem Statement: Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+Each row must contain the digits 1-9 without repetition.
+Each column must contain the digits 1-9 without repetition.
+Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.</description>
+    </item>
     <item>
       <title>Sorting items in a nested dictionary</title>
       <link>https://ajaybanstola.com.np/misc/lesson1/</link>
