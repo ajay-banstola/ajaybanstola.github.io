@@ -5,11 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Linkedlists | That&#39;s interesting</title>
+<title>Find if two linked list have intersection point | That&#39;s interesting</title>
 <meta name="keywords" content="">
-<meta name="description" content="Linkedlists - That&#39;s interesting">
+<meta name="description" content="Here is the link to the problem: Linked list intersection point.
+Problem Statement with Thought Process: There are two ways to do this:
+Using flag: In this method, we set a flag to 0 in each node. After traversal to the node, the flag is changed to 1. P1 comes doing this for first ll(linked list) and P2 comes doing this for second ll. If there is already a node with 1 as the flag, that means that is the intersection point.">
 <meta name="author" content="">
-<link rel="canonical" href="https://ajaybanstola.com.np/linkedlist/">
+<link rel="canonical" href="https://ajaybanstola.com.np/linkedlist/lesson2/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.d08f4052fa8ebcfc062f84be37c7db30a22a1375793e3c9c1af198b510cdeb81.css" integrity="sha256-0I9AUvqOvPwGL4S&#43;N8fbMKIqE3V5PjycGvGYtRDN64E=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://ajaybanstola.com.np/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://ajaybanstola.com.np/favicon-16x16.png">
@@ -18,8 +20,7 @@
 <link rel="mask-icon" href="https://ajaybanstola.com.np/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://ajaybanstola.com.np/linkedlist/index.xml">
-<link rel="alternate" hreflang="en" href="https://ajaybanstola.com.np/linkedlist/">
+<link rel="alternate" hreflang="en" href="https://ajaybanstola.com.np/linkedlist/lesson2/">
 <noscript>
     <style>
         #theme-toggle,
@@ -59,7 +60,7 @@
 </noscript>
 </head>
 
-<body class="list" id="top">
+<body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -101,7 +102,7 @@
         <ul id="menu">
             <li>
                 <a href="https://ajaybanstola.com.np/linkedlist/" title="Linkedlists">
-                    <span class="active">Linkedlists</span>
+                    <span>Linkedlists</span>
                 </a>
             </li>
             <li>
@@ -127,38 +128,40 @@
         </ul>
     </nav>
 </header>
-<main class="main"> 
-<header class="page-header">
-  <h1>
-    Linkedlists
-  </h1>
-</header>
+<main class="main">
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Find if two linked list have intersection point
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Linked list intersection point.
-Problem Statement with Thought Process: There are two ways to do this:
-Using flag: In this method, we set a flag to 0 in each node. After traversal to the node, the flag is changed to 1. P1 comes doing this for first ll(linked list) and P2 comes doing this for second ll. If there is already a node with 1 as the flag, that means that is the intersection point....</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-31 00:00:00 +0000 UTC'>August 31, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Find if two linked list have intersection point" href="https://ajaybanstola.com.np/linkedlist/lesson2/"></a>
-</article>
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Find if two linked list have intersection point
+    </h1>
+    <div class="post-meta"><span title='2024-08-31 00:00:00 +0000 UTC'>August 31, 2024</span>
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Find the kth Node from the Back
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: kth node from Back.
-Problem Statement with Thought Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back....</p>
+</div>
+  </header> 
+  <div class="post-content"><p>Here is the link to the problem: <a href="https://www.youtube.com/watch?v=zhMh2Nm1I5A&amp;list=PLk6CEY9XxSICJ0XSI7fbQFiEpDHISJxqT&amp;index=2">Linked list intersection point</a>.</p>
+<h2 id="problem-statement-with-thought-process">Problem Statement with Thought Process:<a hidden class="anchor" aria-hidden="true" href="#problem-statement-with-thought-process">#</a></h2>
+<p>There are two ways to do this:</p>
+<ol>
+<li>Using flag:</li>
+</ol>
+<p>In this method, we set a flag to 0 in each node.
+After traversal to the node, the flag is changed to 1.   P1 comes doing this for first ll(linked list) and P2 comes doing this for second ll. If there is already a node with 1 as the flag, that means that is the intersection point.
+But this will take more space to store the flag.</p>
+<ol start="2">
+<li>Traversing one list at a time:</li>
+</ol>
+<p>In this method, we traverse one list at a time. Say we reached the destination d address 600 with the first linked list. If we then traverse second list and the reach the same destination d with address 600, then that means there is an intersection at some point. Note that we are only looking for the presence of the intersection and not the intersection point particularly.</p>
+<p>Space complexity for this method is O(1) and time complexity is O(m+n).</p>
+
+
   </div>
-  <footer class="entry-footer"><span title='2024-08-31 00:00:00 +0000 UTC'>August 31, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Find the kth Node from the Back" href="https://ajaybanstola.com.np/linkedlist/lesson1/"></a>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
 </article>
     </main>
     

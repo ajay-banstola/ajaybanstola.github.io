@@ -9,12 +9,21 @@
     <lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Find if two linked list have intersection point</title>
+      <link>https://ajaybanstola.com.np/linkedlist/lesson2/</link>
+      <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/linkedlist/lesson2/</guid>
+      <description>Here is the link to the problem: Linked list intersection point.
+Problem Statement with Thought Process: There are two ways to do this:
+Using flag: In this method, we set a flag to 0 in each node. After traversal to the node, the flag is changed to 1. P1 comes doing this for first ll(linked list) and P2 comes doing this for second ll. If there is already a node with 1 as the flag, that means that is the intersection point.</description>
+    </item>
+    <item>
       <title>Find the kth Node from the Back</title>
       <link>https://ajaybanstola.com.np/linkedlist/lesson1/</link>
       <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
       <guid>https://ajaybanstola.com.np/linkedlist/lesson1/</guid>
       <description>Here is the link to the problem: kth node from Back.
-Problem Statement with Though Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back.</description>
+Problem Statement with Thought Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back.</description>
     </item>
     <item>
       <title>Average time of Process per Machine</title>
