@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linkedlists on That&#39;s interesting</title>
+    <link>https://ajaybanstola.com.np/linkedlist/</link>
+    <description>Recent content in Linkedlists on That&#39;s interesting</description>
+    <generator>Hugo -- 0.125.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ajaybanstola.com.np/linkedlist/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Find the kth Node from the Back</title>
+      <link>https://ajaybanstola.com.np/linkedlist/lesson1/</link>
+      <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/linkedlist/lesson1/</guid>
+      <description>Here is the link to the problem: kth node from Back.
+Problem Statement with Though Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back.</description>
+    </item>
+  </channel>
+</rss>
