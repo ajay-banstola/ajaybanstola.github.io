@@ -154,6 +154,11 @@ But this will take more space to store the flag.</p>
 </ol>
 <p>In this method, we traverse one list at a time. Say we reached the destination d address 600 with the first linked list. If we then traverse second list and the reach the same destination d with address 600, then that means there is an intersection at some point. Note that we are only looking for the presence of the intersection and not the intersection point particularly.</p>
 <p>Space complexity for this method is O(1) and time complexity is O(m+n).</p>
+<p><strong>Some of the key points:</strong></p>
+<p><strong>Intersection</strong>: Two linked lists intersect if they share one or more nodes (same memory reference).</p>
+<p><strong>No Divergence After Intersection</strong> : Once linked lists converge at a node, they cannot split again.</p>
+<p><strong>Only Convergence Possible</strong>: After an intersection point, the lists must continue together until the end.</p>
+<p><strong>No intersection from start</strong>: If there are two linked list with same starting point, there is no intersection because they are in different memory location to begin with.</p>
 
 
   </div>
