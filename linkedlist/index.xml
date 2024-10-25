@@ -6,8 +6,18 @@
     <description>Recent content in Linkedlists on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Oct 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/linkedlist/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Find if there is a cycle in linked list</title>
+      <link>https://ajaybanstola.com.np/linkedlist/lesson3/</link>
+      <pubDate>Fri, 25 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/linkedlist/lesson3/</guid>
+      <description>Here is the link to the problem: cycle in linked list
+Problem Statement with Thought Process: We need to find if there is a cycle in linked list
+Implementation There are two pointers p1 and p2. P2 will jump by 1 node. P1 will just go serially. If there is a cycle, at one time, it is guaranteed that both of them will meet at some point.
+This approach describes Floyd&amp;rsquo;s Cycle Detection Algorithm, also known as the &amp;ldquo;Tortoise and Hare&amp;rdquo; algorithm.</description>
+    </item>
     <item>
       <title>Find if two linked list have intersection point</title>
       <link>https://ajaybanstola.com.np/linkedlist/lesson2/</link>
