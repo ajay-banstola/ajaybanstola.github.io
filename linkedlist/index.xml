@@ -9,6 +9,15 @@
     <lastBuildDate>Sat, 26 Oct 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/linkedlist/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Find middle node in linked list</title>
+      <link>https://ajaybanstola.com.np/linkedlist/lesson5/</link>
+      <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/linkedlist/lesson5/</guid>
+      <description>Here is the link to the problem: Middle node in linked list.
+Problem Statement with Thought Process: There are three approaches to this probles:
+Just traverse the whole list and divide by half? We will discuss the second method Third method is just like second method but here, we only increment count if the pointer is in odd node. Basically the same thing as jumping a node right? The two-pointer approach to find the middle of a linked list works because one pointer moves at double the speed of the other.</description>
+    </item>
+    <item>
       <title>Find the intersection Node in the linked list</title>
       <link>https://ajaybanstola.com.np/linkedlist/lesson4/</link>
       <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
