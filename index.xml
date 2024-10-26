@@ -6,8 +6,17 @@
     <description>Recent content in Home on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Find the intersection Node in the linked list</title>
+      <link>https://ajaybanstola.com.np/linkedlist/lesson4/</link>
+      <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/linkedlist/lesson4/</guid>
+      <description>Here is the link to the problem: Intersection node in the linked list.
+Problem Statement with Thought Process: To find the intersection point between two linked lists in Python, we can use the approach you described:
+Calculate the lengths of both lists. Find the absolute difference in lengths and move the pointer of the longer list ahead by that difference. Move both pointers forward one node at a time until they meet, which is the intersection point.</description>
+    </item>
     <item>
       <title>Find if there is a cycle in linked list</title>
       <link>https://ajaybanstola.com.np/linkedlist/lesson3/</link>
