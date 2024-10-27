@@ -36,6 +36,15 @@ Problem Statement with Thought Process: To reverse a linked list iteratively, we
 Previous Pointer: Keeps track of the previous node, which will help us reverse the links. Current Pointer: Points to the current node we’re processing. Next Pointer: Temporarily stores the next node before we change the current node&amp;rsquo;s link. Here’s the iterative process:</description>
     </item>
     <item>
+      <title>Reverse a linked list (Recursive way)</title>
+      <link>https://ajaybanstola.com.np/linkedlist/lesson7/</link>
+      <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/linkedlist/lesson7/</guid>
+      <description>Here is the link to the problem: Reverse a linked list (Recursive way)
+Problem Statement with Thought Process: To reverse a linked list recursively, we can use the following approach:
+Base Case: If we reach the end of the list (i.e., head is None) or there is only one node left, we return head as it will be the new head of the reversed list. Recursive Step: Recursively reverse the rest of the list.</description>
+    </item>
+    <item>
       <title>Find if there is a cycle in linked list</title>
       <link>https://ajaybanstola.com.np/linkedlist/lesson3/</link>
       <pubDate>Fri, 25 Oct 2024 00:00:00 +0000</pubDate>
