@@ -2,35 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Linkedlists on That&#39;s interesting</title>
-    <link>https://ajaybanstola.com.np/linkedlist/</link>
+    <link>http://localhost:1313/linkedlist/</link>
     <description>Recent content in Linkedlists on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 26 Oct 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ajaybanstola.com.np/linkedlist/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/linkedlist/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Find middle node in linked list</title>
-      <link>https://ajaybanstola.com.np/linkedlist/lesson5/</link>
+      <link>http://localhost:1313/linkedlist/lesson5/</link>
       <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/linkedlist/lesson5/</guid>
+      <guid>http://localhost:1313/linkedlist/lesson5/</guid>
       <description>Here is the link to the problem: Middle node in linked list.
 Problem Statement with Thought Process: There are three approaches to this probles:
 Just traverse the whole list and divide by half? We will discuss the second method Third method is just like second method but here, we only increment count if the pointer is in odd node. Basically the same thing as jumping a node right? The two-pointer approach to find the middle of a linked list works because one pointer moves at double the speed of the other.</description>
     </item>
     <item>
       <title>Find the intersection Node in the linked list</title>
-      <link>https://ajaybanstola.com.np/linkedlist/lesson4/</link>
+      <link>http://localhost:1313/linkedlist/lesson4/</link>
       <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/linkedlist/lesson4/</guid>
+      <guid>http://localhost:1313/linkedlist/lesson4/</guid>
       <description>Here is the link to the problem: Intersection node in the linked list.
 Problem Statement with Thought Process: To find the intersection point between two linked lists in Python, we can use the approach you described:
 Calculate the lengths of both lists. Find the absolute difference in lengths and move the pointer of the longer list ahead by that difference. Move both pointers forward one node at a time until they meet, which is the intersection point.</description>
     </item>
     <item>
+      <title>Reverse a linked list (Iterative way)</title>
+      <link>http://localhost:1313/linkedlist/lesson6/</link>
+      <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/linkedlist/lesson6/</guid>
+      <description>Here is the link to the problem: Reverse a linked list (Iterative way).
+Problem Statement with Thought Process: To reverse a linked list iteratively, we can use three pointers:
+Previous Pointer: Keeps track of the previous node, which will help us reverse the links. Current Pointer: Points to the current node we’re processing. Next Pointer: Temporarily stores the next node before we change the current node&amp;rsquo;s link. Here’s the iterative process:</description>
+    </item>
+    <item>
       <title>Find if there is a cycle in linked list</title>
-      <link>https://ajaybanstola.com.np/linkedlist/lesson3/</link>
+      <link>http://localhost:1313/linkedlist/lesson3/</link>
       <pubDate>Fri, 25 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/linkedlist/lesson3/</guid>
+      <guid>http://localhost:1313/linkedlist/lesson3/</guid>
       <description>Here is the link to the problem: cycle in linked list
 Problem Statement with Thought Process: We need to find if there is a cycle in linked list
 Implementation There are two pointers p1 and p2. P2 will jump by 1 node. P1 will just go serially. If there is a cycle, at one time, it is guaranteed that both of them will meet at some point.
@@ -38,18 +47,18 @@ This approach describes Floyd&amp;rsquo;s Cycle Detection Algorithm, also known 
     </item>
     <item>
       <title>Find if two linked list have intersection point</title>
-      <link>https://ajaybanstola.com.np/linkedlist/lesson2/</link>
+      <link>http://localhost:1313/linkedlist/lesson2/</link>
       <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/linkedlist/lesson2/</guid>
+      <guid>http://localhost:1313/linkedlist/lesson2/</guid>
       <description>Here is the link to the problem: Linked list intersection point.
 Problem Statement with Thought Process: There are two ways to do this:
 Using flag: In this method, we set a flag to 0 in each node. After traversal to the node, the flag is changed to 1. P1 comes doing this for first ll(linked list) and P2 comes doing this for second ll. If there is already a node with 1 as the flag, that means that is the intersection point.</description>
     </item>
     <item>
       <title>Find the kth Node from the Back</title>
-      <link>https://ajaybanstola.com.np/linkedlist/lesson1/</link>
+      <link>http://localhost:1313/linkedlist/lesson1/</link>
       <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/linkedlist/lesson1/</guid>
+      <guid>http://localhost:1313/linkedlist/lesson1/</guid>
       <description>Here is the link to the problem: kth node from Back.
 Problem Statement with Thought Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back.</description>
     </item>

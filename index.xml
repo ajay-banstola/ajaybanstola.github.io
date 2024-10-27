@@ -2,35 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Home on That&#39;s interesting</title>
-    <link>https://ajaybanstola.com.np/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content in Home on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 26 Oct 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Find middle node in linked list</title>
-      <link>https://ajaybanstola.com.np/linkedlist/lesson5/</link>
+      <link>http://localhost:1313/linkedlist/lesson5/</link>
       <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/linkedlist/lesson5/</guid>
+      <guid>http://localhost:1313/linkedlist/lesson5/</guid>
       <description>Here is the link to the problem: Middle node in linked list.
 Problem Statement with Thought Process: There are three approaches to this probles:
 Just traverse the whole list and divide by half? We will discuss the second method Third method is just like second method but here, we only increment count if the pointer is in odd node. Basically the same thing as jumping a node right? The two-pointer approach to find the middle of a linked list works because one pointer moves at double the speed of the other.</description>
     </item>
     <item>
       <title>Find the intersection Node in the linked list</title>
-      <link>https://ajaybanstola.com.np/linkedlist/lesson4/</link>
+      <link>http://localhost:1313/linkedlist/lesson4/</link>
       <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/linkedlist/lesson4/</guid>
+      <guid>http://localhost:1313/linkedlist/lesson4/</guid>
       <description>Here is the link to the problem: Intersection node in the linked list.
 Problem Statement with Thought Process: To find the intersection point between two linked lists in Python, we can use the approach you described:
 Calculate the lengths of both lists. Find the absolute difference in lengths and move the pointer of the longer list ahead by that difference. Move both pointers forward one node at a time until they meet, which is the intersection point.</description>
     </item>
     <item>
+      <title>Reverse a linked list (Iterative way)</title>
+      <link>http://localhost:1313/linkedlist/lesson6/</link>
+      <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/linkedlist/lesson6/</guid>
+      <description>Here is the link to the problem: Reverse a linked list (Iterative way).
+Problem Statement with Thought Process: To reverse a linked list iteratively, we can use three pointers:
+Previous Pointer: Keeps track of the previous node, which will help us reverse the links. Current Pointer: Points to the current node we’re processing. Next Pointer: Temporarily stores the next node before we change the current node&amp;rsquo;s link. Here’s the iterative process:</description>
+    </item>
+    <item>
       <title>Find if there is a cycle in linked list</title>
-      <link>https://ajaybanstola.com.np/linkedlist/lesson3/</link>
+      <link>http://localhost:1313/linkedlist/lesson3/</link>
       <pubDate>Fri, 25 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/linkedlist/lesson3/</guid>
+      <guid>http://localhost:1313/linkedlist/lesson3/</guid>
       <description>Here is the link to the problem: cycle in linked list
 Problem Statement with Thought Process: We need to find if there is a cycle in linked list
 Implementation There are two pointers p1 and p2. P2 will jump by 1 node. P1 will just go serially. If there is a cycle, at one time, it is guaranteed that both of them will meet at some point.
@@ -38,26 +47,26 @@ This approach describes Floyd&amp;rsquo;s Cycle Detection Algorithm, also known 
     </item>
     <item>
       <title>Find if two linked list have intersection point</title>
-      <link>https://ajaybanstola.com.np/linkedlist/lesson2/</link>
+      <link>http://localhost:1313/linkedlist/lesson2/</link>
       <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/linkedlist/lesson2/</guid>
+      <guid>http://localhost:1313/linkedlist/lesson2/</guid>
       <description>Here is the link to the problem: Linked list intersection point.
 Problem Statement with Thought Process: There are two ways to do this:
 Using flag: In this method, we set a flag to 0 in each node. After traversal to the node, the flag is changed to 1. P1 comes doing this for first ll(linked list) and P2 comes doing this for second ll. If there is already a node with 1 as the flag, that means that is the intersection point.</description>
     </item>
     <item>
       <title>Find the kth Node from the Back</title>
-      <link>https://ajaybanstola.com.np/linkedlist/lesson1/</link>
+      <link>http://localhost:1313/linkedlist/lesson1/</link>
       <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/linkedlist/lesson1/</guid>
+      <guid>http://localhost:1313/linkedlist/lesson1/</guid>
       <description>Here is the link to the problem: kth node from Back.
 Problem Statement with Thought Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back.</description>
     </item>
     <item>
       <title>Average time of Process per Machine</title>
-      <link>https://ajaybanstola.com.np/sql/second-sql/</link>
+      <link>http://localhost:1313/sql/second-sql/</link>
       <pubDate>Wed, 21 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/sql/second-sql/</guid>
+      <guid>http://localhost:1313/sql/second-sql/</guid>
       <description>Here is the link to the problem: Average time of Process per Machine.
 Problem Statement: Table: Activity
 Column Name Type machine_id int process_id int activity_type enum timestamp float There is a factory website that has several machines each running the same number of processes. Write a solution to find the average time each machine takes to complete a process.
@@ -65,9 +74,9 @@ The time to complete a process is the &amp;rsquo;end&amp;rsquo; timestamp minus 
     </item>
     <item>
       <title>Project Employees I </title>
-      <link>https://ajaybanstola.com.np/sql/third-sql/</link>
+      <link>http://localhost:1313/sql/third-sql/</link>
       <pubDate>Wed, 21 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/sql/third-sql/</guid>
+      <guid>http://localhost:1313/sql/third-sql/</guid>
       <description>Here is the link to the problem: Project Employees I .
 Problem Statement: Table: Activity
 Column Name Type machine_id int process_id int activity_type enum timestamp float There is a factory website that has several machines each running the same number of processes. Write a solution to find the average time each machine takes to complete a process.
@@ -75,9 +84,9 @@ The time to complete a process is the &amp;rsquo;end&amp;rsquo; timestamp minus 
     </item>
     <item>
       <title>Remove Duplicates from Sorted List</title>
-      <link>https://ajaybanstola.com.np/posts/lesson20/</link>
+      <link>http://localhost:1313/posts/lesson20/</link>
       <pubDate>Mon, 19 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson20/</guid>
+      <guid>http://localhost:1313/posts/lesson20/</guid>
       <description>Here is the link to the problem: Remove duplicates (Linked List).
 Problem Statement: Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
 Examples: Example 1:
@@ -90,9 +99,9 @@ My Solution # Definition for singly-linked list. # class ListNode(object): # def
     </item>
     <item>
       <title>Valid Sudoku</title>
-      <link>https://ajaybanstola.com.np/posts/lesson19/</link>
+      <link>http://localhost:1313/posts/lesson19/</link>
       <pubDate>Mon, 19 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson19/</guid>
+      <guid>http://localhost:1313/posts/lesson19/</guid>
       <description>Here is the link to the problem: Valid Sudoku.
 Problem Statement: Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
 Each row must contain the digits 1-9 without repetition.
@@ -101,18 +110,18 @@ Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without
     </item>
     <item>
       <title>Sorting items in a nested dictionary</title>
-      <link>https://ajaybanstola.com.np/misc/lesson1/</link>
+      <link>http://localhost:1313/misc/lesson1/</link>
       <pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/misc/lesson1/</guid>
+      <guid>http://localhost:1313/misc/lesson1/</guid>
       <description>Problem Statement: We want to sort items in a dictionary by a value that is nested deep in the dictionary. Let&amp;rsquo;s take an example:
 Dictionary to be sorted:
 dict_v = { &amp;#34;1&amp;#34;: {&amp;#34;A&amp;#34;:1}, &amp;#34;2&amp;#34;: {&amp;#34;B&amp;#34;:2}, &amp;#34;3&amp;#34;: {&amp;#34;C&amp;#34;:6}, &amp;#34;4&amp;#34;: {&amp;#34;D&amp;#34;:4} } Here, we want to sort the dictionary by the values 1,2,6 and 4. Let&amp;rsquo;s call &amp;ldquo;1&amp;rdquo;, &amp;ldquo;2&amp;rdquo;,&amp;ldquo;3&amp;rdquo;, &amp;ldquo;4&amp;rdquo; as key, &amp;ldquo;A&amp;rdquo;, &amp;ldquo;B&amp;rdquo;,&amp;ldquo;C&amp;rdquo;, &amp;ldquo;D&amp;rdquo; as field and 1,2,6,4 as values. We want to sort the dictionary by values and that also in descending order.</description>
     </item>
     <item>
       <title>Customers who never order</title>
-      <link>https://ajaybanstola.com.np/sql/first-sql/</link>
+      <link>http://localhost:1313/sql/first-sql/</link>
       <pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/sql/first-sql/</guid>
+      <guid>http://localhost:1313/sql/first-sql/</guid>
       <description>Here is the link to the problem: Customers who never order.
 Problem Statement: Table: Customers
 Column Name Type id int name varchar id is the primary key (column with unique values) for this table. Each row of this table indicates the ID and name of a customer.
@@ -121,9 +130,9 @@ Column Name Type id int customerId int id is the primary key (column with unique
     </item>
     <item>
       <title>Majority Element</title>
-      <link>https://ajaybanstola.com.np/posts/lesson18/</link>
+      <link>http://localhost:1313/posts/lesson18/</link>
       <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson18/</guid>
+      <guid>http://localhost:1313/posts/lesson18/</guid>
       <description>Here is the link to the problem: Majority Element.
 Problem Statement: Given an array nums of size n, return the majority element.
 The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
@@ -135,9 +144,9 @@ My Solution class Solution(object): def majorityElement(self, nums): &amp;#34;&a
     </item>
     <item>
       <title>Single Number</title>
-      <link>https://ajaybanstola.com.np/posts/lesson17/</link>
+      <link>http://localhost:1313/posts/lesson17/</link>
       <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson17/</guid>
+      <guid>http://localhost:1313/posts/lesson17/</guid>
       <description>Here is the link to the problem: Single Number.
 Problem Statement: Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
 You must implement a solution with a linear runtime complexity and use only constant extra space.
@@ -153,9 +162,9 @@ Output: 1</description>
     </item>
     <item>
       <title>Valid Palindrome</title>
-      <link>https://ajaybanstola.com.np/posts/lesson16/</link>
+      <link>http://localhost:1313/posts/lesson16/</link>
       <pubDate>Thu, 25 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson16/</guid>
+      <guid>http://localhost:1313/posts/lesson16/</guid>
       <description>Here is the link to the problem: Valid Palindrome.
 Problem Statement: A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 Given a string s, return true if it is a palindrome, or false otherwise.
@@ -164,9 +173,9 @@ Input: s = &amp;ldquo;A man, a plan, a canal: Panama&amp;rdquo;</description>
     </item>
     <item>
       <title>Merge sorted array</title>
-      <link>https://ajaybanstola.com.np/posts/lesson15/</link>
+      <link>http://localhost:1313/posts/lesson15/</link>
       <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson15/</guid>
+      <guid>http://localhost:1313/posts/lesson15/</guid>
       <description>Here is the link to the problem: Merge Sorted Array.
 Problem Statement: You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
 Merge nums1 and nums2 into a single array sorted in non-decreasing order.
@@ -174,9 +183,9 @@ The final sorted array should not be returned by the function, but instead be st
     </item>
     <item>
       <title>Climbing Stairs</title>
-      <link>https://ajaybanstola.com.np/posts/lesson14/</link>
+      <link>http://localhost:1313/posts/lesson14/</link>
       <pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson14/</guid>
+      <guid>http://localhost:1313/posts/lesson14/</guid>
       <description>Here is the link to the problem: Climbing Stairs.
 Problem Statement: You are climbing a staircase. It takes n steps to reach the top.
 Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
@@ -189,9 +198,9 @@ Explanation: There are two ways to climb to the top.
     </item>
     <item>
       <title>Square root</title>
-      <link>https://ajaybanstola.com.np/posts/lesson13/</link>
+      <link>http://localhost:1313/posts/lesson13/</link>
       <pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson13/</guid>
+      <guid>http://localhost:1313/posts/lesson13/</guid>
       <description>Here is the link to the problem: Square root.
 Problem Statement: Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
 You must not use any built-in exponent function or operator.
@@ -202,9 +211,9 @@ Output: 2</description>
     </item>
     <item>
       <title>Add Binary</title>
-      <link>https://ajaybanstola.com.np/posts/lesson12/</link>
+      <link>http://localhost:1313/posts/lesson12/</link>
       <pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson12/</guid>
+      <guid>http://localhost:1313/posts/lesson12/</guid>
       <description>Here is the link to the problem: Add Binary.
 Problem Statement: Given two binary strings a and b, return their sum as a binary string.
 Examples: Example 1:
@@ -215,9 +224,9 @@ My Solution class Solution(object): def addBinary(self, a, b): &amp;#34;&amp;#34
     </item>
     <item>
       <title>Length of Last word</title>
-      <link>https://ajaybanstola.com.np/posts/lesson10/</link>
+      <link>http://localhost:1313/posts/lesson10/</link>
       <pubDate>Sat, 13 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson10/</guid>
+      <guid>http://localhost:1313/posts/lesson10/</guid>
       <description>Here is the link to the problem: Length of Last word.
 Problem Statement: Given a string s consisting of words and spaces, return the length of the last word in the string.
 A word is a maximal substring consisting of non-space characters only.
@@ -230,9 +239,9 @@ Input: s = &amp;quot; fly me to the moon &amp;quot;</description>
     </item>
     <item>
       <title>Plus one</title>
-      <link>https://ajaybanstola.com.np/posts/lesson11/</link>
+      <link>http://localhost:1313/posts/lesson11/</link>
       <pubDate>Sat, 13 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson11/</guid>
+      <guid>http://localhost:1313/posts/lesson11/</guid>
       <description>Here is the link to the problem: Plus one.
 Problem Statement: You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0&amp;rsquo;s.
 Increment the large integer by one and return the resulting array of digits.
@@ -240,9 +249,9 @@ Examples: Example 1:</description>
     </item>
     <item>
       <title>Search Insert Position</title>
-      <link>https://ajaybanstola.com.np/posts/lesson9/</link>
+      <link>http://localhost:1313/posts/lesson9/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson9/</guid>
+      <guid>http://localhost:1313/posts/lesson9/</guid>
       <description>Here is the link to the problem: Search Insert Position
 Problem Statement: Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 You must write an algorithm with O(log n) runtime complexity.
@@ -253,9 +262,9 @@ Example 2:</description>
     </item>
     <item>
       <title>Index of First Occurennce in String</title>
-      <link>https://ajaybanstola.com.np/posts/lesson8/</link>
+      <link>http://localhost:1313/posts/lesson8/</link>
       <pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson8/</guid>
+      <guid>http://localhost:1313/posts/lesson8/</guid>
       <description>Here is the link to the problem: Index of First Occurrence in String
 Problem Statement: Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 Examples: Example 1:
@@ -265,18 +274,18 @@ Explanation: &amp;ldquo;sad&amp;rdquo; occurs at index 0 and 6. The first occurr
     </item>
     <item>
       <title>Remove duplicates from Sorted Array</title>
-      <link>https://ajaybanstola.com.np/posts/lesson7/</link>
+      <link>http://localhost:1313/posts/lesson7/</link>
       <pubDate>Mon, 08 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson7/</guid>
+      <guid>http://localhost:1313/posts/lesson7/</guid>
       <description>Here is the link to the problem: Remove Duplicates from sorted Array.
 Problem Statement: Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
 Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:</description>
     </item>
     <item>
       <title>Merge Two Sorted List: With and without Linked list</title>
-      <link>https://ajaybanstola.com.np/posts/lesson6/</link>
+      <link>http://localhost:1313/posts/lesson6/</link>
       <pubDate>Sun, 07 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson6/</guid>
+      <guid>http://localhost:1313/posts/lesson6/</guid>
       <description>Here is the link to the problem: Merge Two Sorted List.
 Problem Statement: You are given the heads of two sorted linked lists list1 and list2.
 Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.
@@ -288,9 +297,9 @@ Example 2:</description>
     </item>
     <item>
       <title>Valid Parentheses Solution: Me vs Neetcode</title>
-      <link>https://ajaybanstola.com.np/posts/lesson5/</link>
+      <link>http://localhost:1313/posts/lesson5/</link>
       <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson5/</guid>
+      <guid>http://localhost:1313/posts/lesson5/</guid>
       <description>Here is the link to the problem: Valid Parentheses.
 Problem Statement: Given a string s containing just the characters &amp;lsquo;(&amp;rsquo;, &amp;lsquo;)&amp;rsquo;, &amp;lsquo;{&amp;rsquo;, &amp;lsquo;}&amp;rsquo;, &amp;lsquo;[&amp;rsquo; and &amp;lsquo;]&amp;rsquo;, determine if the input string is valid.
 An input string is valid if:
@@ -298,9 +307,9 @@ Open brackets must be closed by the same type of brackets. Open brackets must be
     </item>
     <item>
       <title>3Sum Closest Solution: Me vs ChatGPT</title>
-      <link>https://ajaybanstola.com.np/posts/lesson4/</link>
+      <link>http://localhost:1313/posts/lesson4/</link>
       <pubDate>Thu, 04 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson4/</guid>
+      <guid>http://localhost:1313/posts/lesson4/</guid>
       <description>Here is the link to the problem: 3Sum Closest.
 Problem Statement: Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is closest to target.
 Return the sum of the three integers.
@@ -313,9 +322,9 @@ Explanation: The sum that is closest to the target is 2.</description>
     </item>
     <item>
       <title>Solution to 3sum problem and its edge cases</title>
-      <link>https://ajaybanstola.com.np/posts/lesson3/</link>
+      <link>http://localhost:1313/posts/lesson3/</link>
       <pubDate>Wed, 03 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson3/</guid>
+      <guid>http://localhost:1313/posts/lesson3/</guid>
       <description>Here is the link to the problem: Three Sum.
 Problem Statement: Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
 Notice that the solution set must not contain duplicate triplets.
@@ -327,9 +336,9 @@ nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.</description>
     </item>
     <item>
       <title>Three ways to solve the 2-sum problem</title>
-      <link>https://ajaybanstola.com.np/posts/lesson2/</link>
+      <link>http://localhost:1313/posts/lesson2/</link>
       <pubDate>Sun, 23 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson2/</guid>
+      <guid>http://localhost:1313/posts/lesson2/</guid>
       <description>Here is the link to the problem: Two Sum.
 Problem Statement: Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -339,18 +348,18 @@ Input: nums = [2,7,11,15], target = 9</description>
     </item>
     <item>
       <title>Casual/Informal Nepali Language Lesson 1</title>
-      <link>https://ajaybanstola.com.np/posts/lesson1/</link>
+      <link>http://localhost:1313/posts/lesson1/</link>
       <pubDate>Mon, 13 May 2024 22:52:14 +0545</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/lesson1/</guid>
+      <guid>http://localhost:1313/posts/lesson1/</guid>
       <description>Often times when foreigners try to learn Nepali, they get a very formal Nepali language written in text books or websites. My goal here is to teach Nepali in a way that is spoken everyday. As someone who was born in Nepal and lived there for over 25 years, I can be the best source to learn the everyday language.
 Hey, how are you? -&amp;gt; K chha?
 How&amp;rsquo;s it going? -&amp;gt; Kasto chaldai chha?</description>
     </item>
     <item>
       <title>Portfolio</title>
-      <link>https://ajaybanstola.com.np/portfolio/</link>
+      <link>http://localhost:1313/portfolio/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/portfolio/</guid>
+      <guid>http://localhost:1313/portfolio/</guid>
       <description>Education Masters in Computer Science at University of Louisiana at Lafayette Experience Software Engineer at Tekvortex Pvt. Ltd., Lalitpur, Nepal - 2 years Associate Software Engineer at Paynep Pvt. Ltd., Kathmandu, Nepal - 1 year Hobbies Coding Youtube Marathon Gym Japanese Chess,Badminton Reading Contact: ajay.banstola@gmail.com </description>
     </item>
   </channel>
