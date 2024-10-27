@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Merge sorted array | That&#39;s interesting</title>
 <meta name="keywords" content="">
 <meta name="description" content="Here is the link to the problem: Merge Sorted Array.
@@ -12,16 +12,16 @@ Problem Statement: You are given two integer arrays nums1 and nums2, sorted in n
 Merge nums1 and nums2 into a single array sorted in non-decreasing order.
 The final sorted array should not be returned by the function, but instead be stored inside the array nums1.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/posts/lesson15/">
+<link rel="canonical" href="https://ajaybanstola.com.np/posts/lesson15/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.d08f4052fa8ebcfc062f84be37c7db30a22a1375793e3c9c1af198b510cdeb81.css" integrity="sha256-0I9AUvqOvPwGL4S&#43;N8fbMKIqE3V5PjycGvGYtRDN64E=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://ajaybanstola.com.np/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ajaybanstola.com.np/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ajaybanstola.com.np/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://ajaybanstola.com.np/apple-touch-icon.png">
+<link rel="mask-icon" href="https://ajaybanstola.com.np/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/lesson15/">
+<link rel="alternate" hreflang="en" href="https://ajaybanstola.com.np/posts/lesson15/">
 <noscript>
     <style>
         #theme-toggle,
@@ -59,6 +59,75 @@ The final sorted array should not be returned by the function, but instead be st
 
     </style>
 </noscript>
+  
+
+<meta property="og:title" content="Merge sorted array" />
+<meta property="og:description" content="Here is the link to the problem: Merge Sorted Array.
+Problem Statement: You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+The final sorted array should not be returned by the function, but instead be stored inside the array nums1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ajaybanstola.com.np/posts/lesson15/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-07-24T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Merge sorted array"/>
+<meta name="twitter:description" content="Here is the link to the problem: Merge Sorted Array.
+Problem Statement: You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+The final sorted array should not be returned by the function, but instead be stored inside the array nums1."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://ajaybanstola.com.np/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Merge sorted array",
+      "item": "https://ajaybanstola.com.np/posts/lesson15/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Merge sorted array",
+  "name": "Merge sorted array",
+  "description": "Here is the link to the problem: Merge Sorted Array.\nProblem Statement: You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.\nMerge nums1 and nums2 into a single array sorted in non-decreasing order.\nThe final sorted array should not be returned by the function, but instead be stored inside the array nums1.",
+  "keywords": [
+    
+  ],
+  "articleBody": "Here is the link to the problem: Merge Sorted Array.\nProblem Statement: You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.\nMerge nums1 and nums2 into a single array sorted in non-decreasing order.\nThe final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.\nExamples: Example 1:\nInput: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3\nOutput: [1,2,2,3,5,6]\nExplanation: The arrays we are merging are [1,2,3] and [2,5,6].\nThe result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.\nExample 2:\nInput: nums1 = [1], m = 1, nums2 = [], n = 0\nOutput: [1]\nExplanation: The arrays we are merging are [1] and []. The result of the merge is [1].\nExample 3:\nInput: nums1 = [0], m = 0, nums2 = [1], n = 1\nOutput: [1]\nExplanation: The arrays we are merging are [] and [1]. The result of the merge is [1].\nNote that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.\nMy Solution class Solution(object): def merge(self, nums1, m, nums2, n): \"\"\" :type nums1: List[int] :type m: int :type nums2: List[int] :type n: int :rtype: None Do not return anything, modify nums1 in-place instead. \"\"\" k = m + n - 1 while m \u003e0 and n\u003e0: if nums1[m-1] \u003e= nums2[n-1]: nums1[k] = nums1[m-1] m -= 1 else: nums1[k] = nums2[n-1] n -= 1 k -= 1 while n \u003e 0: nums1[k] = nums2[n - 1] n -= 1 k -= 1 return nums1 There is a very good graphic representation of the problem in the description of the leetcode problem. Please look at it.\nWe are having three pointers. m and n are for each of the list and k is for last item in nums1. We compare element from both lists in index m and n and based on that, we set it in the k index.\nThe problem is with the third test case, there is a weird behaviour because leetcode somehow treats the length of nums1 and nums2 differently so k is not len(nums1) -1 but it is m + n -1. Also to handle the third case, we added second while loop and to be honest I have no idea how does it work. I asked chatgpt that’s it.\nI ALSO DON’T WANT TO POST OTHER SOLUTIONS BECAUSE THEY ALL ARE BULLSHIT.\n",
+  "wordCount" : "476",
+  "inLanguage": "en",
+  "datePublished": "2024-07-24T00:00:00Z",
+  "dateModified": "2024-07-24T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ajaybanstola.com.np/posts/lesson15/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "That's interesting",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ajaybanstola.com.np/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -76,7 +145,7 @@ The final sorted array should not be returned by the function, but instead be st
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="That&#39;s interesting (Alt + H)">That&#39;s interesting</a>
+            <a href="https://ajaybanstola.com.np/" accesskey="h" title="That&#39;s interesting (Alt + H)">That&#39;s interesting</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -102,27 +171,27 @@ The final sorted array should not be returned by the function, but instead be st
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/linkedlist/" title="Linkedlists">
+                <a href="https://ajaybanstola.com.np/linkedlist/" title="Linkedlists">
                     <span>Linkedlists</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/misc/" title="Miscs">
+                <a href="https://ajaybanstola.com.np/misc/" title="Miscs">
                     <span>Miscs</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/portfolio/" title="Portfolio">
+                <a href="https://ajaybanstola.com.np/portfolio/" title="Portfolio">
                     <span>Portfolio</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/posts/" title="Posts">
+                <a href="https://ajaybanstola.com.np/posts/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/sql/" title="Sqls">
+                <a href="https://ajaybanstola.com.np/sql/" title="Sqls">
                     <span>Sqls</span>
                 </a>
             </li>
@@ -206,7 +275,7 @@ The result of the merge is [1].</p>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="http://localhost:1313/">That&#39;s interesting</a></span> · 
+        <span>&copy; 2024 <a href="https://ajaybanstola.com.np/">That&#39;s interesting</a></span> · 
 
     <span>
         All rights reserved. 

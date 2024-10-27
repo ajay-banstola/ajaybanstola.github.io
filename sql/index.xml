@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Sqls on That&#39;s interesting</title>
-    <link>http://localhost:1313/sql/</link>
+    <link>https://ajaybanstola.com.np/sql/</link>
     <description>Recent content in Sqls on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 21 Aug 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/sql/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ajaybanstola.com.np/sql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Average time of Process per Machine</title>
-      <link>http://localhost:1313/sql/second-sql/</link>
+      <link>https://ajaybanstola.com.np/sql/second-sql/</link>
       <pubDate>Wed, 21 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/sql/second-sql/</guid>
+      <guid>https://ajaybanstola.com.np/sql/second-sql/</guid>
       <description>Here is the link to the problem: Average time of Process per Machine.
 Problem Statement: Table: Activity
 Column Name Type machine_id int process_id int activity_type enum timestamp float There is a factory website that has several machines each running the same number of processes. Write a solution to find the average time each machine takes to complete a process.
@@ -20,9 +20,9 @@ The time to complete a process is the &amp;rsquo;end&amp;rsquo; timestamp minus 
     </item>
     <item>
       <title>Project Employees I </title>
-      <link>http://localhost:1313/sql/third-sql/</link>
+      <link>https://ajaybanstola.com.np/sql/third-sql/</link>
       <pubDate>Wed, 21 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/sql/third-sql/</guid>
+      <guid>https://ajaybanstola.com.np/sql/third-sql/</guid>
       <description>Here is the link to the problem: Project Employees I .
 Problem Statement: Table: Activity
 Column Name Type machine_id int process_id int activity_type enum timestamp float There is a factory website that has several machines each running the same number of processes. Write a solution to find the average time each machine takes to complete a process.
@@ -30,9 +30,9 @@ The time to complete a process is the &amp;rsquo;end&amp;rsquo; timestamp minus 
     </item>
     <item>
       <title>Customers who never order</title>
-      <link>http://localhost:1313/sql/first-sql/</link>
+      <link>https://ajaybanstola.com.np/sql/first-sql/</link>
       <pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/sql/first-sql/</guid>
+      <guid>https://ajaybanstola.com.np/sql/first-sql/</guid>
       <description>Here is the link to the problem: Customers who never order.
 Problem Statement: Table: Customers
 Column Name Type id int name varchar id is the primary key (column with unique values) for this table. Each row of this table indicates the ID and name of a customer.

@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Find the kth Node from the Back | That&#39;s interesting</title>
 <meta name="keywords" content="">
 <meta name="description" content="Here is the link to the problem: kth node from Back.
 Problem Statement with Thought Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/linkedlist/lesson1/">
+<link rel="canonical" href="https://ajaybanstola.com.np/linkedlist/lesson1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.d08f4052fa8ebcfc062f84be37c7db30a22a1375793e3c9c1af198b510cdeb81.css" integrity="sha256-0I9AUvqOvPwGL4S&#43;N8fbMKIqE3V5PjycGvGYtRDN64E=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://ajaybanstola.com.np/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ajaybanstola.com.np/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ajaybanstola.com.np/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://ajaybanstola.com.np/apple-touch-icon.png">
+<link rel="mask-icon" href="https://ajaybanstola.com.np/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/linkedlist/lesson1/">
+<link rel="alternate" hreflang="en" href="https://ajaybanstola.com.np/linkedlist/lesson1/">
 <noscript>
     <style>
         #theme-toggle,
@@ -57,6 +57,71 @@ Problem Statement with Thought Process: We need to find the kth node from the ba
 
     </style>
 </noscript>
+  
+
+<meta property="og:title" content="Find the kth Node from the Back" />
+<meta property="og:description" content="Here is the link to the problem: kth node from Back.
+Problem Statement with Thought Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ajaybanstola.com.np/linkedlist/lesson1/" /><meta property="article:section" content="linkedlist" />
+<meta property="article:published_time" content="2024-08-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-08-31T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Find the kth Node from the Back"/>
+<meta name="twitter:description" content="Here is the link to the problem: kth node from Back.
+Problem Statement with Thought Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Linkedlists",
+      "item": "https://ajaybanstola.com.np/linkedlist/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Find the kth Node from the Back",
+      "item": "https://ajaybanstola.com.np/linkedlist/lesson1/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Find the kth Node from the Back",
+  "name": "Find the kth Node from the Back",
+  "description": "Here is the link to the problem: kth node from Back.\nProblem Statement with Thought Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back.",
+  "keywords": [
+    
+  ],
+  "articleBody": "Here is the link to the problem: kth node from Back.\nProblem Statement with Thought Process: We need to find the kth node from the back of the linked list. Imagine your four finger, where index finger is P1 and pinky finger is P2. To find 4th node from back, we place our hand at the end of the linked list, the index finger points to the 4th node from back. We took pinky finger kth steps from P1 and then moved P2 to the end of the list. Answer is pointed by P1.\nImplementation def find_kth_from_end(head: ListNode, k: int) -\u003e ListNode: # Initialize two pointers P1 and P2 p1 = head p2 = head # Move P2 forward by k nodes for _ in range(k): if not p2: # In case k is greater than the length of the list return None p2 = p2.next # Move both P1 and P2 until P2 reaches the end while p2: p1 = p1.next p2 = p2.next # P1 now points to the kth node from the end return p1 ",
+  "wordCount" : "178",
+  "inLanguage": "en",
+  "datePublished": "2024-08-31T00:00:00Z",
+  "dateModified": "2024-08-31T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ajaybanstola.com.np/linkedlist/lesson1/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "That's interesting",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ajaybanstola.com.np/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -74,7 +139,7 @@ Problem Statement with Thought Process: We need to find the kth node from the ba
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="That&#39;s interesting (Alt + H)">That&#39;s interesting</a>
+            <a href="https://ajaybanstola.com.np/" accesskey="h" title="That&#39;s interesting (Alt + H)">That&#39;s interesting</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -100,27 +165,27 @@ Problem Statement with Thought Process: We need to find the kth node from the ba
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/linkedlist/" title="Linkedlists">
+                <a href="https://ajaybanstola.com.np/linkedlist/" title="Linkedlists">
                     <span>Linkedlists</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/misc/" title="Miscs">
+                <a href="https://ajaybanstola.com.np/misc/" title="Miscs">
                     <span>Miscs</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/portfolio/" title="Portfolio">
+                <a href="https://ajaybanstola.com.np/portfolio/" title="Portfolio">
                     <span>Portfolio</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/posts/" title="Posts">
+                <a href="https://ajaybanstola.com.np/posts/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/sql/" title="Sqls">
+                <a href="https://ajaybanstola.com.np/sql/" title="Sqls">
                     <span>Sqls</span>
                 </a>
             </li>
@@ -173,7 +238,7 @@ Problem Statement with Thought Process: We need to find the kth node from the ba
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="http://localhost:1313/">That&#39;s interesting</a></span> · 
+        <span>&copy; 2024 <a href="https://ajaybanstola.com.np/">That&#39;s interesting</a></span> · 
 
     <span>
         All rights reserved. 
