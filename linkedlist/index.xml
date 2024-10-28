@@ -6,8 +6,17 @@
     <description>Recent content in Linkedlists on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 26 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 28 Oct 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/linkedlist/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Remove duplicates from sorted linked list</title>
+      <link>https://ajaybanstola.com.np/linkedlist/lesson8/</link>
+      <pubDate>Mon, 28 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/linkedlist/lesson8/</guid>
+      <description>Here is the link to the problem: Remove duplicates from sorted linked list
+Problem Statement with Thought Process: Here&amp;rsquo;s a Python function to remove duplicates from a sorted linked list:
+class ListNode: def __init__(self, value=0, next=None): self.value = value self.next = next def remove_duplicates(head: ListNode) -&amp;gt; ListNode: current = head while current and current.next: if current.value == current.next.value: current.next = current.next.next # Skip the duplicate node else: current = current.next # Move to the next unique node return head Explanation The function takes the head of a sorted linked list as input.</description>
+    </item>
     <item>
       <title>Find middle node in linked list</title>
       <link>https://ajaybanstola.com.np/linkedlist/lesson5/</link>
