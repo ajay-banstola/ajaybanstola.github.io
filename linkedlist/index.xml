@@ -6,13 +6,31 @@
     <description>Recent content in Linkedlists on That&#39;s interesting</description>
     <generator>Hugo -- 0.125.6</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Oct 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/linkedlist/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic linked list</title>
+      <link>https://ajaybanstola.com.np/linkedlist/lesson10/</link>
+      <pubDate>Wed, 30 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/linkedlist/lesson10/</guid>
+      <description>Here is the link to the problem: Basic Linked List
+Creating a linked list in Python involves defining a structure to store each element (node) and then linking each node to the next one. Here’s a simple step-by-step explanation:
+Define the Node Class: Each node in a linked list contains some data and a reference to the next node in the list. In Python, we can create a Node class to represent each element.</description>
+    </item>
     <item>
       <title>Remove duplicates from sorted linked list</title>
       <link>https://ajaybanstola.com.np/linkedlist/lesson8/</link>
       <pubDate>Mon, 28 Oct 2024 00:00:00 +0000</pubDate>
       <guid>https://ajaybanstola.com.np/linkedlist/lesson8/</guid>
+      <description>Here is the link to the problem: Remove duplicates from sorted linked list
+Problem Statement with Thought Process: Here&amp;rsquo;s a Python function to remove duplicates from a sorted linked list:
+class ListNode: def __init__(self, value=0, next=None): self.value = value self.next = next def remove_duplicates(head: ListNode) -&amp;gt; ListNode: current = head while current and current.next: if current.value == current.next.value: current.next = current.next.next # Skip the duplicate node else: current = current.next # Move to the next unique node return head Explanation The function takes the head of a sorted linked list as input.</description>
+    </item>
+    <item>
+      <title>Remove duplicates from sorted linked list</title>
+      <link>https://ajaybanstola.com.np/linkedlist/lesson9/</link>
+      <pubDate>Mon, 28 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/linkedlist/lesson9/</guid>
       <description>Here is the link to the problem: Remove duplicates from sorted linked list
 Problem Statement with Thought Process: Here&amp;rsquo;s a Python function to remove duplicates from a sorted linked list:
 class ListNode: def __init__(self, value=0, next=None): self.value = value self.next = next def remove_duplicates(head: ListNode) -&amp;gt; ListNode: current = head while current and current.next: if current.value == current.next.value: current.next = current.next.next # Skip the duplicate node else: current = current.next # Move to the next unique node return head Explanation The function takes the head of a sorted linked list as input.</description>
@@ -49,7 +67,7 @@ Previous Pointer: Keeps track of the previous node, which will help us reverse t
       <link>https://ajaybanstola.com.np/linkedlist/lesson7/</link>
       <pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate>
       <guid>https://ajaybanstola.com.np/linkedlist/lesson7/</guid>
-      <description>Here is the link to the problem: Reverse a linked list (Recursive way)
+      <description>Here is the link to the problem: Reverse a linked list (Recursive way).
 Problem Statement with Thought Process: To reverse a linked list recursively, we can use the following approach:
 Base Case: If we reach the end of the list (i.e., head is None) or there is only one node left, we return head as it will be the new head of the reversed list. Recursive Step: Recursively reverse the rest of the list.</description>
     </item>
