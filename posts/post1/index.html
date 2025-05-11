@@ -5,11 +5,35 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>404 Page not found | That&#39;s interesting</title>
+<title>RAG &amp; MCP: Smarter AI with Memory and Context | That&#39;s interesting</title>
 <meta name="keywords" content="">
-<meta name="description" content="">
+<meta name="description" content="Welcome! In this post, we explore two key concepts for building intelligent, context-aware AI systems: Retrieval-Augmented Generation (RAG) and Model Context Protocol (MCP).
+These frameworks tackle a critical challenge: how to make LLMs more accurate, grounded, and capable of complex interactions.
+RAG: Retrieval-Augmented Generation
+Purpose:
+To empower language models with access to external knowledge at inference time.
+How It Works:
+
+Retriever module fetches relevant documents from a vector store or indexed database based on the user query.
+Generator (usually an LLM) uses both the query and retrieved documents to generate an informed response.
+
+Why It Matters:
+
+Reduces hallucination.
+Enables real-time factual accuracy.
+Supports plug-and-play updates without retraining the model.
+
+Example Use Cases:
+
+Chatbots that answer based on internal company wikis.
+Research assistants grounded in academic papers.
+Domain-specific assistants (e.g., legal, medical).
+
+MCP: Model Context Protocol
+Purpose:
+To manage multi-turn memory, task orchestration, and context flow in multi-agent or tool-augmented AI systems.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/404.html">
+<link rel="canonical" href="http://localhost:1313/posts/post1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -18,7 +42,7 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/404.html">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/post1/">
 <noscript>
     <style>
         #theme-toggle,
@@ -58,7 +82,7 @@
 </noscript>
 </head>
 
-<body class="list" id="top">
+<body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -112,7 +136,89 @@
     </nav>
 </header>
 <main class="main">
-<div class="not-found">404</div>
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      RAG &amp; MCP: Smarter AI with Memory and Context
+    </h1>
+    <div class="post-meta"><span title='2025-05-11 00:00:00 +0000 UTC'>May 11, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Welcome! In this post, we explore two key concepts for building intelligent, context-aware AI systems: <strong>Retrieval-Augmented Generation (RAG)</strong> and <strong>Model Context Protocol (MCP)</strong>.</p>
+<p>These frameworks tackle a critical challenge: <strong>how to make LLMs more accurate, grounded, and capable of complex interactions</strong>.</p>
+<h2 id="rag-retrieval-augmented-generation">RAG: Retrieval-Augmented Generation<a hidden class="anchor" aria-hidden="true" href="#rag-retrieval-augmented-generation">#</a></h2>
+<p><strong>Purpose:</strong>
+To empower language models with access to external knowledge <strong>at inference time</strong>.</p>
+<h3 id="how-it-works">How It Works:<a hidden class="anchor" aria-hidden="true" href="#how-it-works">#</a></h3>
+<ol>
+<li><strong>Retriever</strong> module fetches relevant documents from a vector store or indexed database based on the user query.</li>
+<li><strong>Generator</strong> (usually an LLM) uses both the query and retrieved documents to generate an informed response.</li>
+</ol>
+<h3 id="why-it-matters">Why It Matters:<a hidden class="anchor" aria-hidden="true" href="#why-it-matters">#</a></h3>
+<ul>
+<li>Reduces hallucination.</li>
+<li>Enables real-time factual accuracy.</li>
+<li>Supports plug-and-play updates without retraining the model.</li>
+</ul>
+<h3 id="example-use-cases">Example Use Cases:<a hidden class="anchor" aria-hidden="true" href="#example-use-cases">#</a></h3>
+<ul>
+<li>Chatbots that answer based on internal company wikis.</li>
+<li>Research assistants grounded in academic papers.</li>
+<li>Domain-specific assistants (e.g., legal, medical).</li>
+</ul>
+<h2 id="mcp-model-context-protocol">MCP: Model Context Protocol<a hidden class="anchor" aria-hidden="true" href="#mcp-model-context-protocol">#</a></h2>
+<p><strong>Purpose:</strong>
+To manage <strong>multi-turn memory, task orchestration, and context flow</strong> in multi-agent or tool-augmented AI systems.</p>
+<h3 id="how-it-works-1">How It Works:<a hidden class="anchor" aria-hidden="true" href="#how-it-works-1">#</a></h3>
+<ul>
+<li>
+<p>MCP is a structured approach to <strong>passing and preserving contextual data</strong> across different models or interaction layers.</p>
+</li>
+<li>
+<p>It includes:</p>
+<ul>
+<li><strong>Context schema</strong>: Defines what data is persisted (user intent, memory, past actions).</li>
+<li><strong>Execution metadata</strong>: Tracks tool use, agent decisions, and interaction history.</li>
+<li><strong>Protocol logic</strong>: Ensures consistency, retries, branching, or fallback behavior.</li>
+</ul>
+</li>
+</ul>
+<h3 id="why-it-matters-1">Why It Matters:<a hidden class="anchor" aria-hidden="true" href="#why-it-matters-1">#</a></h3>
+<ul>
+<li>Enables persistent memory across sessions.</li>
+<li>Facilitates multi-agent collaboration (planner → tool → summarizer).</li>
+<li>Enhances reasoning with structured workflows.</li>
+</ul>
+<h3 id="example-use-cases-1">Example Use Cases:<a hidden class="anchor" aria-hidden="true" href="#example-use-cases-1">#</a></h3>
+<ul>
+<li>Personal AI assistants with memory.</li>
+<li>AI agents that plan, browse, and act in coordinated steps.</li>
+<li>Multi-agent decision systems with context-aware routing.</li>
+</ul>
+<h2 id="rag--mcp-the-ultimate-combo">RAG + MCP: The Ultimate Combo<a hidden class="anchor" aria-hidden="true" href="#rag--mcp-the-ultimate-combo">#</a></h2>
+<ul>
+<li><strong>RAG</strong> solves the knowledge access problem.</li>
+<li><strong>MCP</strong> solves the orchestration and context retention problem.</li>
+</ul>
+<p>Together, they allow you to build AI systems that are:</p>
+<ul>
+<li>Informed</li>
+<li>Contextual</li>
+<li>Structured</li>
+<li>Scalable</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
     </main>
     
 <footer class="footer">

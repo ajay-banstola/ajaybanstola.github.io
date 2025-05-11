@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.147.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.147.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
@@ -101,16 +101,6 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/linkedlist/" title="Linkedlists">
-                    <span>Linkedlists</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/misc/" title="Miscs">
-                    <span>Miscs</span>
-                </a>
-            </li>
-            <li>
                 <a href="http://localhost:1313/portfolio/" title="Portfolio">
                     <span>Portfolio</span>
                 </a>
@@ -120,11 +110,6 @@
                     <span>Posts</span>
                 </a>
             </li>
-            <li>
-                <a href="http://localhost:1313/sql/" title="Sqls">
-                    <span>Sqls</span>
-                </a>
-            </li>
         </ul>
     </nav>
 </header>
@@ -132,227 +117,20 @@
 <div class="post-content"><p>みなさん、こんにちは
 Minasan, kon&rsquo;nichiwa</p>
 <p>Hi, I’m Ajay Banstola — a software engineer and AI enthusiast with over 3 years of industry experience and a deep curiosity for building intelligent systems. I’m currently pursuing my Master’s in Computer Science at the University of Louisiana at Lafayette, where I also contribute to research on AI-driven program analysis and fuzzing techniques. My work spans from building scalable backend systems and cloud-native applications to deploying machine learning models in real-world environments. I enjoy working at the intersection of software engineering and AI, whether that means integrating large language models into production workflows or designing systems that make data-driven decisions. I’ll be joining Blue Partner as an AI Integration Engineer Intern this summer, and I’m excited about creating meaningful tech that blends smart automation with human impact.</p>
-<p>Outside of tech, I love staying active and competitive—whether it’s playing badminton, table tennis, or a strategic game of chess. I also unwind by diving into the world of manga, which has been a big part of my life and even sparked my interest in learning Japanese. It’s been a fun challenge picking up the language, and it adds a whole new layer of appreciation to the stories I enjoy. These hobbies keep me balanced and curious, both in and out of work.</p>
+<p>Outside of tech, I love staying active and competitive whether it’s playing badminton, table tennis, or a strategic game of chess. I also unwind by diving into the world of manga, which has been a big part of my life and even sparked my interest in learning Japanese. It’s been a fun challenge picking up the language, and it adds a whole new layer of appreciation to the stories I enjoy. These hobbies keep me balanced and curious, both in and out of work.</p>
 <p><a href="https://www.linkedin.com/in/ajay-banstola">LinkedIn</a>
 <a href="https://github.com/ajay-banstola">GitHub</a></p>
 
 
 </div>
-
-<article class="first-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Remove Duplicates from Sorted List
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Remove duplicates (Linked List).
-Problem Statement: Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
-Examples: Example 1:
-Input: head = [1,1,2]
-Output: [1,2]
-Example 2:
-Input: head = [1,1,2,3,3]
-Output: [1,2,3]
-My Solution # Definition for singly-linked list. # class ListNode(object): # def __init__(self, val=0, next=None): # self.val = val # self.next = next class Solution(object): def deleteDuplicates(self, head): &#34;&#34;&#34; :type head: ListNode :rtype: ListNode &#34;&#34;&#34; cur = head while cur: while cur.next and cur.next.val == cur.val: cur.next = cur.next.next cur = cur.next return head This is slightly different from the array one because here, it is linked list. Although we have two nested loop, but still it is O(n). While current pointer is not null, and there is next pointer and if the value of next pointer is same as the current pointer we update the next pointer to next next pointer. If the value is not same, we update the current pointer with the next pointer. Lastly, we return head pointer.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-19 00:00:00 +0000 UTC'>August 19, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Remove Duplicates from Sorted List" href="http://localhost:1313/posts/lesson20/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Valid Sudoku
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Valid Sudoku.
-Problem Statement: Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
-Each row must contain the digits 1-9 without repetition.
-Each column must contain the digits 1-9 without repetition.
-Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
-Note:
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-19 00:00:00 +0000 UTC'>August 19, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Valid Sudoku" href="http://localhost:1313/posts/lesson19/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Majority Element
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Majority Element.
-Problem Statement: Given an array nums of size n, return the majority element.
-The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
-Examples: Example 1:
-Input: nums = [3,2,3] Output: 3
-Example 2:
-Input: nums = [2,2,1,1,1,2,2] Output: 2
-My Solution class Solution(object): def majorityElement(self, nums): &#34;&#34;&#34; :type nums: List[int] :rtype: int &#34;&#34;&#34; new_dict = {} for each in nums: if each in new_dict: new_dict[each] &#43;= 1 else: new_dict[each] = 1 for each in new_dict: if new_dict[each] &gt; len(nums)/ 2: return each This is nothing, very simple. Added count of elements to a dictionary and then based on the count, we return the element.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-26 00:00:00 +0000 UTC'>July 26, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Majority Element" href="http://localhost:1313/posts/lesson18/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Single Number
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Single Number.
-Problem Statement: Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
-You must implement a solution with a linear runtime complexity and use only constant extra space.
-Examples: Example 1:
-Input: nums = [2,2,1]
-Output: 1
-Example 2:
-Input: nums = [4,1,2,1,2]
-Output: 4
-Example 3:
-Input: nums = [1]
-Output: 1
-My Solution Using XOR operator class Solution(object): def singleNumber(self, nums): &#34;&#34;&#34; :type nums: List[int] :rtype: int &#34;&#34;&#34; res = 0 for each in nums: res ^= each return res This is a very interesting problem. We have to first know how the XOR operator works. XOR beautifully segregates the odd one out. We start with res as 0 and we do XOR operation in each of the element and at last only the odd one remains.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-26 00:00:00 +0000 UTC'>July 26, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Single Number" href="http://localhost:1313/posts/lesson17/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Valid Palindrome
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Valid Palindrome.
-Problem Statement: A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
-Given a string s, return true if it is a palindrome, or false otherwise.
-Examples: Example 1:
-Input: s = “A man, a plan, a canal: Panama”
-Output: true
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-25 00:00:00 +0000 UTC'>July 25, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Valid Palindrome" href="http://localhost:1313/posts/lesson16/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Merge sorted array
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Merge Sorted Array.
-Problem Statement: You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
-Merge nums1 and nums2 into a single array sorted in non-decreasing order.
-The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m &#43; n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-24 00:00:00 +0000 UTC'>July 24, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Merge sorted array" href="http://localhost:1313/posts/lesson15/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Climbing Stairs
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Climbing Stairs.
-Problem Statement: You are climbing a staircase. It takes n steps to reach the top.
-Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
-Examples: Example 1:
-Input: n = 2
-Output: 2
-Explanation: There are two ways to climb to the top.
-1 step &#43; 1 step
-2 steps
-Example 2:
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-22 00:00:00 +0000 UTC'>July 22, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Climbing Stairs" href="http://localhost:1313/posts/lesson14/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Square root
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Square root.
-Problem Statement: Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
-You must not use any built-in exponent function or operator.
-For example, do not use pow(x, 0.5) in c&#43;&#43; or x ** 0.5 in python.
-Examples: Example 1:
-Input: x = 4
-Output: 2
-Explanation: The square root of 4 is 2, so we return 2.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-22 00:00:00 +0000 UTC'>July 22, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Square root" href="http://localhost:1313/posts/lesson13/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Add Binary
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Add Binary.
-Problem Statement: Given two binary strings a and b, return their sum as a binary string.
-Examples: Example 1:
-Input: a = “11”, b = “1” Output: “100”
-Example 2:
-Input: a = “1010”, b = “1011” Output: “10101”
-My Solution class Solution(object): def addBinary(self, a, b): &#34;&#34;&#34; :type a: str :type b: str :rtype: str &#34;&#34;&#34; c = 0 res = &#34;&#34; a_r, b_r = a[::-1], b[::-1] for i in range(max(len(a), len(b))): a_val = a_r[i] if i &lt; len(a) else 0 b_val = b_r[i] if i &lt; len(b) else 0 sum = c &#43; int(a_val) &#43; int(b_val) r = sum % 2 c = sum // 2 res &#43;= str(r) if c: return (str(c) &#43; res[::-1]) else: return res[::-1] So even though this is an easy problem, but there are a lot of things to be considered. We add from right, so we reversed it. The loop goes to the maximum value of either a or b. If there is no value, replace it with 0. Add the sum including carry. The modulo 2 is the result and the integer division 2 is the carry. Add the result to the string. Lastly if only there is carry, add it to the last string value. Otherwise will fail in the case where there is single 0 in both a and b.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-18 00:00:00 +0000 UTC'>July 18, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Add Binary" href="http://localhost:1313/posts/lesson12/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Length of Last word
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here is the link to the problem: Length of Last word.
-Problem Statement: Given a string s consisting of words and spaces, return the length of the last word in the string.
-A word is a maximal substring consisting of non-space characters only.
-Examples: Example 1:
-Input: s = “Hello World”
-Output: 5
-Explanation: The last word is “World” with length 5.
-Example 2:
-Input: s = &#34; fly me to the moon &#34;
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-13 00:00:00 +0000 UTC'>July 13, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Length of Last word" href="http://localhost:1313/posts/lesson10/"></a>
-</article>
-<footer class="page-footer">
-  <nav class="pagination">
-    <a class="next" href="http://localhost:1313/page/2/">Next&nbsp;&nbsp;»
-    </a>
-  </nav>
-</footer>
     </main>
     
 <footer class="footer">
         <span>&copy; 2025 <a href="http://localhost:1313/">That&#39;s interesting</a></span> · 
 
     <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+        Built by
+        <a href="https://www.linkedin.com/in/ajay-banstola" rel="noopener noreferrer" target="_blank">Ajay Banstola</a>
     </span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">

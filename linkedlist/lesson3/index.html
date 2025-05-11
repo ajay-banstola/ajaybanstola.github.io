@@ -150,7 +150,7 @@ This approach describes Floyd&rsquo;s Cycle Detection Algorithm, also known as t
 <p>There are two pointers p1 and p2. P2 will jump by 1 node. P1 will just go serially. If there is a cycle, at one time, it is guaranteed that both of them will meet at some point.</p>
 <p>This approach describes Floyd&rsquo;s Cycle Detection Algorithm, also known as the &ldquo;Tortoise and Hare&rdquo; algorithm. Here&rsquo;s an implementation in Python:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ListNode</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, value<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, next<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, value<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, next<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>value <span style="color:#f92672">=</span> value
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> next
 </span></span><span style="display:flex;"><span>
