@@ -4,7 +4,7 @@
     <title>Home on That&#39;s interesting</title>
     <link>https://ajaybanstola.com.np/</link>
     <description>Recent content in Home on That&#39;s interesting</description>
-    <generator>Hugo -- 0.147.2</generator>
+    <generator>Hugo -- 0.147.5</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 11 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
@@ -46,10 +46,11 @@ To manage &lt;strong&gt;multi-turn memory, task orchestration, and context flow&
       <guid>https://ajaybanstola.com.np/portfolio/</guid>
       <description>&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Masters in Computer Science at University of Louisiana at Lafayette&lt;/li&gt;
+&lt;li&gt;Masters in Computer Science at University of Louisiana at Lafayette (4.0 GPA)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;experience&#34;&gt;Experience&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;AI Integration Intership at Opportunity Machine, Lafayette, LA&lt;/li&gt;
 &lt;li&gt;Software Engineer at Tekvortex Pvt. Ltd., Lalitpur, Nepal - 2 years&lt;/li&gt;
 &lt;li&gt;Associate Software Engineer at Paynep Pvt. Ltd., Kathmandu, Nepal - 1 year&lt;/li&gt;
 &lt;/ul&gt;
@@ -60,8 +61,9 @@ To manage &lt;strong&gt;multi-turn memory, task orchestration, and context flow&
 &lt;li&gt;Gym&lt;/li&gt;
 &lt;li&gt;Japanese&lt;/li&gt;
 &lt;li&gt;Chess,Badminton&lt;/li&gt;
-&lt;li&gt;Reading&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;resume&#34;&gt;Resume&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://ajaybanstola.com.np/resume/resume.pdf&#34;&gt;Download Resume&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;contact&#34;&gt;Contact: &lt;a href=&#34;mailto:ajay.banstola@gmail.com&#34;&gt;ajay.banstola@gmail.com&lt;/a&gt;&lt;/h4&gt;</description>
     </item>
   </channel>
