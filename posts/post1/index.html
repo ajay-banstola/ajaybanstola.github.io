@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
+<html lang="en" dir="auto" data-theme="auto">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@ Purpose:
 To manage multi-turn memory, task orchestration, and context flow in multi-agent or tool-augmented AI systems.">
 <meta name="author" content="">
 <link rel="canonical" href="https://ajaybanstola.com.np/posts/post1/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.93f625d739f1d6a5c6f20c146bc6a8d26b233492b34b2220c54b12fd46a04ded.css" integrity="sha256-k/Yl1znx1qXG8gwUa8ao0msjNJKzSyIgxUsS/UagTe0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://ajaybanstola.com.np/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://ajaybanstola.com.np/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://ajaybanstola.com.np/favicon-32x32.png">
@@ -63,23 +63,38 @@ To manage multi-turn memory, task orchestration, and context flow in multi-agent
                 --code-block-bg: rgb(46, 46, 51);
                 --code-bg: rgb(55, 56, 62);
                 --border: rgb(51, 51, 51);
+                color-scheme: dark;
             }
 
             .list {
                 background: var(--theme);
             }
 
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
+            .toc {
+                background: var(--entry);
             }
+        }
 
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
             }
         }
 
     </style>
-</noscript><meta property="og:url" content="https://ajaybanstola.com.np/posts/post1/">
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://ajaybanstola.com.np/posts/post1/">
   <meta property="og:site_name" content="That&#39;s interesting">
   <meta property="og:title" content="RAG & MCP: Smarter AI with Memory and Context">
   <meta property="og:description" content="Welcome! In this post, we explore two key concepts for building intelligent, context-aware AI systems: Retrieval-Augmented Generation (RAG) and Model Context Protocol (MCP).
@@ -150,8 +165,8 @@ To manage multi-turn memory, task orchestration, and context flow in multi-agent
   "keywords": [
     
   ],
-  "articleBody": "Welcome! In this post, we explore two key concepts for building intelligent, context-aware AI systems: Retrieval-Augmented Generation (RAG) and Model Context Protocol (MCP).\nThese frameworks tackle a critical challenge: how to make LLMs more accurate, grounded, and capable of complex interactions.\nRAG: Retrieval-Augmented Generation Purpose: To empower language models with access to external knowledge at inference time.\nHow It Works: Retriever module fetches relevant documents from a vector store or indexed database based on the user query. Generator (usually an LLM) uses both the query and retrieved documents to generate an informed response. Why It Matters: Reduces hallucination. Enables real-time factual accuracy. Supports plug-and-play updates without retraining the model. Example Use Cases: Chatbots that answer based on internal company wikis. Research assistants grounded in academic papers. Domain-specific assistants (e.g., legal, medical). MCP: Model Context Protocol Purpose: To manage multi-turn memory, task orchestration, and context flow in multi-agent or tool-augmented AI systems.\nHow It Works: MCP is a structured approach to passing and preserving contextual data across different models or interaction layers.\nIt includes:\nContext schema: Defines what data is persisted (user intent, memory, past actions). Execution metadata: Tracks tool use, agent decisions, and interaction history. Protocol logic: Ensures consistency, retries, branching, or fallback behavior. Why It Matters: Enables persistent memory across sessions. Facilitates multi-agent collaboration (planner → tool → summarizer). Enhances reasoning with structured workflows. Example Use Cases: Personal AI assistants with memory. AI agents that plan, browse, and act in coordinated steps. Multi-agent decision systems with context-aware routing. RAG + MCP: The Ultimate Combo RAG solves the knowledge access problem. MCP solves the orchestration and context retention problem. Together, they allow you to build AI systems that are:\nInformed Contextual Structured Scalable ",
-  "wordCount" : "283",
+  "articleBody": "Welcome! In this post, we explore two key concepts for building intelligent, context-aware AI systems: Retrieval-Augmented Generation (RAG) and Model Context Protocol (MCP).\nThese frameworks tackle a critical challenge: how to make LLMs more accurate, grounded, and capable of complex interactions.\nRAG: Retrieval-Augmented Generation Purpose: To empower language models with access to external knowledge at inference time.\nHow It Works: Retriever module fetches relevant documents from a vector store or indexed database based on the user query. Generator (usually an LLM) uses both the query and retrieved documents to generate an informed response. Why It Matters: Reduces hallucination. Enables real-time factual accuracy. Supports plug-and-play updates without retraining the model. Example Use Cases: Chatbots that answer based on internal company wikis. Research assistants grounded in academic papers. Domain-specific assistants (e.g., legal, medical). MCP: Model Context Protocol Purpose: To manage multi-turn memory, task orchestration, and context flow in multi-agent or tool-augmented AI systems.\nHow It Works: MCP is a structured approach to passing and preserving contextual data across different models or interaction layers.\nIt includes:\nContext schema: Defines what data is persisted (user intent, memory, past actions). Execution metadata: Tracks tool use, agent decisions, and interaction history. Protocol logic: Ensures consistency, retries, branching, or fallback behavior. Why It Matters: Enables persistent memory across sessions. Facilitates multi-agent collaboration (planner → tool → summarizer). Enhances reasoning with structured workflows. Example Use Cases: Personal AI assistants with memory. AI agents that plan, browse, and act in coordinated steps. Multi-agent decision systems with context-aware routing. RAG + MCP: The Ultimate Combo RAG solves the knowledge access problem. MCP solves the orchestration and context retention problem. Together, they allow you to build AI systems that are:\nInformed Contextual Structured Scalable Efficient ",
+  "wordCount" : "284",
   "inLanguage": "en",
   "datePublished": "2025-05-11T00:00:00Z",
   "dateModified": "2025-05-11T00:00:00Z",
@@ -170,20 +185,8 @@ To manage multi-turn memory, task orchestration, and context flow in multi-agent
 }
 </script>
 </head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-
-<header class="header">
+<body id="top">
+    <header class="header">
     <nav class="nav">
         <div class="logo">
             <a href="https://ajaybanstola.com.np/" accesskey="h" title="That&#39;s interesting (Alt + H)">That&#39;s interesting</a>
@@ -298,6 +301,7 @@ To manage <strong>multi-turn memory, task orchestration, and context flow</stron
 <li>Contextual</li>
 <li>Structured</li>
 <li>Scalable</li>
+<li>Efficient</li>
 </ul>
 
 
@@ -314,8 +318,9 @@ To manage <strong>multi-turn memory, task orchestration, and context flow</stron
         <span>&copy; 2025 <a href="https://ajaybanstola.com.np/">That&#39;s interesting</a></span> · 
 
     <span>
-        Built by
-        <a href="https://www.linkedin.com/in/ajay-banstola" rel="noopener noreferrer" target="_blank">Ajay Banstola</a>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
@@ -325,9 +330,14 @@ To manage <strong>multi-turn memory, task orchestration, and context flow</stron
 </a>
 
 <script>
-    let menu = document.getElementById('menu')
+    let menu = document.getElementById('menu');
     if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
         menu.onscroll = function () {
             localStorage.setItem("menu-scroll-position", menu.scrollLeft);
         }
@@ -368,11 +378,12 @@ To manage <strong>multi-turn memory, task orchestration, and context flow</stron
 </script>
 <script>
     document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
             localStorage.setItem("pref-theme", 'light');
         } else {
-            document.body.classList.add('dark');
+            html.dataset.theme = 'dark';
             localStorage.setItem("pref-theme", 'dark');
         }
     })

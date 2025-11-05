@@ -4,7 +4,7 @@
     <title>Home on That&#39;s interesting</title>
     <link>https://ajaybanstola.com.np/</link>
     <description>Recent content in Home on That&#39;s interesting</description>
-    <generator>Hugo -- 0.147.5</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 11 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
@@ -38,6 +38,17 @@ To empower language models with access to external knowledge &lt;strong&gt;at in
 &lt;h2 id=&#34;mcp-model-context-protocol&#34;&gt;MCP: Model Context Protocol&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Purpose:&lt;/strong&gt;
 To manage &lt;strong&gt;multi-turn memory, task orchestration, and context flow&lt;/strong&gt; in multi-agent or tool-augmented AI systems.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Diffusion Models vs LLMs: Understanding the Core Differences</title>
+      <link>https://ajaybanstola.com.np/posts/diffusion-models-vs-llms/</link>
+      <pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://ajaybanstola.com.np/posts/diffusion-models-vs-llms/</guid>
+      <description>&lt;p&gt;When diving into the world of AI, two classes of models dominate the conversation: &lt;strong&gt;Large Language Models (LLMs)&lt;/strong&gt; and &lt;strong&gt;Diffusion Models&lt;/strong&gt;. While both are powerful generative AI technologies, they operate on fundamentally different principles and serve distinct purposes.&lt;/p&gt;
+&lt;p&gt;This post explores what diffusion models are, how they work, and how they fundamentally differ from LLMs.&lt;/p&gt;
+&lt;h2 id=&#34;diffusion-models-the-generative-artists&#34;&gt;Diffusion Models: The Generative Artists&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Purpose:&lt;/strong&gt;
+To generate high-quality images, audio, and other continuous data by learning to reverse a gradual noise-adding process.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Portfolio</title>
