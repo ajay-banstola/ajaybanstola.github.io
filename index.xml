@@ -1,71 +1,42 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Home on That&#39;s interesting</title>
-    <link>https://ajaybanstola.com.np/</link>
-    <description>Recent content in Home on That&#39;s interesting</description>
-    <generator>Hugo -- 0.152.2</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 11 May 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>RAG &amp; MCP: Smarter AI with Memory and Context</title>
-      <link>https://ajaybanstola.com.np/posts/post1/</link>
-      <pubDate>Sun, 11 May 2025 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/post1/</guid>
-      <description>&lt;p&gt;Welcome! In this post, we explore two key concepts for building intelligent, context-aware AI systems: &lt;strong&gt;Retrieval-Augmented Generation (RAG)&lt;/strong&gt; and &lt;strong&gt;Model Context Protocol (MCP)&lt;/strong&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home on That's interesting</title><link>https://ajaybanstola.com.np/</link><description>Recent content in Home on That's interesting</description><generator>Hugo -- 0.152.2</generator><language>en-us</language><lastBuildDate>Sun, 11 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ajaybanstola.com.np/index.xml" rel="self" type="application/rss+xml"/><item><title>RAG &amp; MCP: Smarter AI with Memory and Context</title><link>https://ajaybanstola.com.np/posts/post1/</link><pubDate>Sun, 11 May 2025 00:00:00 +0000</pubDate><guid>https://ajaybanstola.com.np/posts/post1/</guid><description>&lt;p&gt;Welcome! In this post, we explore two key concepts for building intelligent, context-aware AI systems: &lt;strong&gt;Retrieval-Augmented Generation (RAG)&lt;/strong&gt; and &lt;strong&gt;Model Context Protocol (MCP)&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;These frameworks tackle a critical challenge: &lt;strong&gt;how to make LLMs more accurate, grounded, and capable of complex interactions&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;rag-retrieval-augmented-generation&#34;&gt;RAG: Retrieval-Augmented Generation&lt;/h2&gt;
+&lt;h2 id="rag-retrieval-augmented-generation"&gt;RAG: Retrieval-Augmented Generation&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Purpose:&lt;/strong&gt;
 To empower language models with access to external knowledge &lt;strong&gt;at inference time&lt;/strong&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;how-it-works&#34;&gt;How It Works:&lt;/h3&gt;
+&lt;h3 id="how-it-works"&gt;How It Works:&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Retriever&lt;/strong&gt; module fetches relevant documents from a vector store or indexed database based on the user query.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Generator&lt;/strong&gt; (usually an LLM) uses both the query and retrieved documents to generate an informed response.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;why-it-matters&#34;&gt;Why It Matters:&lt;/h3&gt;
+&lt;h3 id="why-it-matters"&gt;Why It Matters:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Reduces hallucination.&lt;/li&gt;
 &lt;li&gt;Enables real-time factual accuracy.&lt;/li&gt;
 &lt;li&gt;Supports plug-and-play updates without retraining the model.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;example-use-cases&#34;&gt;Example Use Cases:&lt;/h3&gt;
+&lt;h3 id="example-use-cases"&gt;Example Use Cases:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Chatbots that answer based on internal company wikis.&lt;/li&gt;
 &lt;li&gt;Research assistants grounded in academic papers.&lt;/li&gt;
 &lt;li&gt;Domain-specific assistants (e.g., legal, medical).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;mcp-model-context-protocol&#34;&gt;MCP: Model Context Protocol&lt;/h2&gt;
+&lt;h2 id="mcp-model-context-protocol"&gt;MCP: Model Context Protocol&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Purpose:&lt;/strong&gt;
-To manage &lt;strong&gt;multi-turn memory, task orchestration, and context flow&lt;/strong&gt; in multi-agent or tool-augmented AI systems.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Diffusion Models vs LLMs: Understanding the Core Differences</title>
-      <link>https://ajaybanstola.com.np/posts/diffusion-models-vs-llms/</link>
-      <pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/posts/diffusion-models-vs-llms/</guid>
-      <description>&lt;p&gt;When diving into the world of AI, two classes of models dominate the conversation: &lt;strong&gt;Large Language Models (LLMs)&lt;/strong&gt; and &lt;strong&gt;Diffusion Models&lt;/strong&gt;. While both are powerful generative AI technologies, they operate on fundamentally different principles and serve distinct purposes.&lt;/p&gt;
+To manage &lt;strong&gt;multi-turn memory, task orchestration, and context flow&lt;/strong&gt; in multi-agent or tool-augmented AI systems.&lt;/p&gt;</description></item><item><title>Diffusion Models vs LLMs: Understanding the Core Differences</title><link>https://ajaybanstola.com.np/posts/diffusion-models-vs-llms/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://ajaybanstola.com.np/posts/diffusion-models-vs-llms/</guid><description>&lt;p&gt;When diving into the world of AI, two classes of models dominate the conversation: &lt;strong&gt;Large Language Models (LLMs)&lt;/strong&gt; and &lt;strong&gt;Diffusion Models&lt;/strong&gt;. While both are powerful generative AI technologies, they operate on fundamentally different principles and serve distinct purposes.&lt;/p&gt;
 &lt;p&gt;This post explores what diffusion models are, how they work, and how they fundamentally differ from LLMs.&lt;/p&gt;
-&lt;h2 id=&#34;diffusion-models-the-generative-artists&#34;&gt;Diffusion Models: The Generative Artists&lt;/h2&gt;
+&lt;h2 id="diffusion-models-the-generative-artists"&gt;Diffusion Models: The Generative Artists&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Purpose:&lt;/strong&gt;
-To generate high-quality images, audio, and other continuous data by learning to reverse a gradual noise-adding process.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Portfolio</title>
-      <link>https://ajaybanstola.com.np/portfolio/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://ajaybanstola.com.np/portfolio/</guid>
-      <description>&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
+To generate high-quality images, audio, and other continuous data by learning to reverse a gradual noise-adding process.&lt;/p&gt;</description></item><item><title>Portfolio</title><link>https://ajaybanstola.com.np/portfolio/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ajaybanstola.com.np/portfolio/</guid><description>&lt;h2 id="education"&gt;Education&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Masters in Computer Science at University of Louisiana at Lafayette (4.0 GPA)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;experience&#34;&gt;Experience&lt;/h2&gt;
+&lt;h2 id="experience"&gt;Experience&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;AI Integration Intership at Opportunity Machine, Lafayette, LA&lt;/li&gt;
 &lt;li&gt;Software Engineer at Tekvortex Pvt. Ltd., Lalitpur, Nepal - 2 years&lt;/li&gt;
 &lt;li&gt;Associate Software Engineer at Paynep Pvt. Ltd., Kathmandu, Nepal - 1 year&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;hobbies&#34;&gt;Hobbies&lt;/h2&gt;
+&lt;h2 id="hobbies"&gt;Hobbies&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Coding&lt;/li&gt;
 &lt;li&gt;Youtube Marathon&lt;/li&gt;
@@ -73,9 +44,6 @@ To generate high-quality images, audio, and other continuous data by learning to
 &lt;li&gt;Japanese&lt;/li&gt;
 &lt;li&gt;Chess,Badminton&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;resume&#34;&gt;Resume&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://ajaybanstola.com.np/resume/resume.pdf&#34;&gt;Download Resume&lt;/a&gt;&lt;/p&gt;
-&lt;h4 id=&#34;contact&#34;&gt;Contact: &lt;a href=&#34;mailto:ajay.banstola@gmail.com&#34;&gt;ajay.banstola@gmail.com&lt;/a&gt;&lt;/h4&gt;</description>
-    </item>
-  </channel>
-</rss>
+&lt;h2 id="resume"&gt;Resume&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://ajaybanstola.com.np/resume/resume.pdf"&gt;Download Resume&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="contact"&gt;Contact: &lt;a href="mailto:ajay.banstola@gmail.com"&gt;ajay.banstola@gmail.com&lt;/a&gt;&lt;/h4&gt;</description></item></channel></rss>
