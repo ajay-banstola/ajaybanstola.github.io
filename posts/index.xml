@@ -26,4 +26,10 @@ To manage &lt;strong&gt;multi-turn memory, task orchestration, and context flow&
 &lt;p&gt;This post explores what diffusion models are, how they work, and how they fundamentally differ from LLMs.&lt;/p&gt;
 &lt;h2 id="diffusion-models-the-generative-artists"&gt;Diffusion Models: The Generative Artists&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Purpose:&lt;/strong&gt;
-To generate high-quality images, audio, and other continuous data by learning to reverse a gradual noise-adding process.&lt;/p&gt;</description></item></channel></rss>
+To generate high-quality images, audio, and other continuous data by learning to reverse a gradual noise-adding process.&lt;/p&gt;</description></item><item><title/><link>https://ajaybanstola.com.np/posts/langchain-autogen/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ajaybanstola.com.np/posts/langchain-autogen/</guid><description>&lt;h1 id="from-simple-to-smart-understanding-langchain-and-autogen"&gt;From Simple to Smart: Understanding LangChain and AutoGen&lt;/h1&gt;
+&lt;p&gt;Artificial Intelligence is evolving faster than ever; and with it, new tools are emerging that make it easier to build complex AI systems. Two of the most powerful ones today are &lt;strong&gt;LangChain&lt;/strong&gt; and &lt;strong&gt;AutoGen&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In this post, we’ll start simple; understanding what they are, why they matter; and then dig deeper into their &lt;strong&gt;core architecture&lt;/strong&gt; and &lt;strong&gt;advanced usage patterns&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="1-the-basics-what-problem-do-they-solve"&gt;1. The Basics: What Problem Do They Solve?&lt;/h2&gt;
+&lt;p&gt;Let’s say you have a large language model (LLM) like GPT-4.
+It’s great at generating text, but it’s just one piece of the puzzle.&lt;/p&gt;</description></item></channel></rss>
