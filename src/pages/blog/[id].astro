@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import Giscus from '../../components/Giscus.astro';
+import { getCollection, render } from 'astro:content';
+import { site } from '../../data';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const words = post.body ? post.body.split(/\s+/).length : 0;
+const minutes = Math.max(1, Math.round(words / 220));
+const fmt = post.data.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Base title={`${post.data.title} | ${site.name}`} description={post.data.description}>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <article class="section">
+    <p class="eyebrow"><a href="/blog/">← ~/blog</a></p>
+    <h1>{post.data.title}</h1>
+    <p class="muted meta mono-small">
+      {fmt} · {minutes} min read
+      {post.data.tags.length > 0 && <span> · {post.data.tags.join(', ')}</span>}
+    </p>
+    <div class="prose">
+      <Content />
+    </div>
+    <hr />
+    <Giscus />
+  </article>
+</Base>
+
+<style>
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--accent);
+    z-index: 20;
+  }
+  .meta { margin-top: 0.25rem; }
+  .mono-small { font-family: var(--mono); font-size: 0.78rem; }
+  .prose { margin-top: 2rem; }
+  .prose :global(img) { max-width: 100%; border-radius: 8px; }
+  .prose :global(h2) { margin-top: 2.25rem; }
+  .prose :global(blockquote) {
+    margin: 1.5rem 0;
+    padding: 0.25rem 1.25rem;
+    border-left: 3px solid var(--accent);
+    color: var(--muted);
+  }
+</style>
+
+<script>
+  const bar = document.getElementById('progress');
+  const update = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    if (bar) bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  };
+  document.addEventListener('scroll', update, { passive: true });
+  update();
+</script>

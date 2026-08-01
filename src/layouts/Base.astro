@@ -1,0 +1,138 @@
+---
+import '../styles/global.css';
+import Terminal from '../components/Terminal.astro';
+import Palette from '../components/Palette.astro';
+import { site } from '../data';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = `${site.name} | Portfolio`, description = site.intro } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      // set theme before paint to avoid flash
+      const saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.dataset.theme = saved;
+      window.toggleTheme = () => {
+        const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('theme', next);
+      };
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main">
+        <a class="wordmark" href="/">ajay<span class="accent">@</span>banstola</a>
+        <div class="nav-links">
+          <a href="/#about">about</a>
+          <a href="/#work">work</a>
+          <a href="/#projects">projects</a>
+          <a href="/blog/">blog</a>
+          <button class="nav-btn" onclick="window.openPalette()" title="Command palette (Ctrl+K)">
+            ⌘K
+          </button>
+          <button class="nav-btn" onclick="window.openTerminal()" title="Open terminal (` key)">
+            &gt;_
+          </button>
+          <button class="nav-btn" onclick="window.toggleTheme()" title="Toggle theme" aria-label="Toggle theme">
+            ◐
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <span class="muted">© {new Date().getFullYear()} {site.name} · {site.location}</span>
+      <span class="muted footer-hint">
+        press <span class="kbd">Ctrl K</span> or <span class="kbd">`</span>
+      </span>
+    </footer>
+
+    <Terminal />
+    <Palette />
+  </body>
+</html>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .wordmark {
+    font-family: var(--mono);
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .wordmark:hover { text-decoration: none; }
+  .wordmark .accent { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 0.9rem; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+  .nav-btn {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+  }
+  .nav-btn:hover { color: var(--accent); border-color: var(--accent); }
+  footer {
+    max-width: var(--maxw);
+    margin: 4rem auto 0;
+    padding: 1.5rem 1.25rem 2.5rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+  @media (max-width: 560px) {
+    .nav-links a:nth-child(2),
+    .nav-links a:nth-child(3) { display: none; }
+    .footer-hint { display: none; }
+  }
+</style>

@@ -1,0 +1,202 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, skills, experience, projects, journey } from '../data';
+---
+
+<Base>
+  <!-- hero: a terminal session -->
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-term" id="hero-term">
+      <p class="hero-line"><span class="prompt">ajay@lafayette:~$</span> whoami</p>
+      <h1>{site.name}</h1>
+      <p class="hero-role">{site.role} · {site.location}</p>
+      <p class="hero-line"><span class="prompt">ajay@lafayette:~$</span> cat interests.txt</p>
+      <p class="hero-tagline">{site.tagline}</p>
+      <p class="hero-line">
+        <span class="prompt">ajay@lafayette:~$</span>
+        <span class="cursor" aria-hidden="true"></span>
+      </p>
+    </div>
+    <p class="hero-hint muted">
+      psst — this site has a real terminal. Press <span class="kbd">`</span> or
+      <span class="kbd">Ctrl K</span> anywhere.
+    </p>
+  </section>
+
+  <section id="about" class="section">
+    <p class="eyebrow">01 / about</p>
+    <h2>The short version</h2>
+    <p>{site.intro}</p>
+  </section>
+
+  <section id="skills" class="section">
+    <p class="eyebrow">02 / skills</p>
+    <h2>What I work with</h2>
+    <dl class="skills">
+      {
+        Object.entries(skills).map(([group, list]) => (
+          <div class="skill-row">
+            <dt>{group}</dt>
+            <dd>{list.join(' · ')}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section id="work" class="section">
+    <p class="eyebrow">03 / work</p>
+    <h2>Experience</h2>
+    {
+      experience.map((job) => (
+        <article class="job">
+          <div class="job-head">
+            <h3>
+              {job.role} · <span class="accent-text">{job.company}</span>
+            </h3>
+            <span class="muted mono-small">{job.when}</span>
+          </div>
+          <p class="muted mono-small">{job.where}</p>
+          <ul>
+            {job.points.map((p) => (
+              <li>{p}</li>
+            ))}
+          </ul>
+          <p>
+            {job.stack.map((s) => (
+              <span class="tag">{s}</span>
+            ))}
+          </p>
+        </article>
+      ))
+    }
+  </section>
+
+  <section id="projects" class="section">
+    <p class="eyebrow">04 / projects & research</p>
+    <h2>Things I've built and studied</h2>
+    <div class="proj-grid">
+      {
+        projects.map((proj) => (
+          <article class="proj">
+            <h3>{proj.name}</h3>
+            <p>{proj.desc}</p>
+            <p>
+              {proj.stack.map((s) => (
+                <span class="tag">{s}</span>
+              ))}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="journey" class="section">
+    <p class="eyebrow">05 / journey</p>
+    <h2>Kathmandu → Portland → Lafayette</h2>
+    <ol class="timeline">
+      {
+        journey.map((step) => (
+          <li>
+            <span class="tl-when mono-small">{step.when}</span>
+            <span class="tag">{step.label}</span>
+            <h3>{step.title}</h3>
+            <p class="muted">{step.where}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section id="contact" class="section">
+    <p class="eyebrow">06 / contact</p>
+    <h2>Say hello</h2>
+    <p>
+      Whether it's AI systems, fuzzing, or a good conversation — always open.
+    </p>
+    <ul class="contact-list">
+      <li><span class="mono-small muted">email</span> <a href={`mailto:${site.email}`}>{site.email}</a></li>
+      <li><span class="mono-small muted">github</span> <a href={site.github}>{site.github.replace('https://', '')}</a></li>
+      <li><span class="mono-small muted">linkedin</span> <a href={site.linkedin}>{site.linkedin.replace('https://www.', '')}</a></li>
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 4rem 0 1rem; }
+  .hero-term {
+    font-family: var(--mono);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.5rem 1.75rem;
+  }
+  .hero-line { margin: 0 0 0.4rem; font-size: 0.85rem; color: var(--muted); }
+  .prompt { color: var(--accent); }
+  .hero h1 { margin: 0.1rem 0 0.2rem; }
+  .hero-role { margin: 0 0 1.25rem; color: var(--muted); font-size: 0.9rem; }
+  .hero-tagline { margin: 0.1rem 0 1.25rem; color: var(--text); font-size: 0.95rem; }
+  .cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.05em;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+  .hero-hint { font-size: 0.82rem; margin-top: 0.9rem; }
+
+  .skills { margin: 0; }
+  .skill-row {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-row dt { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); padding-top: 0.15rem; }
+  .skill-row dd { margin: 0; color: var(--muted); font-size: 0.95rem; }
+  @media (max-width: 560px) { .skill-row { grid-template-columns: 1fr; gap: 0.15rem; } }
+
+  .job { padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+  .job:last-of-type { border-bottom: none; }
+  .job-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; flex-wrap: wrap; }
+  .job ul { padding-left: 1.1rem; margin: 0.6rem 0; }
+  .job li { margin-bottom: 0.4rem; }
+  .accent-text { color: var(--accent); }
+  .mono-small { font-family: var(--mono); font-size: 0.78rem; }
+
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 640px) { .proj-grid { grid-template-columns: 1fr; } }
+  .proj {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    background: var(--surface);
+  }
+  .proj p { font-size: 0.92rem; margin: 0.4rem 0 0.6rem; color: var(--muted); }
+
+  .timeline { list-style: none; margin: 0; padding: 0 0 0 1.25rem; border-left: 1px solid var(--line); }
+  .timeline li { position: relative; padding: 0 0 1.75rem; }
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    left: -1.55rem;
+    top: 0.4rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+  .tl-when { color: var(--accent); margin-right: 0.5rem; }
+  .timeline h3 { margin: 0.25rem 0 0.1rem; }
+  .timeline p { margin: 0; font-size: 0.92rem; }
+
+  .contact-list { list-style: none; padding: 0; margin: 1rem 0 0; }
+  .contact-list li { display: flex; gap: 1rem; padding: 0.4rem 0; align-items: baseline; }
+  .contact-list .mono-small { width: 5rem; flex-shrink: 0; }
+</style>

@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../data';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<Base title={`Blog | ${site.name}`} description="Writing on AI, software engineering, and research.">
+  <section class="section">
+    <p class="eyebrow">~/blog</p>
+    <h1>Writing</h1>
+    <p class="muted">
+      Notes on AI systems, software engineering, and whatever I'm currently digging into.
+    </p>
+    <ul class="post-list">
+      {
+        posts.map((post) => (
+          <li>
+            <a class="post-link" href={`/blog/${post.id}/`}>
+              <span class="post-title">{post.data.title}</span>
+              <span class="post-date mono-small muted">{fmt(post.data.pubDate)}</span>
+            </a>
+            <p class="muted post-desc">{post.data.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .post-list { list-style: none; padding: 0; margin: 2rem 0 0; }
+  .post-list li { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .post-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    color: var(--text);
+    flex-wrap: wrap;
+  }
+  .post-link:hover { text-decoration: none; }
+  .post-link:hover .post-title { color: var(--accent); }
+  .post-title { font-family: var(--mono); font-weight: 600; }
+  .post-desc { margin: 0.3rem 0 0; font-size: 0.92rem; }
+  .mono-small { font-family: var(--mono); font-size: 0.78rem; }
+</style>

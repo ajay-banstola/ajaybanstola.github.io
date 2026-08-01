@@ -1,0 +1,151 @@
+---
+import { site } from '../data';
+---
+
+<dialog id="terminal" aria-label="Interactive terminal">
+  <div class="term-bar">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="term-title">ajay@lafayette — zsh</span>
+    <button id="term-close" aria-label="Close terminal">×</button>
+  </div>
+  <div class="term-body" id="term-body">
+    <div class="term-line muted">Welcome. Type <b>help</b> to see what I can do.</div>
+  </div>
+  <form id="term-form" class="term-input-row">
+    <span class="prompt">ajay@lafayette:~$</span>
+    <input id="term-input" autocomplete="off" spellcheck="false" aria-label="Terminal command" />
+  </form>
+</dialog>
+
+<style>
+  #terminal {
+    width: min(640px, calc(100vw - 2rem));
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+  #terminal::backdrop { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); }
+  .term-bar {
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  .term-bar .dot:first-child { background: var(--accent); }
+  .term-title { margin-left: 0.5rem; color: var(--muted); font-size: 0.75rem; }
+  #term-close {
+    margin-left: auto; background: none; border: none; color: var(--muted);
+    font-size: 1.1rem; cursor: pointer; line-height: 1; padding: 0 0.25rem;
+  }
+  .term-body { padding: 0.75rem; max-height: 46vh; overflow-y: auto; white-space: pre-wrap; word-break: break-word; }
+  .term-line { margin-bottom: 0.35rem; }
+  .term-line.muted { color: var(--muted); }
+  .term-line.accent { color: var(--accent); }
+  .term-input-row {
+    display: flex; gap: 0.5rem; align-items: center;
+    padding: 0.6rem 0.75rem; border-top: 1px solid var(--line);
+  }
+  .prompt { color: var(--accent); white-space: nowrap; }
+  #term-input {
+    flex: 1; background: none; border: none; color: var(--text);
+    font: inherit; outline: none; caret-color: var(--accent);
+  }
+</style>
+
+<script define:vars={{ site }}>
+  const dlg = document.getElementById('terminal');
+  const body = document.getElementById('term-body');
+  const form = document.getElementById('term-form');
+  const input = document.getElementById('term-input');
+  const history = [];
+  let histIdx = -1;
+
+  const print = (text, cls = '') => {
+    const el = document.createElement('div');
+    el.className = 'term-line' + (cls ? ' ' + cls : '');
+    el.textContent = text;
+    body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
+  };
+
+  const commands = {
+    help: () =>
+      [
+        'available commands:',
+        '  whoami        who is this guy',
+        '  skills        tech I work with',
+        '  work          experience history',
+        '  projects      research & side projects',
+        '  blog          go read the blog',
+        '  contact       ways to reach me',
+        '  resume        open my resume',
+        '  theme         toggle dark / light',
+        '  clear         clear the screen',
+        '  exit          close this terminal',
+      ].join('\n'),
+    whoami: () => `${site.name} — ${site.role}\n${site.tagline}`,
+    about: () => site.intro,
+    skills: () => 'Python · PyTorch · TensorFlow · Django · Flask · React · AWS · Azure · AFL++ · PostgreSQL — full list up on the page (try scrolling, it is free)',
+    work: () => 'Apex Innovations (2026—now) → Opportunity Machine (2025) → Smarsh (2021—23) → PayNep (2020—21). Details in the Work section.',
+    experience: () => commands.work(),
+    projects: () => 'Glaucoma progression prediction (RNFLT + PyTorch), Byteri binary fuzzing (AFL++/LLVM), MedScan pneumonia detection, customer predictive analytics.',
+    blog: () => { window.location.href = '/blog'; return 'navigating to /blog ...'; },
+    contact: () => `email:    ${site.email}\ngithub:   ${site.github}\nlinkedin: ${site.linkedin}`,
+    resume: () => { window.open('/resume.pdf', '_blank'); return 'opening resume.pdf ...'; },
+    theme: () => { window.toggleTheme(); return 'theme toggled.'; },
+    clear: () => { body.innerHTML = ''; return null; },
+    exit: () => { dlg.close(); return null; },
+    ls: () => 'about/  skills/  work/  projects/  blog/  contact/  secrets/',
+    'cat secrets': () => 'nice try. sudo hire-ajay for the real secret.',
+    sudo: () => 'permission denied: you are not Ajay. (unless you are — hi, Ajay)',
+    'sudo hire-ajay': () => '✔ excellent decision. drafting offer letter...\n→ ' + site.email,
+    pwd: () => '/home/ajay/portfolio',
+  };
+
+  window.openTerminal = () => {
+    if (!dlg.open) dlg.showModal();
+    input.focus();
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const raw = input.value.trim();
+    input.value = '';
+    if (!raw) return;
+    history.push(raw);
+    histIdx = history.length;
+    print('ajay@lafayette:~$ ' + raw, 'accent');
+    const key = raw.toLowerCase();
+    const fn = commands[key] || commands[key.split(' ')[0]];
+    if (fn) {
+      const out = fn();
+      if (out) print(out);
+    } else {
+      print(`command not found: ${raw} — try 'help'`, 'muted');
+    }
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowUp' && histIdx > 0) { histIdx--; input.value = history[histIdx]; e.preventDefault(); }
+    if (e.key === 'ArrowDown') {
+      if (histIdx < history.length - 1) { histIdx++; input.value = history[histIdx]; }
+      else { histIdx = history.length; input.value = ''; }
+      e.preventDefault();
+    }
+  });
+
+  document.getElementById('term-close').addEventListener('click', () => dlg.close());
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '`' && !e.ctrlKey && !e.metaKey) {
+      const t = e.target;
+      const typing = t instanceof HTMLElement && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+      if (!typing) { e.preventDefault(); window.openTerminal(); }
+    }
+  });
+</script>

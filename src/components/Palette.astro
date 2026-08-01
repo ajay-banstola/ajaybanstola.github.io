@@ -1,0 +1,167 @@
+---
+import { getCollection } from 'astro:content';
+import { site } from '../data';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const postItems = posts.map((p) => ({
+  label: p.data.title,
+  hint: 'blog post',
+  action: 'goto',
+  value: `/blog/${p.id}/`,
+}));
+---
+
+<dialog id="palette" aria-label="Command palette">
+  <input
+    id="palette-input"
+    placeholder="Type a command or search…"
+    autocomplete="off"
+    spellcheck="false"
+    aria-label="Search commands"
+  />
+  <ul id="palette-list" role="listbox"></ul>
+  <div class="palette-foot muted">
+    <span><span class="kbd">↑↓</span> navigate</span>
+    <span><span class="kbd">Enter</span> select</span>
+    <span><span class="kbd">Esc</span> close</span>
+  </div>
+</dialog>
+
+<style>
+  #palette {
+    width: min(560px, calc(100vw - 2rem));
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    margin-top: 12vh;
+  }
+  #palette::backdrop { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); }
+  #palette-input {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    padding: 0.9rem 1rem;
+    outline: none;
+    caret-color: var(--accent);
+  }
+  #palette-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.4rem;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+  #palette-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+  #palette-list li .hint { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+  #palette-list li.active { background: var(--accent-soft); }
+  #palette-list li.active::before { content: '→ '; color: var(--accent); font-family: var(--mono); }
+  .palette-foot {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.75rem;
+  }
+</style>
+
+<script define:vars={{ site, postItems }}>
+  const dlg = document.getElementById('palette');
+  const input = document.getElementById('palette-input');
+  const list = document.getElementById('palette-list');
+
+  const items = [
+    { label: 'Go to About', hint: 'section', action: 'goto', value: '/#about' },
+    { label: 'Go to Skills', hint: 'section', action: 'goto', value: '/#skills' },
+    { label: 'Go to Work', hint: 'section', action: 'goto', value: '/#work' },
+    { label: 'Go to Projects & Research', hint: 'section', action: 'goto', value: '/#projects' },
+    { label: 'Go to Journey', hint: 'section', action: 'goto', value: '/#journey' },
+    { label: 'Go to Contact', hint: 'section', action: 'goto', value: '/#contact' },
+    { label: 'Read the Blog', hint: 'page', action: 'goto', value: '/blog/' },
+    ...postItems,
+    { label: 'Open Terminal', hint: '` key', action: 'terminal' },
+    { label: 'Toggle Theme', hint: 'dark / light', action: 'theme' },
+    { label: 'Copy Email Address', hint: site.email, action: 'email' },
+    { label: 'Open GitHub Profile', hint: 'external', action: 'goto', value: site.github },
+    { label: 'Open LinkedIn Profile', hint: 'external', action: 'goto', value: site.linkedin },
+    { label: 'View Resume (PDF)', hint: 'external', action: 'goto', value: '/resume.pdf' },
+  ];
+
+  let filtered = items;
+  let active = 0;
+
+  const render = () => {
+    list.innerHTML = '';
+    filtered.forEach((item, i) => {
+      const li = document.createElement('li');
+      li.setAttribute('role', 'option');
+      if (i === active) li.classList.add('active');
+      const label = document.createElement('span');
+      label.textContent = item.label;
+      const hint = document.createElement('span');
+      hint.className = 'hint';
+      hint.textContent = item.hint || '';
+      li.append(label, hint);
+      li.addEventListener('click', () => run(item));
+      li.addEventListener('mousemove', () => { active = i; render(); });
+      list.appendChild(li);
+    });
+  };
+
+  const run = (item) => {
+    dlg.close();
+    if (item.action === 'goto') {
+      if (item.value.startsWith('http')) window.open(item.value, '_blank');
+      else window.location.href = item.value;
+    }
+    if (item.action === 'terminal') window.openTerminal();
+    if (item.action === 'theme') window.toggleTheme();
+    if (item.action === 'email') navigator.clipboard?.writeText(site.email);
+  };
+
+  const filter = () => {
+    const q = input.value.trim().toLowerCase();
+    filtered = q ? items.filter((i) => (i.label + ' ' + (i.hint || '')).toLowerCase().includes(q)) : items;
+    active = 0;
+    render();
+  };
+
+  window.openPalette = () => {
+    input.value = '';
+    filter();
+    if (!dlg.open) dlg.showModal();
+    input.focus();
+  };
+
+  input.addEventListener('input', filter);
+
+  dlg.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') { active = Math.min(active + 1, filtered.length - 1); render(); e.preventDefault(); }
+    if (e.key === 'ArrowUp') { active = Math.max(active - 1, 0); render(); e.preventDefault(); }
+    if (e.key === 'Enter') { if (filtered[active]) run(filtered[active]); e.preventDefault(); }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      window.openPalette();
+    }
+  });
+</script>

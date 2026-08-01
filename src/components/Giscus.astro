@@ -1,0 +1,49 @@
+---
+// ================================================================
+// COMMENTS + LIKES (free, via GitHub Discussions)
+//
+// One-time setup (5 minutes):
+//  1. On your GitHub repo: Settings → General → Features → enable "Discussions"
+//  2. Install the giscus app on the repo: https://github.com/apps/giscus
+//  3. Visit https://giscus.app — enter your repo, pick:
+//       Mapping: "pathname" · Category: "Announcements" · Reactions: enabled
+//  4. It shows you data-repo-id and data-category-id values.
+//     Paste them below and set CONFIGURED to true.
+//
+// Reactions (👍 ❤️ 🚀) on the discussion act as your "likes".
+// ================================================================
+const CONFIGURED = false;
+const REPO = 'YOUR_GITHUB_USERNAME/YOUR_REPO_NAME';
+const REPO_ID = 'PASTE_REPO_ID_HERE';
+const CATEGORY = 'Announcements';
+const CATEGORY_ID = 'PASTE_CATEGORY_ID_HERE';
+---
+
+{
+  CONFIGURED ? (
+    <section class="comments" aria-label="Comments">
+      <script
+        is:inline
+        src="https://giscus.app/client.js"
+        data-repo={REPO}
+        data-repo-id={REPO_ID}
+        data-category={CATEGORY}
+        data-category-id={CATEGORY_ID}
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+      />
+    </section>
+  ) : (
+    <p class="muted" style="font-family: var(--mono); font-size: 0.8rem;">
+      [ comments will appear here once Giscus is configured — see
+      src/components/Giscus.astro ]
+    </p>
+  )
+}
