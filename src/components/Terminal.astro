@@ -1,5 +1,10 @@
 ---
-import { site } from '../data';
+import { getCollection } from 'astro:content';
+import { site, skills, experience, projects, journey } from '../data';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map((p) => ({ title: p.data.title, url: `/blog/${p.id}/` }));
 ---
 
 <dialog id="terminal" aria-label="Interactive terminal">
@@ -9,7 +14,7 @@ import { site } from '../data';
     <button id="term-close" aria-label="Close terminal">×</button>
   </div>
   <div class="term-body" id="term-body">
-    <div class="term-line muted">Welcome. Type <b>help</b> to see what I can do.</div>
+    <div class="term-line muted">Welcome. Type <b>help</b> to see what I can do. <b>Tab</b> autocompletes.</div>
   </div>
   <form id="term-form" class="term-input-row">
     <span class="prompt">ajay@lafayette:~$</span>
@@ -17,7 +22,8 @@ import { site } from '../data';
   </form>
 </dialog>
 
-<style>
+<!-- global: terminal lines are created in JS, so they never get Astro's scoped-style attributes -->
+<style is:global>
   #terminal {
     width: min(640px, calc(100vw - 2rem));
     background: var(--surface);
@@ -35,7 +41,7 @@ import { site } from '../data';
     padding: 0.5rem 0.75rem;
     border-bottom: 1px solid var(--line);
   }
-  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  .term-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
   .term-bar .dot:first-child { background: var(--accent); }
   .term-title { margin-left: 0.5rem; color: var(--muted); font-size: 0.75rem; }
   #term-close {
@@ -50,20 +56,22 @@ import { site } from '../data';
     display: flex; gap: 0.5rem; align-items: center;
     padding: 0.6rem 0.75rem; border-top: 1px solid var(--line);
   }
-  .prompt { color: var(--accent); white-space: nowrap; }
+  .term-input-row .prompt { color: var(--accent); white-space: nowrap; }
   #term-input {
     flex: 1; background: none; border: none; color: var(--text);
     font: inherit; outline: none; caret-color: var(--accent);
   }
 </style>
 
-<script define:vars={{ site }}>
+<script define:vars={{ site, skills, experience, projects, journey, posts }}>
   const dlg = document.getElementById('terminal');
   const body = document.getElementById('term-body');
   const form = document.getElementById('term-form');
   const input = document.getElementById('term-input');
+  const PROMPT = 'ajay@lafayette:~$ ';
   const history = [];
   let histIdx = -1;
+  const openedAt = Date.now();
 
   const print = (text, cls = '') => {
     const el = document.createElement('div');
@@ -73,38 +81,152 @@ import { site } from '../data';
     body.scrollTop = body.scrollHeight;
   };
 
+  const sections = ['about', 'skills', 'work', 'projects', 'journey', 'contact'];
+  const links = { github: site.github, linkedin: site.linkedin, resume: '/resume.pdf', blog: '/blog/' };
+
+  const goto = (url) => {
+    if (url.startsWith('http')) return window.open(url, '_blank');
+    dlg.close();
+    window.location.href = url;
+  };
+
+  const fortunes = [
+    'There are two hard problems in CS: cache invalidation, naming things, and off-by-one errors.',
+    'It works on my machine.',
+    'The fuzzer always finds the bug you were sure could not exist.',
+    'A model is only as good as its eval set.',
+    'Weeks of coding can save you hours of planning.',
+    'First, solve the problem. Then, write the code.',
+    'Prompt engineering is just requirements gathering with extra steps.',
+  ];
+
+  // name -> [description, handler(args)]; a null description hides it from help (easter eggs)
   const commands = {
-    help: () =>
-      [
-        'available commands:',
-        '  whoami        who is this guy',
-        '  skills        tech I work with',
-        '  work          experience history',
-        '  projects      research & side projects',
-        '  blog          go read the blog',
-        '  contact       ways to reach me',
-        '  resume        open my resume',
-        '  theme         toggle dark / light',
-        '  clear         clear the screen',
-        '  exit          close this terminal',
-      ].join('\n'),
-    whoami: () => `${site.name} — ${site.role}\n${site.tagline}`,
-    about: () => site.intro,
-    skills: () => 'Python · PyTorch · TensorFlow · Django · Flask · React · AWS · Azure · AFL++ · PostgreSQL — full list up on the page (try scrolling, it is free)',
-    work: () => 'Apex Innovations (2026—now) → Opportunity Machine (2025) → Smarsh (2021—23) → PayNep (2020—21). Details in the Work section.',
-    experience: () => commands.work(),
-    projects: () => 'Glaucoma progression prediction (RNFLT + PyTorch), Byteri binary fuzzing (AFL++/LLVM), MedScan pneumonia detection, customer predictive analytics.',
-    blog: () => { window.location.href = '/blog'; return 'navigating to /blog ...'; },
-    contact: () => `email:    ${site.email}\ngithub:   ${site.github}\nlinkedin: ${site.linkedin}`,
-    resume: () => { window.open('/resume.pdf', '_blank'); return 'opening resume.pdf ...'; },
-    theme: () => { window.toggleTheme(); return 'theme toggled.'; },
-    clear: () => { body.innerHTML = ''; return null; },
-    exit: () => { dlg.close(); return null; },
-    ls: () => 'about/  skills/  work/  projects/  blog/  contact/  secrets/',
-    'cat secrets': () => 'nice try. sudo hire-ajay for the real secret.',
-    sudo: () => 'permission denied: you are not Ajay. (unless you are — hi, Ajay)',
-    'sudo hire-ajay': () => '✔ excellent decision. drafting offer letter...\n→ ' + site.email,
-    pwd: () => '/home/ajay/portfolio',
+    help: ['list commands', () => {
+      const rows = Object.entries(commands)
+        .filter(([, [desc]]) => desc)
+        .map(([name, [desc]]) => '  ' + name.padEnd(12) + desc);
+      return ['available commands:', ...rows, '', 'Tab completes · ↑↓ history · Ctrl+L clears · a few commands are hidden'].join('\n');
+    }],
+    whoami: ['who is this guy', () => `${site.name} — ${site.role}\n${site.tagline}`],
+    about: ['the short version', () => site.intro],
+    neofetch: ['system info, but it is me', () => {
+      const years = new Date().getFullYear() - 2020;
+      return [
+        '   ▄▀▀▀▄     ajay@lafayette',
+        '  █ ▄ ▄ █    ──────────────',
+        `  █  ▀  █    role:     ${site.role}`,
+        `   ▀▄▄▄▀     location: ${site.location}`,
+        `             uptime:   ${years}+ years shipping software`,
+        '             degree:   M.S. Computer Science (4.0)',
+        `             langs:    ${skills['Languages'].slice(0, 4).join(', ')}`,
+        `             focus:    ${site.tagline}`,
+      ].join('\n');
+    }],
+    skills: ['tech I work with', () =>
+      Object.entries(skills).map(([group, list]) => group.padEnd(16) + list.join(', ')).join('\n')],
+    work: ['experience history', () =>
+      experience.map((j) => `${j.when.padEnd(20)} ${j.role} @ ${j.company}`).join('\n')],
+    projects: ['research & side projects', () =>
+      projects.map((p) => `• ${p.name}\n  ${p.stack.join(' · ')}`).join('\n')],
+    journey: ['the timeline', () =>
+      journey.map((s) => `${s.when.padEnd(12)} ${s.title} — ${s.where}`).join('\n')],
+    posts: ['list blog posts', () =>
+      posts.length
+        ? posts.map((p, i) => `  [${i + 1}] ${p.title}`).join('\n') + '\n\nread <n> to open one'
+        : 'no posts yet.'],
+    read: ['read <n> — open a blog post', ([n]) => {
+      const p = posts[Number(n) - 1];
+      if (!p) return 'usage: read <n>   (see posts)';
+      goto(p.url);
+      return `opening "${p.title}" ...`;
+    }],
+    ls: ['list sections', ([flag]) =>
+      flag === '-la' || flag === '-a'
+        ? [...sections, 'blog', '.secrets'].map((s) => 'drwxr-xr-x  ajay  ' + s + '/').join('\n')
+        : [...sections, 'blog'].map((s) => s + '/').join('  ')],
+    cd: ['cd <section> — jump to a section', ([dir = '~']) => {
+      const d = dir.replace(/\/$/, '').toLowerCase();
+      const home = d === '~' || d === '..' || d === '/';
+      if (!home && d !== 'blog' && !sections.includes(d)) return `cd: no such directory: ${dir}`;
+      goto(home ? '/#' : d === 'blog' ? '/blog/' : '/#' + d);
+      return null;
+    }],
+    open: ['open <github|linkedin|resume|blog>', ([what]) => {
+      if (!links[what]) return 'usage: open <' + Object.keys(links).join('|') + '>';
+      goto(links[what]);
+      return `opening ${what} ...`;
+    }],
+    contact: ['ways to reach me', () => `email:    ${site.email}\ngithub:   ${site.github}\nlinkedin: ${site.linkedin}`],
+    email: ['copy my email to the clipboard', () => {
+      navigator.clipboard?.writeText(site.email);
+      return `copied ${site.email} ✔`;
+    }],
+    resume: ['open my resume', () => { goto('/resume.pdf'); return 'opening resume.pdf ...'; }],
+    blog: ['go read the blog', () => { goto('/blog/'); return 'navigating to /blog ...'; }],
+    fortune: ['a random bit of wisdom', () => fortunes[Math.floor(Math.random() * fortunes.length)]],
+    theme: ['toggle dark / light', () => { window.toggleTheme(); return 'theme toggled.'; }],
+    history: ['show command history', () => history.map((h, i) => String(i + 1).padStart(4) + '  ' + h).join('\n')],
+    date: ['print the date', () => new Date().toString()],
+    echo: ['echo <text>', (args) => args.join(' ')],
+    uptime: ['how long you have been here', () => {
+      const s = Math.round((Date.now() - openedAt) / 1000);
+      return `up ${Math.floor(s / 60)}m ${s % 60}s, 1 user, load average: curious`;
+    }],
+    clear: ['clear the screen', () => { body.innerHTML = ''; return null; }],
+    exit: ['close this terminal', () => { dlg.close(); return null; }],
+
+    // easter eggs
+    experience: [null, () => commands.work[1]()],
+    pwd: [null, () => '/home/ajay/portfolio'],
+    cat: [null, ([file = '']) => (file.replace(/^\./, '') === 'secrets'
+      ? 'nice try. sudo hire-ajay for the real secret.'
+      : `cat: ${file}: try 'ls -la'`)],
+    sudo: [null, (args) => (args.join(' ') === 'hire-ajay'
+      ? '✔ excellent decision. drafting offer letter...\n→ ' + site.email
+      : 'permission denied: you are not Ajay. (unless you are — hi, Ajay)')],
+    rm: [null, (args) => (args.some((a) => a.startsWith('-') && a.includes('r'))
+      ? 'nice try. this is a static site — there is nothing to delete.'
+      : 'rm: permission denied')],
+    vim: [null, () => 'you are now trapped in vim. type :q to escape.'],
+    ':q': [null, () => 'you escaped vim. few can say that.'],
+    ':wq': [null, () => commands[':q'][1]()],
+    nano: [null, () => 'a person of taste.'],
+    coffee: [null, () => '   ( (\n    ) )\n  .______.\n  |      |]\n  \\      /\n   `----`\nrefueled. back to shipping.'],
+    hello: [null, () => "hey there 👋 — try 'whoami' or 'neofetch'"],
+    hi: [null, () => commands.hello[1]()],
+    ping: [null, () => 'pong'],
+    git: [null, ([sub]) => (sub === 'blame' ? 'it was me. it is always me.' : 'git: this portfolio is already committed to you.')],
+  };
+
+  const run = (raw) => {
+    const [name, ...args] = raw.split(/\s+/);
+    const cmd = commands[name.toLowerCase()];
+    if (!cmd) return print(`command not found: ${name} — try 'help'`, 'muted');
+    const out = cmd[1](args);
+    if (out) print(out);
+  };
+
+  const argOptions = () => ({
+    cd: [...sections, 'blog', '~'],
+    open: Object.keys(links),
+    read: posts.map((_, i) => String(i + 1)),
+  });
+
+  const complete = () => {
+    const parts = input.value.split(/\s+/);
+    const last = parts[parts.length - 1].toLowerCase();
+    const pool = parts.length === 1
+      ? Object.keys(commands).filter((c) => commands[c][0])
+      : argOptions()[parts[0].toLowerCase()] || [];
+    const matches = pool.filter((o) => o.startsWith(last));
+    if (matches.length === 1) {
+      parts[parts.length - 1] = matches[0];
+      input.value = parts.join(' ') + ' ';
+    } else if (matches.length > 1) {
+      print(PROMPT + input.value, 'accent');
+      print(matches.join('  '), 'muted');
+    }
   };
 
   window.openTerminal = () => {
@@ -119,18 +241,17 @@ import { site } from '../data';
     if (!raw) return;
     history.push(raw);
     histIdx = history.length;
-    print('ajay@lafayette:~$ ' + raw, 'accent');
-    const key = raw.toLowerCase();
-    const fn = commands[key] || commands[key.split(' ')[0]];
-    if (fn) {
-      const out = fn();
-      if (out) print(out);
-    } else {
-      print(`command not found: ${raw} — try 'help'`, 'muted');
-    }
+    print(PROMPT + raw, 'accent');
+    run(raw);
   });
 
   input.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') { e.preventDefault(); complete(); }
+    if (e.ctrlKey && e.key.toLowerCase() === 'l') { e.preventDefault(); body.innerHTML = ''; }
+    if (e.ctrlKey && e.key.toLowerCase() === 'c' && input.selectionStart === input.selectionEnd) {
+      print(PROMPT + input.value + '^C', 'accent');
+      input.value = '';
+    }
     if (e.key === 'ArrowUp' && histIdx > 0) { histIdx--; input.value = history[histIdx]; e.preventDefault(); }
     if (e.key === 'ArrowDown') {
       if (histIdx < history.length - 1) { histIdx++; input.value = history[histIdx]; }

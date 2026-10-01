@@ -29,7 +29,8 @@ const postItems = posts.map((p) => ({
   </div>
 </dialog>
 
-<style>
+<!-- global: palette rows are created in JS, so they never get Astro's scoped-style attributes -->
+<style is:global>
   #palette {
     width: min(560px, calc(100vw - 2rem));
     background: var(--surface);

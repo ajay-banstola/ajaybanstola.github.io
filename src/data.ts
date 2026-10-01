@@ -15,11 +15,13 @@ export const site = {
 };
 
 export const skills = {
-  'Languages': ['Python', 'Java', 'JavaScript / TypeScript', 'C / C++', 'Rust (research)'],
-  'AI / ML': ['PyTorch', 'TensorFlow', 'scikit-learn', 'CNNs', 'RAG', 'LangChain', 'Hugging Face'],
-  'Web & Backend': ['Django', 'Flask', 'React', 'Node.js', 'REST APIs'],
-  'Infra & Tools': ['AWS', 'Azure', 'Datadog', 'Jenkins CI/CD', 'Git', 'Linux'],
+  'Languages': ['Python', 'TypeScript / JavaScript', 'PHP', 'Java', 'SQL', 'C / C++', 'Rust (research)'],
+  'AI & Agents': ['LLM APIs (Claude, GPT)', 'Agentic workflows & tool use', 'MCP', 'RAG', 'LangGraph / LangChain', 'AutoGen', 'Vector search (pgvector)', 'LLM evals'],
+  'ML': ['PyTorch', 'Hugging Face', 'scikit-learn', 'TensorFlow', 'CNNs / medical imaging'],
+  'Web & Backend': ['PHP', 'Django', 'FastAPI', 'Flask', 'React', 'Node.js', 'Astro', 'REST APIs'],
+  'Cloud & DevOps': ['AWS', 'Azure', 'Docker', 'GitHub Actions', 'Jenkins', 'Datadog', 'Linux'],
   'Data': ['PostgreSQL', 'MSSQL', 'MongoDB', 'ETL pipelines', 'Tableau', 'Power BI'],
+  'AI-assisted dev': ['Claude Code', 'Cursor', 'GitHub Copilot'],
 };
 
 export const experience = [
@@ -29,10 +31,10 @@ export const experience = [
     where: 'Lafayette, LA',
     when: 'Mar 2026 — Present',
     points: [
-      // TODO(Ajay): replace this line with 1–2 real bullets about your work at Apex.
-      'Building software at Apex Innovations. (Edit src/data.ts to describe your current work.)',
+      'Apex Innovations makes Joint Accredited, interactive continuing-education and certification courseware for nurses and clinicians — NIH Stroke Scale (NIHSS+), stroke and neurology, cardiac, sepsis, and diabetes — used by hospital stroke programs and health systems.',
+      'I build the platform that delivers it: the web application nurses use to take courses, complete assessments, and earn their certifications and CE credit.',
     ],
-    stack: ['—'],
+    stack: ['PHP', 'JavaScript', 'Healthcare e-learning'],
   },
   {
     role: 'AI Engineer',
@@ -93,10 +95,9 @@ export const projects = [
 ];
 
 export const journey = [
-  { when: '2026 — now', label: 'current', title: 'Software Engineer', where: 'Apex Innovations, Lafayette LA' },
-  { when: '2025', label: 'graduated', title: 'M.S. Computer Science, 4.0 GPA', where: 'UL Lafayette — Academic Excellence Award' },
-  { when: '2025', label: 'ai', title: 'AI Engineer', where: 'Opportunity Machine — Blue Partner platform' },
-  { when: '2024', label: 'fellowship', title: 'Robert May Fellowship', where: 'Full-duration fellowship for the M.S. program' },
-  { when: '2021 — 2023', label: 'scale', title: 'Software Engineer', where: 'Smarsh Inc., Portland OR' },
-  { when: '2020 — 2021', label: 'start', title: 'Associate Software Engineer', where: 'PayNep, Kathmandu — where it started' },
+  { when: '2026 — now', tags: ['current', 'healthcare ed-tech'], title: 'Software Engineer', where: 'Apex Innovations, Lafayette LA', note: 'Building the platform behind accredited certification courses for nurses' },
+  { when: '2025', tags: ['generative ai', 'public safety'], title: 'AI Engineer', where: 'Opportunity Machine, Lafayette LA', note: 'Blue Partner — GPT-powered incident reporting for law enforcement' },
+  { when: '2024 — 2025', tags: ['m.s. cs', 'research', 'fellowship'], title: 'M.S. Computer Science — 4.0 GPA', where: 'UL Lafayette', note: 'Funded throughout by the Robert May Fellowship · Academic Excellence Award at graduation' },
+  { when: '2021 — 2023', tags: ['distributed systems', 'scale'], title: 'Software Engineer', where: 'Smarsh Inc.', note: 'Web-archiving platform monitored across 65+ servers' },
+  { when: '2020 — 2021', tags: ['fintech', 'first role'], title: 'Associate Software Engineer', where: 'PayNep, Kathmandu', note: 'Digital-wallet back end — where it started' },
 ];

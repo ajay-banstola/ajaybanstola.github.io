@@ -94,15 +94,18 @@ import { site, skills, experience, projects, journey } from '../data';
 
   <section id="journey" class="section">
     <p class="eyebrow">05 / journey</p>
-    <h2>Kathmandu → Portland → Lafayette</h2>
+    <h2>Kathmandu → Lafayette</h2>
     <ol class="timeline">
       {
         journey.map((step) => (
           <li>
             <span class="tl-when mono-small">{step.when}</span>
-            <span class="tag">{step.label}</span>
+            {step.tags.map((t) => (
+              <span class="tag">{t}</span>
+            ))}
             <h3>{step.title}</h3>
             <p class="muted">{step.where}</p>
+            {step.note && <p class="tl-note">{step.note}</p>}
           </li>
         ))
       }
@@ -195,6 +198,7 @@ import { site, skills, experience, projects, journey } from '../data';
   .tl-when { color: var(--accent); margin-right: 0.5rem; }
   .timeline h3 { margin: 0.25rem 0 0.1rem; }
   .timeline p { margin: 0; font-size: 0.92rem; }
+  .timeline .tl-note { margin-top: 0.2rem; font-size: 0.88rem; }
 
   .contact-list { list-style: none; padding: 0; margin: 1rem 0 0; }
   .contact-list li { display: flex; gap: 1rem; padding: 0.4rem 0; align-items: baseline; }
