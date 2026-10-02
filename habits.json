@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-02T15:33:22.642Z",
+  "updated": "2026-10-02T15:33:30.620Z",
   "habits": [
     {
       "id": "00faca91-450d-4d2d-82fa-0a324cde55a4",
@@ -11,6 +11,12 @@
     {
       "id": "23a7b00f-8785-474b-bffa-5057cb583bdb",
       "name": "No social media",
+      "created": "2026-10-02",
+      "log": {}
+    },
+    {
+      "id": "28c82277-9438-4891-953a-714b38363b09",
+      "name": "Gym",
       "created": "2026-10-02",
       "log": {}
     }
