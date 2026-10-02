@@ -1,4 +1,12 @@
 {
   "version": 1,
-  "habits": []
+  "updated": "2026-10-02T15:32:55.349Z",
+  "habits": [
+    {
+      "id": "00faca91-450d-4d2d-82fa-0a324cde55a4",
+      "name": "Read 10 pages",
+      "created": "2026-10-02",
+      "log": {}
+    }
+  ]
 }
