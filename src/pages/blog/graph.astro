@@ -1,0 +1,495 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../data';
+
+const posts = await getCollection('blog');
+const ids = new Set(posts.map((p) => p.id));
+
+// nodes: one per post, one per tag. edges: post→tag, plus post→post when one post links to another.
+const nodes = [];
+const links = [];
+const tagCounts = new Map<string, number>();
+
+for (const post of posts) {
+  const postTags = [...new Set(post.data.tags.map((t) => t.toLowerCase()))];
+  nodes.push({
+    id: `post:${post.id}`,
+    kind: 'post',
+    label: post.data.title,
+    url: `/blog/${post.id}/`,
+    desc: post.data.description,
+    tags: postTags,
+  });
+  for (const t of postTags) {
+    tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+    links.push({ source: `post:${post.id}`, target: `tag:${t}` });
+  }
+  const linked = new Set(
+    [...(post.body ?? '').matchAll(/\]\(\/blog\/([\w-]+)\/?\)/g)].map((m) => m[1])
+  );
+  for (const target of linked) {
+    if (target !== post.id && ids.has(target)) {
+      links.push({ source: `post:${post.id}`, target: `post:${target}`, kind: 'ref' });
+    }
+  }
+}
+for (const [tag, count] of tagCounts) {
+  nodes.push({ id: `tag:${tag}`, kind: 'tag', label: `#${tag}`, count });
+}
+
+const tags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+---
+
+<Base title={`Graph | ${site.name}`} description="How my blog posts connect, by shared tags and links.">
+  <section class="section">
+    <p class="eyebrow"><a href="/blog/">← ~/blog</a> / graph</p>
+    <h1>Knowledge graph</h1>
+    <p class="muted intro">
+      Every post, every tag, and how they connect. Click a node to light up everything related to it. Drag
+      to rearrange, scroll to zoom, and double-click a post to open it.
+    </p>
+    <div class="tag-filter" role="toolbar" aria-label="Filter by tag">
+      {
+        tags.map(([tag, count]) => (
+          <button class="tag tag-btn" data-node={`tag:${tag}`}>
+            #{tag} <span class="count">{count}</span>
+          </button>
+        ))
+      }
+    </div>
+  </section>
+
+  <div class="graph-wrap">
+    <svg id="graph" role="img" aria-label="Graph of blog posts and their tags"></svg>
+    <aside id="graph-panel" class="panel" aria-live="polite" hidden></aside>
+    <div class="legend mono-small muted">
+      <span><i class="dot dot-post"></i> post</span>
+      <span><i class="dot dot-tag"></i> tag</span>
+      <span><i class="line line-ref"></i> links to</span>
+      <button id="graph-reset" class="reset-btn">reset</button>
+    </div>
+  </div>
+
+  <noscript>
+    <ul>
+      {posts.map((p) => <li><a href={`/blog/${p.id}/`}>{p.data.title}</a> — {p.data.tags.join(', ')}</li>)}
+    </ul>
+  </noscript>
+
+  <script type="application/json" id="graph-data" set:html={JSON.stringify({ nodes, links })} />
+</Base>
+
+<style>
+  .intro { max-width: 38rem; }
+  .tag-filter { margin-top: 1rem; }
+  .tag-btn { background: none; cursor: pointer; }
+  .tag-btn .count { opacity: 0.6; }
+  .tag-btn:hover, .tag-btn.active { color: var(--accent); border-color: var(--accent); }
+
+  /* break out of the narrow reading column */
+  .graph-wrap {
+    position: relative;
+    width: min(72rem, calc(100vw - 2rem));
+    margin: 1.5rem 0 0 calc(50% - min(36rem, 50vw - 1rem));
+    height: min(70vh, 640px);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background:
+      radial-gradient(circle, var(--line) 1px, transparent 1px) 0 0 / 22px 22px,
+      var(--surface);
+    overflow: hidden;
+  }
+  #graph { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+  #graph.panning { cursor: grabbing; }
+
+  .legend {
+    position: absolute;
+    left: 0.75rem;
+    bottom: 0.6rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .reset-btn {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.15rem 0.5rem;
+    cursor: pointer;
+  }
+  .reset-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: middle; }
+  .legend .dot-post { background: var(--accent); }
+  .legend .dot-tag { border: 1.5px solid var(--muted); }
+  .legend .line-ref { display: inline-block; width: 16px; border-top: 1.5px dashed var(--accent); vertical-align: middle; }
+
+  .panel {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: min(18rem, calc(100% - 1.5rem));
+    max-height: calc(100% - 1.5rem);
+    overflow-y: auto;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    font-size: 0.88rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  }
+  @media (max-width: 640px) {
+    .panel { top: auto; bottom: 2.6rem; left: 0.75rem; right: 0.75rem; width: auto; max-height: 45%; }
+  }
+  .mono-small { font-family: var(--mono); font-size: 0.78rem; }
+
+  /* SVG content is created in JS, so these must be global */
+  :global(#graph .edge) { stroke: var(--line); stroke-width: 1.2; transition: opacity 0.2s, stroke 0.2s; }
+  :global(#graph .edge.ref) { stroke: var(--accent); stroke-dasharray: 4 3; opacity: 0.7; }
+  :global(#graph .edge.lit) { stroke: var(--accent); opacity: 1; }
+  :global(#graph .node) { cursor: pointer; transition: opacity 0.2s; }
+  :global(#graph .node circle) { transition: r 0.2s; }
+  :global(#graph .node.post circle) { fill: var(--accent); stroke: var(--bg); stroke-width: 2; }
+  :global(#graph .node.tag circle) { fill: var(--surface); stroke: var(--muted); stroke-width: 1.5; }
+  :global(#graph .node.tag.lit circle) { stroke: var(--accent); fill: var(--accent-soft); }
+  :global(#graph .node.selected circle) { stroke: var(--text); stroke-width: 2.5; }
+  :global(#graph .node text) {
+    font-family: var(--mono);
+    font-size: 11px;
+    fill: var(--muted);
+    paint-order: stroke;
+    stroke: var(--surface);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+    pointer-events: none;
+  }
+  :global(#graph .node.post text) { fill: var(--text); }
+  :global(#graph .node.lit text) { fill: var(--text); font-weight: 600; }
+  :global(#graph .node.dim), :global(#graph .edge.dim) { opacity: 0.12; }
+  :global(.panel h3) { margin: 0.1rem 0 0.4rem; font-size: 0.95rem; }
+  :global(.panel p) { margin: 0 0 0.6rem; color: var(--muted); }
+  :global(.panel ul) { margin: 0.3rem 0 0; padding-left: 1rem; }
+  :global(.panel li) { margin-bottom: 0.3rem; }
+  :global(.panel .panel-kicker) { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; }
+  :global(.panel button.linkish) { background: none; border: none; padding: 0; color: var(--accent); cursor: pointer; font: inherit; text-align: left; }
+</style>
+
+<script>
+  type Node = {
+    id: string; kind: 'post' | 'tag'; label: string;
+    url?: string; desc?: string; tags?: string[]; count?: number;
+    x: number; y: number; vx: number; vy: number; r: number; fixed?: boolean;
+    el?: SVGGElement;
+  };
+  type Link = { source: string; target: string; kind?: 'ref'; s?: Node; t?: Node; el?: SVGLineElement };
+
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('graph') as unknown as SVGSVGElement;
+  const panel = document.getElementById('graph-panel') as HTMLElement;
+  const data = JSON.parse(document.getElementById('graph-data')!.textContent!);
+  const nodes: Node[] = data.nodes;
+  const links: Link[] = data.links;
+  const byId = new Map(nodes.map((n) => [n.id, n]));
+
+  // adjacency
+  const neighbors = new Map<string, Set<string>>(nodes.map((n) => [n.id, new Set()]));
+  for (const l of links) {
+    l.s = byId.get(l.source)!;
+    l.t = byId.get(l.target)!;
+    neighbors.get(l.source)!.add(l.target);
+    neighbors.get(l.target)!.add(l.source);
+  }
+
+  // layout: seed nodes on a circle so the first frame is not a pile
+  nodes.forEach((n, i) => {
+    const a = (i / nodes.length) * Math.PI * 2;
+    n.x = Math.cos(a) * 160; n.y = Math.sin(a) * 160; n.vx = 0; n.vy = 0;
+    n.r = n.kind === 'post' ? 7 + Math.min(neighbors.get(n.id)!.size, 8) : 4 + Math.min(n.count ?? 1, 6) * 1.5;
+  });
+  // collision radius covers the label too (~6.6px per monospace char at 11px), so labels don't overlap
+  const shown = (n: Node) => (n.label.length > 34 ? 33 : n.label.length);
+  const hit = new Map(nodes.map((n) => [n, Math.max(n.r + 6, shown(n) * 3.3 + 4)]));
+
+  // ---------- render ----------
+  const view = document.createElementNS(NS, 'g');
+  const edgeLayer = document.createElementNS(NS, 'g');
+  const nodeLayer = document.createElementNS(NS, 'g');
+  view.append(edgeLayer, nodeLayer);
+  svg.append(view);
+
+  for (const l of links) {
+    l.el = document.createElementNS(NS, 'line');
+    l.el.setAttribute('class', 'edge' + (l.kind === 'ref' ? ' ref' : ''));
+    edgeLayer.append(l.el);
+  }
+  for (const n of nodes) {
+    const g = document.createElementNS(NS, 'g');
+    g.setAttribute('class', `node ${n.kind}`);
+    g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'button');
+    g.setAttribute('aria-label', n.label);
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('r', String(n.r));
+    const t = document.createElementNS(NS, 'text');
+    t.textContent = n.label.length > 34 ? n.label.slice(0, 32) + '…' : n.label;
+    t.setAttribute('text-anchor', 'middle');
+    t.setAttribute('dy', String(n.r + 14));
+    const title = document.createElementNS(NS, 'title');
+    title.textContent = n.label;
+    g.append(c, t, title);
+    nodeLayer.append(g);
+    n.el = g;
+  }
+
+  let zoom = 1, panX = 0, panY = 0;
+  const applyView = () => {
+    const { width, height } = svg.getBoundingClientRect();
+    view.setAttribute('transform', `translate(${width / 2 + panX},${height / 2 + panY}) scale(${zoom})`);
+  };
+  const draw = () => {
+    for (const l of links) {
+      l.el!.setAttribute('x1', String(l.s!.x)); l.el!.setAttribute('y1', String(l.s!.y));
+      l.el!.setAttribute('x2', String(l.t!.x)); l.el!.setAttribute('y2', String(l.t!.y));
+    }
+    for (const n of nodes) n.el!.setAttribute('transform', `translate(${n.x},${n.y})`);
+  };
+
+  // ---------- force simulation ----------
+  let alpha = 1;
+  const tick = () => {
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        let dx = b.x - a.x, dy = b.y - a.y;
+        let d2 = dx * dx + dy * dy;
+        if (d2 < 0.01) { dx = Math.random() - 0.5; dy = Math.random() - 0.5; d2 = 0.5; }
+        const d = Math.sqrt(d2);
+        const f = (6000 / d2) * alpha; // repulsion
+        const fx = (dx / d) * f, fy = (dy / d) * f;
+        a.vx -= fx; a.vy -= fy; b.vx += fx; b.vy += fy;
+        const min = hit.get(a)! + hit.get(b)!;
+        if (d < min) {
+          const push = ((min - d) / d) * 0.5;
+          a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push;
+        }
+      }
+    }
+    for (const l of links) {
+      const a = l.s!, b = l.t!;
+      const dx = b.x - a.x, dy = b.y - a.y;
+      const d = Math.sqrt(dx * dx + dy * dy) || 1;
+      const rest = l.kind === 'ref' ? 160 : 110;
+      const f = ((d - rest) / d) * 0.06 * alpha;
+      a.vx += dx * f; a.vy += dy * f; b.vx -= dx * f; b.vy -= dy * f;
+    }
+    for (const n of nodes) {
+      n.vx -= n.x * 0.012 * alpha; // gravity toward center
+      n.vy -= n.y * 0.012 * alpha;
+      if (n.fixed) { n.vx = n.vy = 0; continue; }
+      n.vx *= 0.82; n.vy *= 0.82;
+      const speed = Math.hypot(n.vx, n.vy);
+      if (speed > 24) { n.vx *= 24 / speed; n.vy *= 24 / speed; }
+      n.x += n.vx; n.y += n.vy;
+    }
+    alpha = Math.max(alpha * 0.985, 0);
+  };
+
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let running = false;
+  const loop = () => {
+    tick(); draw();
+    if (alpha > 0.005) requestAnimationFrame(loop); else running = false;
+  };
+  const reheat = (to = 0.3) => {
+    alpha = Math.max(alpha, to);
+    if (reduceMotion) { while (alpha > 0.005) tick(); draw(); return; }
+    if (!running) { running = true; requestAnimationFrame(loop); }
+  };
+
+  // ---------- selection / highlighting ----------
+  let selected: Node | null = null;
+
+  const relatedPosts = (post: Node) => {
+    const mine = new Set(post.tags);
+    return nodes
+      .filter((n) => n.kind === 'post' && n !== post)
+      .map((n) => ({
+        n,
+        shared: (n.tags ?? []).filter((t) => mine.has(t)),
+        linked: neighbors.get(post.id)!.has(n.id),
+      }))
+      .filter((r) => r.shared.length || r.linked)
+      .sort((a, b) => Number(b.linked) - Number(a.linked) || b.shared.length - a.shared.length);
+  };
+
+  const highlight = (node: Node | null) => {
+    selected = node;
+    document.querySelectorAll('.tag-btn').forEach((b) =>
+      b.classList.toggle('active', !!node && (b as HTMLElement).dataset.node === node.id)
+    );
+    if (!node) {
+      nodes.forEach((n) => n.el!.classList.remove('dim', 'lit', 'selected'));
+      links.forEach((l) => l.el!.classList.remove('dim', 'lit'));
+      panel.hidden = true;
+      history.replaceState(null, '', location.pathname);
+      return;
+    }
+    // lit = the node, its direct neighbours, and (for posts) every post sharing a tag with it
+    const lit = new Set<string>([node.id, ...neighbors.get(node.id)!]);
+    if (node.kind === 'post') relatedPosts(node).forEach((r) => lit.add(r.n.id));
+    nodes.forEach((n) => {
+      n.el!.classList.toggle('dim', !lit.has(n.id));
+      n.el!.classList.toggle('lit', lit.has(n.id) && n !== node);
+      n.el!.classList.toggle('selected', n === node);
+    });
+    links.forEach((l) => {
+      // edges touching the node, plus (for a post) edges from related posts into the tags it shares
+      const sharedTagEdge = node.kind === 'post' && l.t!.kind === 'tag' &&
+        neighbors.get(node.id)!.has(l.target) && lit.has(l.source);
+      const on = l.source === node.id || l.target === node.id || sharedTagEdge;
+      l.el!.classList.toggle('dim', !on);
+      l.el!.classList.toggle('lit', on && l.kind !== 'ref');
+    });
+    renderPanel(node);
+    const param = node.kind === 'tag' ? `?tag=${encodeURIComponent(node.id.slice(4))}` : `?post=${encodeURIComponent(node.id.slice(5))}`;
+    history.replaceState(null, '', location.pathname + param);
+  };
+
+  const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+  const tagButton = (t: string) => `<button class="linkish" data-node="tag:${esc(t)}">#${esc(t)}</button>`;
+  const postButton = (n: Node) => `<button class="linkish" data-node="${esc(n.id)}">${esc(n.label)}</button>`;
+
+  const renderPanel = (node: Node) => {
+    if (node.kind === 'post') {
+      const related = relatedPosts(node);
+      panel.innerHTML = `
+        <div class="panel-kicker">post</div>
+        <h3><a href="${node.url}">${esc(node.label)}</a></h3>
+        <p>${esc(node.desc ?? '')}</p>
+        <div>${(node.tags ?? []).map(tagButton).join(' · ')}</div>
+        <p style="margin-top:0.8rem"><strong>Related</strong></p>
+        ${related.length
+          ? `<ul>${related.map((r) => `<li>${postButton(r.n)}<br><span class="muted">${
+              [r.linked ? 'linked' : '', ...r.shared.map((t) => '#' + t)].filter(Boolean).join(' · ')
+            }</span></li>`).join('')}</ul>`
+          : '<p>Nothing shares a tag with this yet.</p>'}
+        <p style="margin:0.8rem 0 0"><a href="${node.url}">read post →</a></p>`;
+    } else {
+      const posts = [...neighbors.get(node.id)!].map((id) => byId.get(id)!);
+      panel.innerHTML = `
+        <div class="panel-kicker">tag</div>
+        <h3>${esc(node.label)}</h3>
+        <p>${posts.length} post${posts.length === 1 ? '' : 's'}</p>
+        <ul>${posts.map((p) => `<li>${postButton(p)}</li>`).join('')}</ul>`;
+    }
+    panel.hidden = false;
+  };
+
+  panel.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest('button[data-node]') as HTMLElement | null;
+    if (b) highlight(byId.get(b.dataset.node!) ?? null);
+  });
+  document.querySelectorAll<HTMLElement>('.tag-btn').forEach((b) =>
+    b.addEventListener('click', () => highlight(selected?.id === b.dataset.node ? null : byId.get(b.dataset.node!)!))
+  );
+  document.getElementById('graph-reset')!.addEventListener('click', () => {
+    highlight(null);
+    alpha = 0.6;
+    while (alpha > 0.005) tick();
+    draw();
+    fit();
+  });
+
+  // ---------- interaction: drag nodes, pan, zoom ----------
+  const toGraph = (cx: number, cy: number) => {
+    const r = svg.getBoundingClientRect();
+    return { x: (cx - r.left - r.width / 2 - panX) / zoom, y: (cy - r.top - r.height / 2 - panY) / zoom };
+  };
+  const nodeFromEvent = (e: Event) => {
+    const g = (e.target as Element).closest('.node');
+    return g ? nodes.find((n) => n.el === g) ?? null : null;
+  };
+
+  let drag: { node: Node | null; startX: number; startY: number; moved: boolean; panX: number; panY: number } | null = null;
+
+  svg.addEventListener('pointerdown', (e) => {
+    svg.setPointerCapture(e.pointerId);
+    const node = nodeFromEvent(e);
+    drag = { node, startX: e.clientX, startY: e.clientY, moved: false, panX, panY };
+    if (node) node.fixed = true; else svg.classList.add('panning');
+  });
+  svg.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.startX, dy = e.clientY - drag.startY;
+    if (Math.abs(dx) + Math.abs(dy) > 3) drag.moved = true;
+    if (!drag.moved) return;
+    if (drag.node) {
+      const p = toGraph(e.clientX, e.clientY);
+      drag.node.x = p.x; drag.node.y = p.y;
+      reheat(0.25);
+      draw();
+    } else {
+      panX = drag.panX + dx; panY = drag.panY + dy;
+      applyView();
+    }
+  });
+  // double-tap is tracked by hand: with pointer capture, dblclick targets the svg, not the node
+  let lastTap = { node: null as Node | null, at: 0 };
+  svg.addEventListener('pointerup', () => {
+    if (!drag) return;
+    const { node, moved } = drag;
+    if (node) node.fixed = false;
+    svg.classList.remove('panning');
+    drag = null;
+    if (moved) return;
+    const now = performance.now();
+    if (node?.url && lastTap.node === node && now - lastTap.at < 400) { location.href = node.url; return; }
+    lastTap = { node, at: now };
+    highlight(node && node !== selected ? node : null);
+  });
+  svg.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const r = svg.getBoundingClientRect();
+    const mx = e.clientX - r.left - r.width / 2, my = e.clientY - r.top - r.height / 2;
+    const next = Math.min(3, Math.max(0.3, zoom * Math.exp(-e.deltaY * 0.0015)));
+    // keep the point under the cursor fixed while zooming
+    panX = mx - ((mx - panX) * next) / zoom;
+    panY = my - ((my - panY) * next) / zoom;
+    zoom = next;
+    applyView();
+  }, { passive: false });
+  svg.addEventListener('keydown', (e) => {
+    const n = nodeFromEvent(e);
+    if (!n) return;
+    if (e.key === 'Enter' && n === selected && n.url) location.href = n.url;
+    else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); highlight(n); }
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && selected) highlight(null); });
+
+  // zoom so the whole graph fits the viewport
+  const fit = () => {
+    const xs = nodes.map((n) => [n.x - hit.get(n)!, n.x + hit.get(n)!]).flat();
+    const ys = nodes.map((n) => [n.y - n.r, n.y + n.r + 18]).flat();
+    const { width, height } = svg.getBoundingClientRect();
+    const bw = Math.max(...xs) - Math.min(...xs), bh = Math.max(...ys) - Math.min(...ys);
+    zoom = Math.min(1.25, (width - 60) / bw, (height - 90) / bh);
+    panX = -((Math.max(...xs) + Math.min(...xs)) / 2) * zoom;
+    panY = -((Math.max(...ys) + Math.min(...ys)) / 2) * zoom;
+    applyView();
+  };
+
+  // settle the layout before first paint so nothing flies in; dragging re-animates it
+  while (alpha > 0.005) tick();
+  new ResizeObserver(applyView).observe(svg);
+  draw();
+  fit();
+
+  // deep links: /blog/graph/?tag=rag or ?post=rag-systems
+  const params = new URLSearchParams(location.search);
+  const initial = params.get('tag') ? `tag:${params.get('tag')!.toLowerCase()}` : params.get('post') ? `post:${params.get('post')}` : null;
+  if (initial && byId.has(initial)) highlight(byId.get(initial)!);
+</script>

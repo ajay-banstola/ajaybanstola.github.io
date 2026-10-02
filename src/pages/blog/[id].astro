@@ -27,9 +27,15 @@ const fmt = post.data.pubDate.toLocaleDateString('en-US', {
     <p class="eyebrow"><a href="/blog/">← ~/blog</a></p>
     <h1>{post.data.title}</h1>
     <p class="muted meta mono-small">
-      {fmt} · {minutes} min read
-      {post.data.tags.length > 0 && <span> · {post.data.tags.join(', ')}</span>}
+      {fmt} · {minutes} min read · <a href={`/blog/graph/?post=${post.id}`}>view in graph</a>
     </p>
+    {post.data.tags.length > 0 && (
+      <p class="post-tags">
+        {post.data.tags.map((t) => (
+          <a class="tag" href={`/blog/graph/?tag=${t.toLowerCase()}`}>#{t.toLowerCase()}</a>
+        ))}
+      </p>
+    )}
     <div class="prose">
       <Content />
     </div>
@@ -49,6 +55,8 @@ const fmt = post.data.pubDate.toLocaleDateString('en-US', {
     z-index: 20;
   }
   .meta { margin-top: 0.25rem; }
+  .post-tags { margin: 0.4rem 0 0; }
+  .post-tags .tag:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
   .mono-small { font-family: var(--mono); font-size: 0.78rem; }
   .prose { margin-top: 2rem; }
   .prose :global(img) { max-width: 100%; border-radius: 8px; }

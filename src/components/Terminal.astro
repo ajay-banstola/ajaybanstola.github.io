@@ -82,7 +82,7 @@ const posts = (await getCollection('blog'))
   };
 
   const sections = ['about', 'skills', 'work', 'projects', 'journey', 'contact'];
-  const links = { github: site.github, linkedin: site.linkedin, resume: '/resume.pdf', blog: '/blog/' };
+  const links = { github: site.github, linkedin: site.linkedin, resume: '/resume.pdf', blog: '/blog/', graph: '/blog/graph/' };
 
   const goto = (url) => {
     if (url.startsWith('http')) return window.open(url, '_blank');
@@ -164,6 +164,10 @@ const posts = (await getCollection('blog'))
     }],
     resume: ['open my resume', () => { goto('/resume.pdf'); return 'opening resume.pdf ...'; }],
     blog: ['go read the blog', () => { goto('/blog/'); return 'navigating to /blog ...'; }],
+    graph: ['graph [tag] — the post knowledge graph', ([tag]) => {
+      goto('/blog/graph/' + (tag ? '?tag=' + encodeURIComponent(tag.replace(/^#/, '').toLowerCase()) : ''));
+      return 'opening graph ...';
+    }],
     fortune: ['a random bit of wisdom', () => fortunes[Math.floor(Math.random() * fortunes.length)]],
     theme: ['toggle dark / light', () => { window.toggleTheme(); return 'theme toggled.'; }],
     history: ['show command history', () => history.map((h, i) => String(i + 1).padStart(4) + '  ' + h).join('\n')],

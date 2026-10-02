@@ -18,6 +18,7 @@ const fmt = (d: Date) =>
     <p class="muted">
       Notes on AI systems, software engineering, and whatever I'm currently digging into.
     </p>
+    <a class="graph-link mono-small" href="/blog/graph/">◉ explore the knowledge graph →</a>
     <ul class="post-list">
       {
         posts.map((post) => (
@@ -27,6 +28,13 @@ const fmt = (d: Date) =>
               <span class="post-date mono-small muted">{fmt(post.data.pubDate)}</span>
             </a>
             <p class="muted post-desc">{post.data.description}</p>
+            {post.data.tags.length > 0 && (
+              <p class="post-tags">
+                {post.data.tags.map((t) => (
+                  <a class="tag" href={`/blog/graph/?tag=${t.toLowerCase()}`}>#{t.toLowerCase()}</a>
+                ))}
+              </p>
+            )}
           </li>
         ))
       }
@@ -49,5 +57,8 @@ const fmt = (d: Date) =>
   .post-link:hover .post-title { color: var(--accent); }
   .post-title { font-family: var(--mono); font-weight: 600; }
   .post-desc { margin: 0.3rem 0 0; font-size: 0.92rem; }
+  .post-tags { margin: 0.5rem 0 0; }
+  .post-tags .tag:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+  .graph-link { display: inline-block; margin-top: 0.25rem; }
   .mono-small { font-family: var(--mono); font-size: 0.78rem; }
 </style>
