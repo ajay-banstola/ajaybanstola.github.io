@@ -1,0 +1,798 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, habitsStore } from '../data';
+
+const tokenUrl = 'https://github.com/settings/personal-access-tokens/new';
+---
+
+<Base title={`Habits | ${site.name}`} description="A public habit tracker: daily check-ins, streaks, and progress.">
+  <div class="hb">
+    <section class="section">
+      <p class="eyebrow">~/habits</p>
+      <h1>Habit tracker</h1>
+      <p class="muted">Small things, done daily. Anyone can look; only I can check things off.</p>
+
+      <div class="hb-toolbar">
+        <div class="hb-weeknav">
+          <button id="hb-prev" class="hb-btn" aria-label="Previous week">‹</button>
+          <span id="hb-week-label" class="hb-week-label"></span>
+          <button id="hb-next" class="hb-btn" aria-label="Next week">›</button>
+          <button id="hb-this-week" class="hb-btn">this week</button>
+        </div>
+        <div class="hb-actions">
+          <button id="hb-progress" class="hb-btn" aria-expanded="false" aria-controls="hb-charts">progress</button>
+          <button id="hb-export" class="hb-btn">export png</button>
+          <button id="hb-lock" class="hb-btn">🔒 edit</button>
+        </div>
+      </div>
+
+      <p id="hb-status" class="hb-status" aria-live="polite">loading…</p>
+
+      <div class="hb-table-wrap">
+        <table id="hb-table" class="hb-table"></table>
+      </div>
+
+      <form id="hb-add" class="hb-add" hidden>
+        <input id="hb-new" placeholder="new habit, e.g. read 20 pages" maxlength="60" required aria-label="New habit name" />
+        <button class="hb-btn hb-primary">add habit</button>
+      </form>
+
+      <div id="hb-charts" class="hb-charts" hidden>
+        <h2>Weekly completion</h2>
+        <p class="hb-sub">Share of check-ins marked done, last 12 weeks.</p>
+        <div id="hb-bars" class="hb-chart"></div>
+        <h2>Per habit</h2>
+        <p class="hb-sub">
+          Last 12 weeks, one column per week, Monday at the top.
+          <span class="hb-legend">
+            <i class="hb-sw hb-sw-y"></i> done <i class="hb-sw hb-sw-n"></i> missed <i class="hb-sw hb-sw-none"></i> no entry
+          </span>
+        </p>
+        <div id="hb-heat" class="hb-heat"></div>
+      </div>
+    </section>
+
+    <div id="hb-tip" class="hb-tip" role="tooltip" hidden></div>
+
+    <dialog id="hb-setup" class="hb-dialog" aria-labelledby="hb-setup-title">
+      <form method="dialog" id="hb-setup-form">
+        <h3 id="hb-setup-title">Set up editing on this device</h3>
+        <p class="hb-sub">
+          Changes are saved to <code>{habitsStore.path}</code> on the <code>{habitsStore.branch}</code> branch of
+          the site's GitHub repo, so editing needs a GitHub token. Make one
+          <a href={tokenUrl} target="_blank" rel="noopener">here</a>: repository access → only
+          <code>{habitsStore.repo}</code>, permissions → <b>Contents: Read and write</b>.
+        </p>
+        <label>GitHub token <input id="hb-token" type="password" autocomplete="off" required /></label>
+        <label>Choose a PIN <input id="hb-pin1" type="password" inputmode="numeric" autocomplete="new-password" minlength="4" required /></label>
+        <label>Confirm PIN <input id="hb-pin2" type="password" inputmode="numeric" autocomplete="new-password" minlength="4" required /></label>
+        <p class="hb-sub">The token is encrypted with your PIN and stored only in this browser. Next time, just the PIN.</p>
+        <p id="hb-setup-err" class="hb-err" aria-live="assertive"></p>
+        <div class="hb-dialog-actions">
+          <button type="button" class="hb-btn" data-close>cancel</button>
+          <button class="hb-btn hb-primary">save &amp; unlock</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="hb-unlock" class="hb-dialog" aria-labelledby="hb-unlock-title">
+      <form method="dialog" id="hb-unlock-form">
+        <h3 id="hb-unlock-title">Unlock editing</h3>
+        <label>PIN <input id="hb-pin" type="password" inputmode="numeric" autocomplete="current-password" required /></label>
+        <p id="hb-unlock-err" class="hb-err" aria-live="assertive"></p>
+        <div class="hb-dialog-actions">
+          <button type="button" class="hb-btn hb-linkish" id="hb-reset-auth">use a different token</button>
+          <button type="button" class="hb-btn" data-close>cancel</button>
+          <button class="hb-btn hb-primary">unlock</button>
+        </div>
+      </form>
+    </dialog>
+
+    <noscript><p>The habit tracker needs JavaScript.</p></noscript>
+  </div>
+</Base>
+
+<!-- global: almost everything here is rendered from JS, which Astro's scoped styles can't reach -->
+<style is:global>
+  .hb [hidden] { display: none !important; }
+  .hb .hb-toolbar {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem;
+    margin-top: 1.5rem; align-items: center;
+  }
+  .hb .hb-weeknav, .hb .hb-actions { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
+  .hb .hb-week-label { font-family: var(--mono); font-size: 0.85rem; min-width: 11.5rem; text-align: center; }
+  .hb .hb-btn {
+    font-family: var(--mono); font-size: 0.78rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 0.25rem 0.6rem; cursor: pointer;
+  }
+  .hb .hb-btn:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); }
+  .hb .hb-btn:disabled { opacity: 0.4; cursor: default; }
+  .hb .hb-btn.hb-primary { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+  .hb .hb-btn.hb-primary:hover { color: var(--bg); filter: brightness(1.08); }
+  .hb .hb-btn.hb-on { color: var(--accent); border-color: var(--accent); }
+  .hb .hb-linkish { background: none; border: none; padding: 0; margin-right: auto; text-decoration: underline; }
+  .hb .hb-status { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin: 0.75rem 0 0.5rem; min-height: 1.2em; }
+  .hb .hb-status.hb-bad { color: #e5534b; }
+
+  .hb .hb-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  .hb .hb-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .hb .hb-table th, .hb .hb-table td { padding: 0.45rem 0.35rem; text-align: center; border-bottom: 1px solid var(--line); }
+  .hb .hb-table tr:last-child > * { border-bottom: none; }
+  .hb .hb-table thead th { font-family: var(--mono); font-size: 0.7rem; font-weight: 500; color: var(--muted); line-height: 1.3; }
+  .hb .hb-table thead th.hb-today { color: var(--accent); }
+  .hb .hb-table th.hb-name {
+    text-align: left; font-weight: 500; padding-left: 0.9rem; min-width: 9rem;
+    position: sticky; left: 0; background: var(--surface); z-index: 1;
+  }
+  .hb .hb-table thead th.hb-name { font-weight: 500; }
+  .hb .hb-table tfoot td, .hb .hb-table tfoot th { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+  .hb .hb-empty { color: var(--muted); padding: 1.5rem !important; }
+  .hb .hb-streak { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+  .hb .hb-streak b { color: var(--text); font-weight: 600; }
+
+  .hb .hb-cell {
+    width: 1.9rem; height: 1.9rem; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.95rem; line-height: 1; font-weight: 700;
+    border: 1.5px dashed var(--line); background: none; color: var(--muted); padding: 0;
+  }
+  .hb button.hb-cell { cursor: pointer; }
+  .hb button.hb-cell:hover { border-color: var(--accent); }
+  .hb .hb-cell[data-mark='y'] { background: var(--accent); border: 1.5px solid var(--accent); color: var(--bg); }
+  .hb .hb-cell[data-mark='n'] { border: 1.5px solid var(--muted); color: var(--muted); }
+  .hb .hb-cell.hb-future { opacity: 0.3; border-style: dotted; }
+  .hb .hb-del {
+    background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; padding: 0 0.3rem;
+  }
+  .hb .hb-del:hover { color: #e5534b; }
+
+  .hb .hb-add { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+  .hb .hb-add input, .hb .hb-dialog input {
+    flex: 1; font: inherit; font-size: 0.9rem; color: var(--text); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 6px; padding: 0.4rem 0.6rem;
+  }
+  .hb .hb-add input:focus, .hb .hb-dialog input:focus { outline: none; border-color: var(--accent); }
+
+  .hb .hb-charts { margin-top: 2.5rem; }
+  .hb .hb-charts h2 { margin-top: 1.5rem; }
+  .hb .hb-sub { color: var(--muted); font-size: 0.85rem; margin: 0 0 0.75rem; }
+  .hb .hb-chart { width: 100%; }
+  .hb .hb-chart svg, .hb .hb-heat svg { display: block; overflow: visible; }
+  .hb .hb-legend { white-space: nowrap; margin-left: 0.5rem; font-family: var(--mono); font-size: 0.72rem; }
+  .hb .hb-sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: middle; margin: 0 0.15rem 0 0.5rem; }
+  .hb .hb-sw-y { background: var(--accent); }
+  .hb .hb-sw-n { border: 1px solid var(--line); background: linear-gradient(135deg, transparent 44%, var(--muted) 44% 56%, transparent 56%); }
+  .hb .hb-sw-none { border: 1px solid var(--line); }
+  .hb .hb-heat { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1.25rem 1.5rem; }
+  .hb .hb-heat-name { font-family: var(--mono); font-size: 0.78rem; margin: 0 0 0.3rem; display: flex; justify-content: space-between; gap: 0.5rem; }
+  .hb .hb-heat-name span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hb .hb-heat-name span:last-child { color: var(--muted); }
+
+  .hb .hb-axis { font-family: var(--mono); font-size: 10px; fill: var(--muted); }
+  .hb .hb-grid { stroke: var(--line); stroke-width: 1; }
+  .hb .hb-bar { fill: var(--accent); }
+  .hb .hb-hit { fill: transparent; cursor: default; }
+  .hb .hb-hit:hover + .hb-bar, .hb .hb-bar.hb-hover { filter: brightness(1.15); }
+  .hb .hb-val { font-family: var(--mono); font-size: 11px; fill: var(--text); font-weight: 600; }
+  .hb .hb-day-y { fill: var(--accent); }
+  .hb .hb-day-n, .hb .hb-day-none { fill: var(--bg); stroke: var(--line); stroke-width: 1; }
+  .hb .hb-slash { stroke: var(--muted); stroke-width: 1.3; pointer-events: none; }
+
+  .hb-tip {
+    position: fixed; z-index: 30; pointer-events: none;
+    font-family: var(--mono); font-size: 0.75rem; color: var(--text);
+    background: var(--bg); border: 1px solid var(--line); border-radius: 6px;
+    padding: 0.35rem 0.55rem; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); white-space: pre;
+  }
+
+  .hb .hb-dialog {
+    width: min(460px, calc(100vw - 2rem)); background: var(--surface); color: var(--text);
+    border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem 1.4rem;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+  .hb .hb-dialog::backdrop { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); }
+  .hb .hb-dialog h3 { margin: 0 0 0.6rem; }
+  .hb .hb-dialog label { display: flex; flex-direction: column; gap: 0.25rem; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 0.7rem; }
+  .hb .hb-dialog-actions { display: flex; gap: 0.5rem; justify-content: flex-end; align-items: center; margin-top: 0.5rem; }
+  .hb .hb-err { color: #e5534b; font-size: 0.8rem; margin: 0; min-height: 1.1em; }
+</style>
+
+<script>
+  import { habitsStore } from '../data';
+
+  type Mark = 'y' | 'n';
+  type Habit = { id: string; name: string; created: string; log: Record<string, Mark> };
+  type Data = { version: 1; habits: Habit[]; updated?: string };
+
+  const { owner, repo, branch, path } = habitsStore;
+  const API = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+  const RAW = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
+  const AUTH_KEY = 'habits-auth';
+
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const table = $<HTMLTableElement>('hb-table');
+  const statusEl = $('hb-status');
+  const lockBtn = $<HTMLButtonElement>('hb-lock');
+  const addForm = $<HTMLFormElement>('hb-add');
+  const charts = $('hb-charts');
+  const progressBtn = $<HTMLButtonElement>('hb-progress');
+  const tip = $('hb-tip');
+
+  let data: Data = { version: 1, habits: [] };
+  let sha: string | null = null;
+  let token: string | null = null; // only ever in memory; at rest it is encrypted with the PIN
+
+  // ---------- dates (all local time, keyed YYYY-MM-DD) ----------
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const ymd = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const parse = (s: string) => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+  const addDays = (d: Date, n: number) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const startOfWeek = (d: Date) => {
+    const x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    return addDays(x, -((x.getDay() + 6) % 7)); // Monday
+  };
+  const weekDays = (start: Date) => Array.from({ length: 7 }, (_, i) => addDays(start, i));
+  const fmt = (d: Date, o: Intl.DateTimeFormatOptions) => d.toLocaleDateString('en-US', o);
+  const todayKey = () => ymd(new Date());
+  const weekLabel = (start: Date) => {
+    const end = addDays(start, 6);
+    return `${fmt(start, { month: 'short', day: 'numeric' })} – ${fmt(end, { month: 'short', day: 'numeric', year: 'numeric' })}`;
+  };
+  const isoWeek = (d: Date) => {
+    const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    t.setUTCDate(t.getUTCDate() + 4 - (t.getUTCDay() || 7));
+    const jan1 = Date.UTC(t.getUTCFullYear(), 0, 1);
+    return `${t.getUTCFullYear()}-W${pad(Math.ceil(((t.getTime() - jan1) / 86400000 + 1) / 7))}`;
+  };
+
+  let weekStart = startOfWeek(new Date());
+
+  // ---------- stats ----------
+  const currentStreak = (h: Habit) => {
+    let d = new Date();
+    if (h.log[ymd(d)] === 'n') return 0;
+    if (h.log[ymd(d)] !== 'y') d = addDays(d, -1); // today isn't over yet; don't break the streak
+    let n = 0;
+    while (h.log[ymd(d)] === 'y') { n++; d = addDays(d, -1); }
+    return n;
+  };
+  const bestStreak = (h: Habit) => {
+    let best = 0, run = 0, prev = '';
+    for (const k of Object.keys(h.log).filter((k) => h.log[k] === 'y').sort()) {
+      run = prev && ymd(addDays(parse(prev), 1)) === k ? run + 1 : 1;
+      best = Math.max(best, run);
+      prev = k;
+    }
+    return best;
+  };
+  // a habit "exists" from its creation date or its earliest back-filled entry, whichever is first
+  const firstDay = (h: Habit) => [h.created, ...Object.keys(h.log)].sort()[0];
+  const tally = (days: Date[]) => {
+    const today = todayKey();
+    let done = 0, total = 0;
+    for (const h of data.habits) {
+      const first = firstDay(h);
+      for (const d of days) {
+        const k = ymd(d);
+        if (k > today || k < first) continue;
+        total++;
+        if (h.log[k] === 'y') done++;
+      }
+    }
+    return { done, total };
+  };
+
+  // ---------- encoding ----------
+  const bytesToB64 = (bytes: Uint8Array) => { let s = ''; for (const b of bytes) s += String.fromCharCode(b); return btoa(s); };
+  const b64ToBytes = (b64: string) => Uint8Array.from(atob(b64.replace(/\s/g, '')), (c) => c.charCodeAt(0));
+  const toB64 = (s: string) => bytesToB64(new TextEncoder().encode(s));
+  const fromB64 = (b64: string) => new TextDecoder().decode(b64ToBytes(b64));
+
+  const normalize = (raw: any): Data => ({
+    version: 1,
+    updated: raw?.updated,
+    habits: (Array.isArray(raw?.habits) ? raw.habits : [])
+      .filter((h: any) => h && typeof h.name === 'string')
+      .map((h: any) => ({
+        id: String(h.id ?? crypto.randomUUID()),
+        name: h.name,
+        created: typeof h.created === 'string' ? h.created : todayKey(),
+        log: Object.fromEntries(
+          Object.entries(h.log ?? {}).filter(([k, v]) => /^\d{4}-\d\d-\d\d$/.test(k) && (v === 'y' || v === 'n'))
+        ) as Record<string, Mark>,
+      })),
+  });
+
+  // ---------- storage (GitHub contents API) ----------
+  const authHeaders = (): Record<string, string> => ({
+    Accept: 'application/vnd.github+json',
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  });
+
+  const load = async () => {
+    try {
+      const res = await fetch(`${API}?ref=${branch}`, { headers: authHeaders(), cache: 'no-store' });
+      if (res.status === 404) { data = normalize({}); sha = null; return; }
+      if (!res.ok) throw new Error(`GitHub said ${res.status}`);
+      const json = await res.json();
+      sha = json.sha;
+      data = normalize(JSON.parse(fromB64(json.content)));
+    } catch (err) {
+      if (token) throw err;
+      // visitors fall back to the raw CDN (no API rate limit, may lag a few minutes)
+      const res = await fetch(`${RAW}?t=${Date.now()}`, { cache: 'no-store' });
+      data = normalize(res.ok ? await res.json() : {});
+    }
+  };
+
+  const refreshSha = async () => {
+    const res = await fetch(`${API}?ref=${branch}`, { headers: authHeaders(), cache: 'no-store' });
+    sha = res.ok ? (await res.json()).sha : null;
+  };
+
+  const put = async (retry = true): Promise<void> => {
+    data.updated = new Date().toISOString();
+    const res = await fetch(API, {
+      method: 'PUT',
+      headers: { ...authHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: `habits: update ${todayKey()}`,
+        content: toB64(JSON.stringify(data, null, 2) + '\n'),
+        branch,
+        ...(sha ? { sha } : {}),
+      }),
+    });
+    // 409/422: our sha is stale (e.g. edited from another device); this device's state wins
+    if ((res.status === 409 || res.status === 422) && retry) { await refreshSha(); return put(false); }
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error(`${res.status}${body.message ? ' ' + body.message : ''}`);
+    }
+    sha = (await res.json()).content.sha;
+  };
+
+  // edits are batched: several taps in a row become one commit
+  let saveTimer: number | undefined;
+  let saving = false;
+  let dirty = false;
+  const setStatus = (text: string, bad = false) => {
+    statusEl.textContent = text;
+    statusEl.classList.toggle('hb-bad', bad);
+  };
+  const queueSave = () => {
+    dirty = true;
+    setStatus('unsaved changes…');
+    clearTimeout(saveTimer);
+    saveTimer = window.setTimeout(flush, 1200);
+  };
+  const flush = async () => {
+    if (saving) { saveTimer = window.setTimeout(flush, 600); return; }
+    if (!dirty || !token) return;
+    saving = true;
+    dirty = false;
+    setStatus('saving…');
+    try {
+      await put();
+      setStatus(`saved · ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`);
+    } catch (err) {
+      dirty = true;
+      setStatus(`save failed (${(err as Error).message}) — retrying on your next change`, true);
+    } finally {
+      saving = false;
+    }
+  };
+  addEventListener('beforeunload', (e) => { if (dirty || saving) e.preventDefault(); });
+
+  // ---------- PIN-sealed token (PBKDF2 → AES-GCM, browser-only) ----------
+  const deriveKey = async (pin: string, salt: Uint8Array) => {
+    const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pin), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt, iterations: 310000, hash: 'SHA-256' },
+      base, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']
+    );
+  };
+  const readSealed = () => { try { return JSON.parse(localStorage.getItem(AUTH_KEY) ?? 'null'); } catch { return null; } };
+  const sealToken = async (tok: string, pin: string) => {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, await deriveKey(pin, salt), new TextEncoder().encode(tok)));
+    try { localStorage.setItem(AUTH_KEY, JSON.stringify({ salt: bytesToB64(salt), iv: bytesToB64(iv), ct: bytesToB64(ct) })); } catch {}
+  };
+  const openToken = async (pin: string) => {
+    const s = readSealed();
+    if (!s) throw new Error('nothing stored');
+    const key = await deriveKey(pin, b64ToBytes(s.salt));
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBytes(s.iv) }, key, b64ToBytes(s.ct));
+    return new TextDecoder().decode(pt);
+  };
+
+  // ---------- table ----------
+  const h = <K extends keyof HTMLElementTagNameMap>(tag: K, props: Partial<HTMLElementTagNameMap[K]> & Record<string, any> = {}, ...kids: (Node | string)[]) => {
+    const el = document.createElement(tag);
+    for (const [k, v] of Object.entries(props)) {
+      if (k === 'data') Object.assign(el.dataset, v);
+      else if (k in el) (el as any)[k] = v;
+      else el.setAttribute(k, v);
+    }
+    el.append(...kids);
+    return el;
+  };
+  const markText = (m?: Mark) => (m === 'y' ? '✓' : m === 'n' ? '✗' : '');
+  const markWord = (m?: Mark) => (m === 'y' ? 'done' : m === 'n' ? 'missed' : 'no entry');
+
+  const render = () => {
+    const days = weekDays(weekStart);
+    const today = todayKey();
+    const editing = !!token;
+
+    $('hb-week-label').textContent = weekLabel(weekStart);
+    $<HTMLButtonElement>('hb-next').disabled = weekStart >= startOfWeek(new Date());
+    $<HTMLButtonElement>('hb-this-week').disabled = weekStart.getTime() === startOfWeek(new Date()).getTime();
+    lockBtn.textContent = editing ? '🔓 lock' : '🔒 edit';
+    lockBtn.classList.toggle('hb-on', editing);
+    addForm.hidden = !editing;
+
+    const head = h('tr', {},
+      h('th', { className: 'hb-name', scope: 'col' }, 'habit'),
+      ...days.map((d) => h('th', { scope: 'col', className: ymd(d) === today ? 'hb-today' : '' },
+        fmt(d, { weekday: 'short' }).toLowerCase(), h('br'), String(d.getDate()))),
+      h('th', { scope: 'col' }, 'streak'),
+      ...(editing ? [h('th', { scope: 'col', 'aria-label': 'delete' })] : [])
+    );
+
+    const rows = data.habits.map((habit) => {
+      const cells = days.map((d) => {
+        const k = ymd(d);
+        const mark = habit.log[k];
+        const future = k > today;
+        const label = `${habit.name}, ${fmt(d, { weekday: 'long', month: 'short', day: 'numeric' })}: ${markWord(mark)}`;
+        const props = { className: 'hb-cell' + (future ? ' hb-future' : ''), data: mark ? { mark } : {}, title: label };
+        if (editing && !future) {
+          const btn = h('button', { ...props, type: 'button', 'aria-label': label + ' (click to change)' }, markText(mark));
+          btn.addEventListener('click', () => cycle(habit, k));
+          return h('td', {}, btn);
+        }
+        return h('td', {}, h('span', { ...props, role: 'img', 'aria-label': label }, markText(mark)));
+      });
+      const cur = currentStreak(habit), best = bestStreak(habit);
+      const streak = h('td', { className: 'hb-streak', title: `current ${cur} days · best ${best} days` },
+        h('b', {}, `${cur}d`), ` · best ${best}`);
+      const del = editing
+        ? [h('td', {}, (() => {
+            const b = h('button', { className: 'hb-del', type: 'button', 'aria-label': `Delete ${habit.name}`, title: 'delete habit' }, '×');
+            b.addEventListener('click', () => remove(habit));
+            return b;
+          })())]
+        : [];
+      return h('tr', {}, h('th', { className: 'hb-name', scope: 'row' }, habit.name), ...cells, streak, ...del);
+    });
+
+    const cols = 9 + (editing ? 1 : 0);
+    const body = rows.length
+      ? rows
+      : [h('tr', {}, h('td', { className: 'hb-empty', colSpan: cols }, editing ? 'No habits yet. Add your first one below.' : 'No habits yet.'))];
+
+    const foot = data.habits.length
+      ? [h('tr', {},
+          h('th', { className: 'hb-name', scope: 'row' }, 'done'),
+          ...days.map((d) => {
+            const { done, total } = tally([d]);
+            return h('td', {}, total ? `${done}/${total}` : '');
+          }),
+          h('td', {}, (() => { const { done, total } = tally(days); return total ? `${Math.round((done / total) * 100)}%` : ''; })()),
+          ...(editing ? [h('td')] : []))]
+      : [];
+
+    table.replaceChildren(h('thead', {}, head), h('tbody', {}, ...body), h('tfoot', {}, ...foot));
+    if (!charts.hidden) renderCharts();
+  };
+
+  const cycle = (habit: Habit, k: string) => {
+    // empty → done → missed → empty
+    const mark = habit.log[k];
+    if (!mark) habit.log[k] = 'y';
+    else if (mark === 'y') habit.log[k] = 'n';
+    else delete habit.log[k];
+    render();
+    queueSave();
+  };
+  const remove = (habit: Habit) => {
+    if (!confirm(`Delete "${habit.name}" and all of its history?`)) return;
+    data.habits = data.habits.filter((x) => x !== habit);
+    render();
+    queueSave();
+  };
+  addForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = $<HTMLInputElement>('hb-new');
+    const name = input.value.trim();
+    if (!name) return;
+    data.habits.push({ id: crypto.randomUUID(), name, created: todayKey(), log: {} });
+    input.value = '';
+    render();
+    queueSave();
+  });
+
+  $('hb-prev').addEventListener('click', () => { weekStart = addDays(weekStart, -7); render(); });
+  $('hb-next').addEventListener('click', () => { weekStart = addDays(weekStart, 7); render(); });
+  $('hb-this-week').addEventListener('click', () => { weekStart = startOfWeek(new Date()); render(); });
+
+  // ---------- lock / unlock ----------
+  const setupDlg = $<HTMLDialogElement>('hb-setup');
+  const unlockDlg = $<HTMLDialogElement>('hb-unlock');
+  document.querySelectorAll('.hb [data-close]').forEach((b) =>
+    b.addEventListener('click', () => (b.closest('dialog') as HTMLDialogElement).close())
+  );
+
+  const becomeEditor = async (tok: string) => {
+    token = tok;
+    setStatus('loading latest…');
+    await load(); // re-read with auth so we have a fresh sha before the first save
+    render();
+    setStatus('editing unlocked — tap a day to cycle ✓ → ✗ → empty');
+  };
+
+  lockBtn.addEventListener('click', async () => {
+    if (token) {
+      await flush();
+      token = null;
+      render();
+      setStatus('locked');
+      return;
+    }
+    if (readSealed()) {
+      $('hb-unlock-err').textContent = '';
+      ($<HTMLInputElement>('hb-pin')).value = '';
+      unlockDlg.showModal();
+    } else {
+      $('hb-setup-err').textContent = '';
+      setupDlg.showModal();
+    }
+  });
+
+  $('hb-setup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const err = $('hb-setup-err');
+    const tok = ($<HTMLInputElement>('hb-token')).value.trim();
+    const pin1 = ($<HTMLInputElement>('hb-pin1')).value;
+    const pin2 = ($<HTMLInputElement>('hb-pin2')).value;
+    if (pin1.length < 4) { err.textContent = 'PIN must be at least 4 characters.'; return; }
+    if (pin1 !== pin2) { err.textContent = "PINs don't match."; return; }
+    err.textContent = 'checking token…';
+    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+      headers: { Accept: 'application/vnd.github+json', Authorization: `Bearer ${tok}` },
+    }).catch(() => null);
+    if (!res?.ok) { err.textContent = `GitHub rejected that token (${res?.status ?? 'network error'}).`; return; }
+    await sealToken(tok, pin1);
+    ($<HTMLFormElement>('hb-setup-form')).reset();
+    setupDlg.close();
+    await becomeEditor(tok).catch((e) => setStatus(`couldn't load: ${e.message}`, true));
+  });
+
+  $('hb-unlock-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const err = $('hb-unlock-err');
+    err.textContent = 'unlocking…';
+    try {
+      const tok = await openToken(($<HTMLInputElement>('hb-pin')).value);
+      unlockDlg.close();
+      await becomeEditor(tok).catch((e) => setStatus(`couldn't load: ${e.message}`, true));
+    } catch {
+      err.textContent = 'Wrong PIN.';
+    }
+  });
+
+  $('hb-reset-auth').addEventListener('click', () => {
+    try { localStorage.removeItem(AUTH_KEY); } catch {}
+    unlockDlg.close();
+    $('hb-setup-err').textContent = '';
+    setupDlg.showModal();
+  });
+
+  // ---------- progress charts ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const svgEl = (tag: string, attrs: Record<string, string | number>, parent?: Element) => {
+    const el = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, String(v));
+    parent?.append(el);
+    return el;
+  };
+  const showTip = (e: PointerEvent, text: string) => {
+    tip.textContent = text;
+    tip.hidden = false;
+    const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8);
+    tip.style.left = x + 'px';
+    tip.style.top = e.clientY + 14 + 'px';
+  };
+  const hideTip = () => { tip.hidden = true; };
+
+  const renderCharts = () => {
+    const thisWeek = startOfWeek(new Date());
+    const weeks = Array.from({ length: 12 }, (_, i) => addDays(thisWeek, -7 * (11 - i)));
+
+    // weekly completion bars: one series, so no legend; hover shows the numbers
+    const box = $('hb-bars');
+    const W = Math.max(box.clientWidth, 280), H = 200;
+    const m = { t: 20, r: 8, b: 26, l: 38 };
+    const iw = W - m.l - m.r, ih = H - m.t - m.b;
+    const svg = svgEl('svg', { width: W, height: H, role: 'img', 'aria-label': 'Weekly completion rate, last 12 weeks' });
+    for (const p of [0, 50, 100]) {
+      const y = m.t + ih - (p / 100) * ih;
+      svgEl('line', { class: 'hb-grid', x1: m.l, x2: W - m.r, y1: y, y2: y }, svg);
+      svgEl('text', { class: 'hb-axis', x: m.l - 6, y: y + 3, 'text-anchor': 'end' }, svg).textContent = `${p}%`;
+    }
+    const band = iw / weeks.length;
+    const bw = Math.min(28, band * 0.62);
+    const stats = weeks.map((w) => ({ w, ...tally(weekDays(w)) }));
+    const lastWithData = stats.map((s) => s.total > 0).lastIndexOf(true);
+    stats.forEach(({ w, done, total }, i) => {
+      const x = m.l + band * i + (band - bw) / 2;
+      const pct = total ? done / total : 0;
+      const bh = Math.max(total ? pct * ih : 0, done ? 2 : 0);
+      const y = m.t + ih - bh;
+      const r = Math.min(4, bw / 2, bh);
+      if (bh > 0) {
+        svgEl('path', {
+          class: 'hb-bar',
+          d: `M${x},${m.t + ih}V${y + r}Q${x},${y} ${x + r},${y}H${x + bw - r}Q${x + bw},${y} ${x + bw},${y + r}V${m.t + ih}Z`,
+        }, svg);
+      }
+      if (i === lastWithData && total) {
+        svgEl('text', { class: 'hb-val', x: x + bw / 2, y: y - 6, 'text-anchor': 'middle' }, svg).textContent = `${Math.round(pct * 100)}%`;
+      }
+      if (i % 2 === (weeks.length - 1) % 2) {
+        svgEl('text', { class: 'hb-axis', x: x + bw / 2, y: H - 8, 'text-anchor': 'middle' }, svg).textContent =
+          fmt(w, { month: 'short', day: 'numeric' });
+      }
+      const hit = svgEl('rect', { class: 'hb-hit', x: m.l + band * i, y: m.t, width: band, height: ih }, svg);
+      const text = total
+        ? `week of ${fmt(w, { month: 'short', day: 'numeric' })}\n${done}/${total} done · ${Math.round(pct * 100)}%`
+        : `week of ${fmt(w, { month: 'short', day: 'numeric' })}\nno check-ins`;
+      hit.addEventListener('pointermove', (e) => showTip(e as PointerEvent, text));
+      hit.addEventListener('pointerleave', hideTip);
+    });
+    box.replaceChildren(svg);
+
+    // per-habit calendar: small multiples, 12 week columns × 7 day rows
+    const heat = $('hb-heat');
+    const today = todayKey();
+    const C = 12, G = 2, L = 14;
+    heat.replaceChildren(...data.habits.map((habit) => {
+      const s = svgEl('svg', { width: L + weeks.length * (C + G), height: 7 * (C + G), role: 'img', 'aria-label': `${habit.name}, last 12 weeks` });
+      ['M', '', 'W', '', 'F', '', ''].forEach((t, r) => {
+        if (t) svgEl('text', { class: 'hb-axis', x: 0, y: r * (C + G) + C - 2 }, s).textContent = t;
+      });
+      const first = firstDay(habit);
+      let done = 0, total = 0;
+      weeks.forEach((w, c) => weekDays(w).forEach((d, r) => {
+        const k = ymd(d);
+        if (k > today) return;
+        const mark = habit.log[k];
+        const x = L + c * (C + G), y = r * (C + G);
+        const cell = svgEl('rect', { class: `hb-day-${mark ?? 'none'}`, x, y, width: C, height: C, rx: 2 }, s);
+        if (mark === 'n') svgEl('line', { class: 'hb-slash', x1: x + 2.5, y1: y + C - 2.5, x2: x + C - 2.5, y2: y + 2.5 }, s);
+        if (k >= first) { total++; if (mark === 'y') done++; }
+        const text = `${habit.name}\n${fmt(d, { weekday: 'short', month: 'short', day: 'numeric' })} · ${markWord(mark)}`;
+        cell.addEventListener('pointermove', (e) => showTip(e as PointerEvent, text));
+        cell.addEventListener('pointerleave', hideTip);
+      }));
+      return h('div', {},
+        h('p', { className: 'hb-heat-name' }, h('span', { title: habit.name }, habit.name), h('span', {}, total ? `${Math.round((done / total) * 100)}%` : '—')),
+        s);
+    }));
+    if (!data.habits.length) heat.replaceChildren(h('p', { className: 'hb-sub' }, 'No habits yet.'));
+  };
+
+  progressBtn.addEventListener('click', () => {
+    charts.hidden = !charts.hidden;
+    progressBtn.setAttribute('aria-expanded', String(!charts.hidden));
+    progressBtn.classList.toggle('hb-on', !charts.hidden);
+    if (!charts.hidden) { renderCharts(); charts.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+  new ResizeObserver(() => { if (!charts.hidden) renderCharts(); }).observe(charts);
+
+  // ---------- weekly PNG export ----------
+  const exportPng = async () => {
+    await document.fonts.ready;
+    const css = getComputedStyle(document.documentElement);
+    const v = (name: string) => css.getPropertyValue(name).trim();
+    const mono = '"IBM Plex Mono", ui-monospace, monospace';
+    const days = weekDays(weekStart);
+    const today = todayKey();
+    const habits = data.habits;
+
+    const W = 820, nameW = 250, cellW = 62, rowH = 48, top = 150, pad = 40;
+    const H = top + rowH * Math.max(habits.length, 1) + 100;
+    const scale = 2;
+    const canvas = document.createElement('canvas');
+    canvas.width = W * scale; canvas.height = H * scale;
+    const ctx = canvas.getContext('2d')!;
+    ctx.scale(scale, scale);
+
+    ctx.fillStyle = v('--bg'); ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = v('--accent'); ctx.fillRect(0, 0, W, 4);
+
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = v('--accent'); ctx.font = `500 13px ${mono}`;
+    ctx.fillText('~/HABITS', pad, 50);
+    ctx.fillStyle = v('--text'); ctx.font = `600 26px ${mono}`;
+    ctx.fillText(`Week of ${weekLabel(weekStart)}`, pad, 86);
+
+    const colX = (i: number) => pad + nameW + i * cellW + cellW / 2;
+    ctx.font = `500 12px ${mono}`;
+    ctx.textAlign = 'center';
+    days.forEach((d, i) => {
+      ctx.fillStyle = ymd(d) === today ? v('--accent') : v('--muted');
+      ctx.fillText(`${fmt(d, { weekday: 'short' }).toLowerCase()} ${d.getDate()}`, colX(i), top - 22);
+    });
+    ctx.fillStyle = v('--muted');
+    ctx.fillText('streak', pad + nameW + 7 * cellW + 40, top - 22);
+
+    const check = (x: number, y: number) => {
+      ctx.beginPath(); ctx.moveTo(x - 6, y); ctx.lineTo(x - 2, y + 4.5); ctx.lineTo(x + 6.5, y - 5); ctx.stroke();
+    };
+    const cross = (x: number, y: number) => {
+      ctx.beginPath(); ctx.moveTo(x - 5, y - 5); ctx.lineTo(x + 5, y + 5); ctx.moveTo(x + 5, y - 5); ctx.lineTo(x - 5, y + 5); ctx.stroke();
+    };
+
+    habits.forEach((habit, r) => {
+      const cy = top + r * rowH + rowH / 2;
+      ctx.strokeStyle = v('--line'); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(pad, top + r * rowH); ctx.lineTo(W - pad, top + r * rowH); ctx.stroke();
+
+      ctx.textAlign = 'left'; ctx.fillStyle = v('--text'); ctx.font = `500 15px ${mono}`;
+      let name = habit.name;
+      while (ctx.measureText(name).width > nameW - 16 && name.length > 1) name = name.slice(0, -2) + '…';
+      ctx.fillText(name, pad, cy + 5);
+
+      days.forEach((d, i) => {
+        const k = ymd(d), x = colX(i), mark = habit.log[k];
+        ctx.lineWidth = 2.2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        if (mark === 'y') {
+          ctx.fillStyle = v('--accent'); ctx.beginPath(); ctx.arc(x, cy, 14, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = v('--bg'); check(x, cy);
+        } else if (mark === 'n') {
+          ctx.strokeStyle = v('--muted'); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(x, cy, 13, 0, Math.PI * 2); ctx.stroke();
+          ctx.lineWidth = 2.2; cross(x, cy);
+        } else if (k <= today) {
+          ctx.fillStyle = v('--line'); ctx.beginPath(); ctx.arc(x, cy, 3, 0, Math.PI * 2); ctx.fill();
+        }
+      });
+      ctx.textAlign = 'center'; ctx.fillStyle = v('--text'); ctx.font = `600 14px ${mono}`;
+      ctx.fillText(`${currentStreak(habit)}d`, pad + nameW + 7 * cellW + 40, cy + 5);
+    });
+    if (!habits.length) {
+      ctx.textAlign = 'left'; ctx.fillStyle = v('--muted'); ctx.font = `14px ${mono}`;
+      ctx.fillText('No habits yet.', pad, top + rowH / 2 + 5);
+    }
+
+    const { done, total } = tally(days);
+    const fy = H - 44;
+    ctx.strokeStyle = v('--line'); ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad, fy - 24); ctx.lineTo(W - pad, fy - 24); ctx.stroke();
+    ctx.textAlign = 'left'; ctx.fillStyle = v('--text'); ctx.font = `600 15px ${mono}`;
+    ctx.fillText(total ? `${done}/${total} done · ${Math.round((done / total) * 100)}%` : 'no check-ins this week', pad, fy + 6);
+    ctx.textAlign = 'right'; ctx.fillStyle = v('--muted'); ctx.font = `13px ${mono}`;
+    ctx.fillText(`${location.host}/habits`, W - pad, fy + 6);
+
+    canvas.toBlob((blob) => {
+      if (!blob) return;
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `habits-${isoWeek(weekStart)}.png`;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }, 'image/png');
+  };
+  $('hb-export').addEventListener('click', exportPng);
+
+  // ---------- boot ----------
+  render();
+  load()
+    .then(() => {
+      render();
+      setStatus(data.updated ? `last updated ${new Date(data.updated).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}` : '');
+    })
+    .catch(() => setStatus("couldn't load habits right now — try again in a bit", true));
+</script>

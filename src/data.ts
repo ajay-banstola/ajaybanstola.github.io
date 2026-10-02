@@ -14,6 +14,14 @@ export const site = {
     "Software engineer with 5+ years across AI platforms, large-scale archiving systems, and fintech. Currently building at Apex Innovations. I recently finished my M.S. in Computer Science at UL Lafayette with a 4.0, where my research spanned glaucoma progression prediction from RNFLT maps and binary-level fuzzing under Prof. Arun Lakhotia.",
 };
 
+// Habit tracker data lives as a JSON file on its own branch, so check-ins don't redeploy the site.
+export const habitsStore = {
+  owner: 'ajay-banstola',
+  repo: 'ajaybanstola.github.io',
+  branch: 'habits-data',
+  path: 'habits.json',
+};
+
 export const skills = {
   'Languages': ['Python', 'TypeScript / JavaScript', 'PHP', 'Java', 'SQL', 'C / C++', 'Rust (research)'],
   'AI & Agents': ['LLM APIs (Claude, GPT)', 'Agentic workflows & tool use', 'MCP', 'RAG', 'LangGraph / LangChain', 'AutoGen', 'Vector search (pgvector)', 'LLM evals'],

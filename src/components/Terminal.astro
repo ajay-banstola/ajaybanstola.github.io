@@ -82,7 +82,7 @@ const posts = (await getCollection('blog'))
   };
 
   const sections = ['about', 'skills', 'work', 'projects', 'journey', 'contact'];
-  const links = { github: site.github, linkedin: site.linkedin, resume: '/resume.pdf', blog: '/blog/', graph: '/blog/graph/' };
+  const links = { github: site.github, linkedin: site.linkedin, resume: '/resume.pdf', blog: '/blog/', graph: '/blog/graph/', habits: '/habits/' };
 
   const goto = (url) => {
     if (url.startsWith('http')) return window.open(url, '_blank');
@@ -157,6 +157,7 @@ const posts = (await getCollection('blog'))
       goto(links[what]);
       return `opening ${what} ...`;
     }],
+    habits: ['open my habit tracker', () => { goto('/habits/'); return 'opening /habits ...'; }],
     contact: ['ways to reach me', () => `email:    ${site.email}\ngithub:   ${site.github}\nlinkedin: ${site.linkedin}`],
     email: ['copy my email to the clipboard', () => {
       navigator.clipboard?.writeText(site.email);

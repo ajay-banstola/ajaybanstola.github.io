@@ -46,6 +46,7 @@ const { title = `${site.name} | Portfolio`, description = site.intro } = Astro.p
           <a href="/#work">work</a>
           <a href="/#projects">projects</a>
           <a href="/blog/">blog</a>
+          <a href="/habits/">habits</a>
           <button class="nav-btn" onclick="window.openPalette()" title="Command palette (Ctrl+K)">
             ⌘K
           </button>
@@ -131,8 +132,10 @@ const { title = `${site.name} | Portfolio`, description = site.intro } = Astro.p
     font-size: 0.85rem;
   }
   @media (max-width: 560px) {
+    .nav-links a:nth-child(1),
     .nav-links a:nth-child(2),
     .nav-links a:nth-child(3) { display: none; }
+    .nav-links { gap: 0.6rem; }
     .footer-hint { display: none; }
   }
 </style>
